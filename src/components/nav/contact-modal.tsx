@@ -1,9 +1,10 @@
 import { type PropsWithChildren, useRef, useState } from 'react';
-import { FaGithub, FaLinkedin, FaStackOverflow } from 'react-icons/fa6';
+import { FaGithub, FaLinkedin, FaStackOverflow, FaX } from 'react-icons/fa6';
 import { useOutsideAlerter } from '../../hooks/use-outside-alerter';
 import { Anchor } from '../utils/anchor';
-import { H4, H5 } from '../utils/headings';
+import { H2, H5 } from '../utils/headings';
 import { HorizontalRow } from '../utils/horizontal-row';
+import { ButtonContainer } from './button-container';
 
 export function ContactCard(props: PropsWithChildren) {
   const [open, setOpen] = useState(false);
@@ -23,37 +24,29 @@ export function ContactCard(props: PropsWithChildren) {
   return (
     <div>
       <div
-        className={`fade fixed top-0 left-0 transform duration-300 w-full h-screen flex justify-center items-center bg-zinc-900 bg-opacity-75 ${
+        className={`fixed top-0 left-0 w-full h-screen flex justify-center items-center ${
           open ? '' : 'hidden'
         }`}
         id="contact-modal"
       >
         <div
+          className={
+            'fixed top-0 left-0 opacity-75 bg-neutral-500 w-full h-full'
+          }
+        />
+        <div
           ref={ref}
-          className="w-1/2 xl:w-1/3 flex-col bg-slate-800 rounded-3xl p-4 border"
+          className="z-10 min-w-[300px] flex-col bg-neutral-100 dark:bg-slate-800 rounded-lg p-4 border dark:border-neutral-500"
         >
-          <div className="flex justify-between">
-            <H4>Contact Information</H4>
+          <div className="flex justify-between align-center gap-16">
+            <H2>Contact Information</H2>
             <button onClick={forceClose}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                transform={`rotate(45deg)`}
-                className="icon"
-                stroke={'#fff'}
-                width={24}
-                height={24}
-                fill="none"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                viewBox="0 0 24 24"
-              >
-                <line x1="20" y1="4" x2="4" y2="20" />
-                <line x1="4" y1="4" x2="20" y2="20" />
-              </svg>
+              <ButtonContainer>
+                <FaX size={24} />
+              </ButtonContainer>
             </button>
           </div>
-          <hr className="mb-2" />
+          <HorizontalRow />
           <div>
             <H5>
               <strong>Name: </strong> Ben McLean
@@ -73,18 +66,24 @@ export function ContactCard(props: PropsWithChildren) {
                 <a
                   className="text-4xl bg-white w-10 text-center rounded"
                   href="https://github.com/BenMcLean981"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <FaGithub className="text-zinc-900 rounded" />
                 </a>
                 <a
                   className="text-4xl bg-zinc-700 w-10 text-center rounded"
                   href="https://stackoverflow.com/users/12833553/bigbadbenny"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <FaStackOverflow className="text-orange-500 rounded" />
                 </a>
                 <a
                   className="text-4xl bg-white w-10 text-center rounded"
                   href="https://www.linkedin.com/in/BenMcLean981"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <FaLinkedin className="text-blue-600 rounded" />
                 </a>

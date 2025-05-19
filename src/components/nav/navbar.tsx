@@ -4,11 +4,11 @@ import { useRef, useState } from 'react';
 
 import { useOutsideAlerter } from '../../hooks/use-outside-alerter';
 import { DarkModeSwitch } from '../dark-mode-switch/dark-mode-switch';
+import { ButtonContainer } from './button-container';
 import { ContactCard } from './contact-modal';
 import { DesktopNav } from './desktop/desktop-nav';
 import { MobileDropdownButton } from './mobile/mobile-dropdown-button';
 import { MobileNavDropdown } from './mobile/mobile-nav-dropdown';
-import { NavContainer } from './nav-container';
 import { type NavRoute } from './nav-route';
 
 export function NavBar() {
@@ -39,7 +39,7 @@ export function NavBar() {
             </div>
             <div className="flex justify-end w-full md:w-auto items-center gap-x-6 my-6">
               <ContactCard>
-                <NavContainer>Contact</NavContainer>
+                <ButtonContainer>Contact</ButtonContainer>
               </ContactCard>
               <DarkModeSwitch />
               <MobileDropdownButton

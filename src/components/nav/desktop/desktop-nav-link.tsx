@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { type PropsWithChildren } from 'react';
-import { NavContainer } from '../nav-container';
+import { ButtonContainer } from '../button-container';
 import { type NavRoute } from '../nav-route';
 
 export interface DesktopNavLinkProps {
@@ -15,7 +15,7 @@ export function DesktopNavLink(props: PropsWithChildren<DesktopNavLinkProps>) {
         className="flex justify-center align-middle items-center "
       >
         {props.children}
-        <NavContainer>{props.route.name}</NavContainer>
+        <ButtonContainer>{props.route.name}</ButtonContainer>
       </Link>
     </div>
   );

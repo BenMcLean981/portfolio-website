@@ -1,5 +1,5 @@
 import { FaBars } from 'react-icons/fa6';
-import { NavContainer } from '../nav-container';
+import { ButtonContainer } from '../button-container';
 
 export interface MobileDropdownButtonProps {
   handleToggle: VoidFunction;
@@ -14,9 +14,9 @@ export function MobileDropdownButton(props: MobileDropdownButtonProps) {
         className="outline-none mobile-menu-button"
         onClick={handleToggle}
       >
-        <NavContainer>
+        <ButtonContainer>
           <FaBars size={24} role={'img'} />
-        </NavContainer>
+        </ButtonContainer>
       </button>
     </div>
   );
