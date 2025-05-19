@@ -18,3 +18,13 @@ export function transpose<T>(
 
   return result;
 }
+
+export function applyTimes<T>(initial: T, cb: (t: T) => T, times: number): T {
+  let result = initial;
+
+  for (let i = 0; i < times; i++) {
+    result = cb(result);
+  }
+
+  return result;
+}
