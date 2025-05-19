@@ -1,6 +1,6 @@
-import { Anchor } from '../../components/anchor';
-import { H1, H6 } from '../../components/headings';
-import { Paragraph } from '../../components/paragraph';
+import { Anchor } from '../../components/utils/anchor';
+import { H1, H6 } from '../../components/utils/headings';
+import { Paragraph } from '../../components/utils/paragraph';
 
 export default async function Page() {
   return (

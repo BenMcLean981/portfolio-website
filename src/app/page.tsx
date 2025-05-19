@@ -1,11 +1,11 @@
-import { OrderedList } from '@/components/ordered-list';
-import { UnorderedList } from '@/components/unordered-list';
 import Image from 'next/image';
-import { Anchor } from '../components/anchor';
-import { H1, H2 } from '../components/headings';
-import { HorizontalRow } from '../components/horizontal-row';
-import { ListItem } from '../components/list-item';
-import { Paragraph } from '../components/paragraph';
+import { Anchor } from '../components/utils/anchor';
+import { H1, H2 } from '../components/utils/headings';
+import { HorizontalRow } from '../components/utils/horizontal-row';
+import { ListItem } from '../components/utils/list-item';
+import { OrderedList } from '../components/utils/ordered-list';
+import { Paragraph } from '../components/utils/paragraph';
+import { UnorderedList } from '../components/utils/unordered-list';
 
 export default function Home() {
   return (
