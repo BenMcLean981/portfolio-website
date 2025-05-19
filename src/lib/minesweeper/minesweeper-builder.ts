@@ -1,5 +1,5 @@
 import { applyTimes } from '../utils';
-import { Minesweeper } from './minesweeper';
+import { MinesweeperBoard } from './minesweeper-board';
 import { MinesweeperCell } from './minesweeper-cell';
 import { type MinesweeperConfig, validateConfig } from './minesweeper-config';
 import { Position } from './position';
@@ -11,7 +11,7 @@ export class MinesweeperBuilder {
     this._rows = rows;
   }
 
-  public static build(config: MinesweeperConfig): Minesweeper {
+  public static build(config: MinesweeperConfig): MinesweeperBoard {
     validateConfig(config);
 
     const builder = MinesweeperBuilder.initialize(
@@ -50,8 +50,8 @@ export class MinesweeperBuilder {
     return new MinesweeperBuilder(rows);
   }
 
-  private get board(): Minesweeper {
-    return Minesweeper.makeFromRows(this._rows);
+  private get board(): MinesweeperBoard {
+    return MinesweeperBoard.makeFromRows(this._rows);
   }
 
   private addRandomBomb(): MinesweeperBuilder {

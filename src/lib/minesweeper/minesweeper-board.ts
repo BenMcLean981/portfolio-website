@@ -1,7 +1,7 @@
 import { transpose } from '../utils';
 import { type MinesweeperCell } from './minesweeper-cell';
 
-export class Minesweeper {
+export class MinesweeperBoard {
   private readonly _rows: ReadonlyArray<ReadonlyArray<MinesweeperCell>>;
 
   private constructor(rows: ReadonlyArray<ReadonlyArray<MinesweeperCell>>) {
@@ -10,8 +10,8 @@ export class Minesweeper {
 
   public static makeFromRows(
     rows: ReadonlyArray<ReadonlyArray<MinesweeperCell>>
-  ): Minesweeper {
-    return new Minesweeper(rows);
+  ): MinesweeperBoard {
+    return new MinesweeperBoard(rows);
   }
 
   public get rows(): ReadonlyArray<ReadonlyArray<MinesweeperCell>> {
