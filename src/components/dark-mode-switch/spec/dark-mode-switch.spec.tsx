@@ -30,7 +30,7 @@ describe('darkModeSwitch.', () => {
   it('Renders correct icon.', () => {
     render(<DarkModeSwitch />);
 
-    expect(screen.getByText('🌙')).toBeInTheDocument();
+    expect(screen.getByText('☀️')).toBeInTheDocument();
 
     const buttons = screen.getAllByRole('button');
 
@@ -38,12 +38,12 @@ describe('darkModeSwitch.', () => {
       buttons[0].click();
     });
 
-    expect(screen.getByText('☀️')).toBeInTheDocument();
+    expect(screen.getByText('🌙')).toBeInTheDocument();
 
     act(() => {
       buttons[1].click();
     });
 
-    expect(screen.getByText('🌙')).toBeInTheDocument();
+    expect(screen.getByText('☀️')).toBeInTheDocument();
   });
 });
