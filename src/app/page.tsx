@@ -1,103 +1,210 @@
-import Image from "next/image";
+import { OrderedList } from '@/components/ordered-list';
+import { UnorderedList } from '@/components/unordered-list';
+import Image from 'next/image';
+import { Anchor } from '../components/anchor';
+import { H1, H2 } from '../components/headings';
+import { HorizontalRow } from '../components/horizontal-row';
+import { ListItem } from '../components/list-item';
+import { Paragraph } from '../components/paragraph';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex flex-col gap-2">
+      <p className="text-center text-md font-medium dark:text-white italic">
+        The views expressed on this website are mine alone and do not
+        necessarily reflect the views of my employer.
+      </p>
+      <HorizontalRow />
+      <H1>Ben McLean - Full Stack Developer</H1>
+      <Paragraph>
+        My name is Ben McLean, I am {getAgeInYears()} years old and am employed
+        at Catalyst Technologies. Catalyst develops software to be used in the
+        agricultural sector. I am currently working on several NextJS TypeScript
+        Applications.
+      </Paragraph>
+      <Paragraph>
+        My previous role was at Inovatech Engineering, a Lincoln Electric
+        company. I helped maintain a large .NET/C# codebase, but also did some
+        projects with TypeScript, React and Python.
+      </Paragraph>
+      <Paragraph>
+        In June 2022 I graduated Cum Laude from the University of Ottawa. I
+        completed a double degree in which I studied Mechanical Engineering and
+        Computing Technology. I participated in the co-op program where I
+        discovered that I greatly enjoy writing software. I am passionate about
+        software and engineering, and I hope to be able to use my skills to make
+        a positive impact on the world.
+      </Paragraph>
+      <HorizontalRow />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <H1>My Passions</H1>
+      <Paragraph>
+        I believe that in today&apos;s world we are tasked with some of the most
+        difficult problems of any generation. I like to believe that these
+        problems have technical solutions and that through innovation, the most
+        difficult problems can be solved. I believe that I can make a positive
+        impact in the world with my talent and with good software, and I am most
+        interested in working in the following fields and solving the following
+        problems:
+      </Paragraph>
+      <UnorderedList>
+        <ListItem>Climate Change</ListItem>
+        <ListItem>Space Exploration</ListItem>
+        <ListItem>Sustainability</ListItem>
+        <ListItem>Robotics and Automation</ListItem>
+        <ListItem>Access to Education</ListItem>
+      </UnorderedList>
+      <HorizontalRow />
+
+      <H1>My Projects</H1>
+      <Paragraph>
+        I&apos;m currently working on several projects, including:
+      </Paragraph>
+      <UnorderedList>
+        <ListItem>
+          <strong>This Website:</strong> whose source code you can clone{' '}
+          <Anchor
+            href="https://github.com/BenMcLean981/BenMcLean981.github.io"
+            newWindow
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            here!
+          </Anchor>{' '}
+          This website is a full blown NextJS application hosted on Vercel. It
+          features a CI/CD pipeline, automated testing, and a small game.
+          Originally, this application was a statically generated
+          create-react-app hosted on GitHub pages but the React community has
+          moved decisively towards frameworks.
+        </ListItem>
+        <ListItem>
+          <strong>E-Cad:</strong> Another R&D project I have hoped to spin into
+          a side business. This project is closed source, but is currently in a
+          state where it can be demoed.
+        </ListItem>
+        <ListItem>
+          <strong>Syncify:</strong> An R&D project for synchronizing datastores
+          in a manner similar to git. Syncify is still in development and quite
+          immature, but can be viewed{' '}
+          <Anchor href={'https://github.com/BenMcLean981/syncify'} newWindow>
+            here.
+          </Anchor>
+        </ListItem>
+        <ListItem>
+          <strong>Work Projects:</strong> I cannot discuss these in detail due
+          to confidentiality. What I can say is that I have developed a platform
+          of applications and libraries for my employer who is in the AgTech
+          (Agricultural Technology) sector. Some of these projects involve AI,
+          some are more traditional business apps.
+        </ListItem>
+      </UnorderedList>
+      <HorizontalRow />
+      <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8">
+        <div>
+          <Paragraph>Some of my past projects include:</Paragraph>
+          <UnorderedList>
+            <ListItem>
+              <strong>A Cut time estimator:</strong> I created a web application
+              to help sales representatives provide estimates on the cut time of
+              a robotic CNC plasma cutter. The tool loaded the 3D part file,
+              calculated the cuts necessary and prepared them into tool paths.
+              Then it found an optimized ordering of tool paths, and calculated
+              the total time.
+            </ListItem>
+            <ListItem>
+              <strong>My co-op project:</strong> I developed a working 2D plate
+              nester. A user could load a list of part files, select a piece of
+              rectangular stock, and have the parts placed optimally inside of
+              the stock. I developed a 2D geometry library for this, all
+              in-house in TypeScript.
+            </ListItem>
+            <ListItem>
+              <Anchor href="https://ottawaavgroup.square.site/" newWindow>
+                OAVG&apos;s Autonomous Snowplow
+              </Anchor>{' '}
+              (shown here). I mostly did some of the manufacturing and assembly
+              work. I also helped to document the electrical and mechanical
+              design of the robot. And I wrote some ROS code to simulate it when
+              Covid-19 forced the competition online.
+            </ListItem>
+          </UnorderedList>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="relative min-h-[500px]">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src={'/images/snowplow.png'}
+            alt="autonomous snowplow"
+            className={'object-contain object-center'}
+            fill
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </div>
+      <HorizontalRow />
+      <div>
+        <H1>Technologies</H1>
+        <div>
+          <Paragraph>
+            I&apos;d be interested in learning anything, but these are the
+            technologies I currently feel competent with.
+          </Paragraph>
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 grid-cols-1">
+            <div>
+              <H2>Languages</H2>
+              <OrderedList>
+                <ListItem>TypeScript (JavaScript)</ListItem>
+                <ListItem>Python</ListItem>
+                <ListItem>C#/.NET</ListItem>
+                <ListItem>Java</ListItem>
+                <ListItem>SQL</ListItem>
+                <ListItem>Rust</ListItem>
+                <ListItem>C/C++</ListItem>
+              </OrderedList>
+            </div>
+            <div>
+              <H2>Libraries and Frameworks</H2>
+              <UnorderedList>
+                <ListItem>NextJS (React)</ListItem>
+                <ListItem>Tailwind CSS</ListItem>
+                <ListItem>Fastify</ListItem>
+                <ListItem>NestJS</ListItem>
+                <ListItem>Flask</ListItem>
+                <ListItem>SQLAlchemy</ListItem>
+                <ListItem>Express</ListItem>
+              </UnorderedList>
+            </div>
+            <div>
+              <H2>Tools</H2>
+              <UnorderedList>
+                <ListItem>Git</ListItem>
+                <ListItem>VSCode</ListItem>
+                <ListItem>Visual Studio</ListItem>
+                <ListItem>IntelliJ IDEA</ListItem>
+                <ListItem>Kubernetes and Docker</ListItem>
+                <ListItem>Azure Devops (CI/CD)</ListItem>
+                <ListItem>Azure Cloud</ListItem>
+              </UnorderedList>
+            </div>
+            <div>
+              <H2>Other</H2>
+              <UnorderedList>
+                <ListItem>Automated Testing (Jest)</ListItem>
+                <ListItem>GitHub</ListItem>
+                <ListItem>REST APIs</ListItem>
+                <ListItem>SQL (MySQL and PostgreSQL)</ListItem>
+                <ListItem>
+                  Build Tools like Vite, TSUP, Webpack, ESBuild
+                </ListItem>
+              </UnorderedList>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
+}
+
+function getAgeInYears() {
+  const DATE_OF_BIRTH = new Date(1999, 2, 19);
+  const today = new Date();
+  const milliseconds = today.getTime() - DATE_OF_BIRTH.getTime();
+  const years = milliseconds / 1000 / 3600 / 24 / 365.24225;
+
+  return Math.floor(years);
 }
