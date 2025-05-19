@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { type PropsWithChildren } from 'react';
+import { NavBar } from '../components/nav/navbar';
+import { ResponsiveContainer } from '../components/responsive-container';
 import './globals.css';
 
 const geistSans = Geist({
@@ -24,8 +26,11 @@ export default function RootLayout(props: PropsWithChildren) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-slate-900`}
       >
-        <div className="my-2 xl:mx-48 lg:mx-36 md:mx-12 sm:mx-6 mx-4">
-          {props.children}
+        <header>
+          <NavBar />
+        </header>
+        <div className="my-2">
+          <ResponsiveContainer>{props.children}</ResponsiveContainer>
         </div>
       </body>
     </html>

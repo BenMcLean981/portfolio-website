@@ -1,6 +1,8 @@
 import { Anchor } from '../../components/utils/anchor';
-import { H1, H6 } from '../../components/utils/headings';
+import { H1, H2 } from '../../components/utils/headings';
+import { ListItem } from '../../components/utils/list-item';
 import { Paragraph } from '../../components/utils/paragraph';
+import { UnorderedList } from '../../components/utils/unordered-list';
 
 export default async function Page() {
   return (
@@ -12,33 +14,47 @@ export default async function Page() {
           online
         </Anchor>
         . It always gets a lot of attention on Twitter, Reddit, and Hackernews.
-        I like to do it in Rust, as it is a nice challenge for me and a good
-        excuse to learn new technologies. The challenges get progressively more
-        difficult, this past year I got 40/50 stars (which actually is more than
-        90% of participants).
+        I sometimes use it to try to learn new technologies like rust. The
+        challenges get progressively more difficult, and I typically make it to
+        the day 15-20 before dropping off to focus on family.
       </Paragraph>
       <br />
-      <H6>Years</H6>
-      <li>
-        <Anchor
-          href="https://github.com/BenMcLean981/advent_of_code_2023"
-          newWindow
-        >
-          2023
-        </Anchor>
-      </li>
-      <li>
-        <strong>2022: </strong> Due to an unfortunate accident I lost my 2022
-        solution. This was also done in Rust.
-      </li>
-      <li>
-        <Anchor
-          href="https://github.com/BenMcLean981/advent-of-code-2021"
-          newWindow
-        >
-          2021
-        </Anchor>
-      </li>
+      <H2>Years</H2>
+      <UnorderedList>
+        <ListItem>
+          <Anchor
+            href="https://github.com/BenMcLean981/advent-of-code-2024"
+            newWindow
+          >
+            <strong>2024:</strong>
+          </Anchor>{' '}
+          This was my first year done in TypeScript. I didn&apos;t want to
+          struggle with a complicated language like Rust, and instead wanted to
+          focus on solving fun problems in a language I knew very well!
+        </ListItem>
+        <ListItem>
+          <Anchor
+            href="https://github.com/BenMcLean981/advent-of-code-2023"
+            newWindow
+          >
+            <strong>2023:</strong>
+          </Anchor>{' '}
+          Done in Rust
+        </ListItem>
+        <ListItem>
+          <strong>2022: </strong> Due to an unfortunate accident I lost my 2022
+          solution. This was my first year done in Rust.
+        </ListItem>
+        <ListItem>
+          <Anchor
+            href="https://github.com/BenMcLean981/advent-of-code-2021"
+            newWindow
+          >
+            <strong>2021:</strong>
+          </Anchor>{' '}
+          Done in Python
+        </ListItem>
+      </UnorderedList>
     </>
   );
 }
