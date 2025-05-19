@@ -40,7 +40,7 @@ export class MinesweeperGame {
 
   private removeFlag(position: Position) {
     const states: Record<string, CellState> = {
-      ...this._board,
+      ...this._states,
     };
 
     delete states[getKey(position)];
@@ -50,7 +50,7 @@ export class MinesweeperGame {
 
   private addFlag(position: Position) {
     const states: Record<string, CellState> = {
-      ...this._board,
+      ...this._states,
       [getKey(position)]: 'Flagged',
     };
 
@@ -65,7 +65,7 @@ export class MinesweeperGame {
     }
 
     const states: Record<string, CellState> = {
-      ...this._board,
+      ...this._states,
       [getKey(position)]: 'Revealed',
     };
 
@@ -73,18 +73,10 @@ export class MinesweeperGame {
   }
 
   public isRevealed(position: Position): boolean {
-    if (this.isGameOver) {
-      return true;
-    }
-
     return this._states[getKey(position)] === 'Revealed';
   }
 
   public isFlagged(position: Position): boolean {
-    if (this.isGameOver) {
-      return false;
-    }
-
     return this._states[getKey(position)] === 'Flagged';
   }
 }
