@@ -7,22 +7,37 @@ export class MinesweeperGame {
 
   private readonly _states: Record<string, CellState>;
 
+  private readonly _numAdjacentBombs: Record<string, number>;
+
+  private readonly _isGameOver: boolean;
+
   private constructor(
     board: MinesweeperBoard,
-    states: Record<string, CellState>
+    states: Record<string, CellState>,
+    numAdjacentBombs: Record<string, number>,
+    isGameOver: boolean
   ) {
     this._board = board;
     this._states = states;
+    this._numAdjacentBombs = numAdjacentBombs;
+    this._isGameOver = isGameOver;
   }
 
   public static startNewGame(board: MinesweeperBoard): MinesweeperGame {
-    return new MinesweeperGame(board, {});
+    const numAdjacentBombs: Record<string, number> = {};
+
+    for (const cell of board.cells) {
+      numAdjacentBombs[getKey(cell.position)] = [...cell.position.neighbors]
+        .map((p) => board.getCell(p))
+        .filter(notUndefined)
+        .filter((c) => c.isBombed).length;
+    }
+
+    return new MinesweeperGame(board, {}, numAdjacentBombs, false);
   }
 
   public get isGameOver(): boolean {
-    return this._board.cells.some(
-      (c) => this.isRevealed(c.position) && c.isBombed
-    );
+    return this._isGameOver;
   }
 
   public get board(): MinesweeperBoard {
@@ -50,7 +65,12 @@ export class MinesweeperGame {
 
     delete states[getKey(position)];
 
-    return new MinesweeperGame(this._board, states);
+    return new MinesweeperGame(
+      this._board,
+      states,
+      this._numAdjacentBombs,
+      this._isGameOver
+    );
   }
 
   private addFlag(position: Position) {
@@ -59,7 +79,12 @@ export class MinesweeperGame {
       [getKey(position)]: 'Flagged',
     };
 
-    return new MinesweeperGame(this._board, states);
+    return new MinesweeperGame(
+      this._board,
+      states,
+      this._numAdjacentBombs,
+      this._isGameOver
+    );
   }
 
   public reveal(position: Position): MinesweeperGame {
@@ -74,7 +99,18 @@ export class MinesweeperGame {
       [getKey(position)]: 'Revealed',
     };
 
-    const revealed = new MinesweeperGame(this._board, states);
+    const cell = this._board.getCell(position);
+
+    if (cell === undefined) {
+      throw new Error('Cannot find cell.');
+    }
+
+    const revealed = new MinesweeperGame(
+      this._board,
+      states,
+      this._numAdjacentBombs,
+      cell?.isBombed
+    );
 
     if (this.getNumAdjacentBombs(position) === 0) {
       return [...position.neighbors]
@@ -97,10 +133,7 @@ export class MinesweeperGame {
   }
 
   public getNumAdjacentBombs(position: Position): number {
-    return [...position.neighbors]
-      .map((p) => this._board.getCell(p))
-      .filter(notUndefined)
-      .filter((c) => c.isBombed).length;
+    return this._numAdjacentBombs[getKey(position)];
   }
 }
 
