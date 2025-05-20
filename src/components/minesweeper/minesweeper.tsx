@@ -1,27 +1,47 @@
 'use client';
 
-import { useState } from 'react';
+import { type SetStateAction, useState } from 'react';
+import { MinesweeperBuilder } from '../../lib/minesweeper/minesweeper-builder';
 import { type MinesweeperConfig } from '../../lib/minesweeper/minesweeper-config';
+import { MinesweeperGame } from '../../lib/minesweeper/minesweper-game';
 import {
   MinesweeperConfigSelector,
   type NamedMinesweeperConfig,
 } from './minesweeper-config-selector';
+import { MinesweeperGameView } from './minesweeper-game-view';
 
 export function Minesweeper() {
-  const [config, setConfig] = useState<MinesweeperConfig | undefined>(
-    undefined
-  );
+  const [game, setGame] = useState<MinesweeperGame | undefined>(undefined);
 
-  if (config === undefined) {
+  function handleSetConfig(config: MinesweeperConfig) {
+    const board = MinesweeperBuilder.build(config);
+    const game = MinesweeperGame.startNewGame(board);
+
+    setGame(game);
+  }
+
+  if (game === undefined) {
     return (
       <MinesweeperConfigSelector
         configOptions={CONFIG_OPTIONS}
-        setConfig={setConfig}
+        setConfig={handleSetConfig}
       />
     );
   }
 
-  return <div></div>;
+  function setGameSafe(action: SetStateAction<MinesweeperGame>) {
+    setGame((game) => {
+      if (game === undefined) {
+        throw new Error('Game not initialized.');
+      } else if (typeof action === 'function') {
+        return action(game);
+      } else {
+        return action;
+      }
+    });
+  }
+
+  return <MinesweeperGameView game={game} setGame={setGameSafe} />;
 }
 
 const CONFIG_OPTIONS: ReadonlyArray<NamedMinesweeperConfig> = [

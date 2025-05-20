@@ -1,5 +1,6 @@
-import { transpose } from '../utils';
+import { transpose } from '../utils/utils';
 import { type MinesweeperCell } from './minesweeper-cell';
+import { type Position } from './position';
 
 export class MinesweeperBoard {
   private readonly _rows: ReadonlyArray<ReadonlyArray<MinesweeperCell>>;
@@ -20,5 +21,13 @@ export class MinesweeperBoard {
 
   public get columns(): ReadonlyArray<ReadonlyArray<MinesweeperCell>> {
     return transpose(this._rows);
+  }
+
+  public get cells(): ReadonlyArray<MinesweeperCell> {
+    return this._rows.flat();
+  }
+
+  public getCell(position: Position): MinesweeperCell | undefined {
+    return this.cells.find((c) => c.position.equals(position));
   }
 }

@@ -28,3 +28,7 @@ export function applyTimes<T>(initial: T, cb: (t: T) => T, times: number): T {
 
   return result;
 }
+
+export function notUndefined<T>(t: T | undefined): t is T {
+  return t !== undefined;
+}

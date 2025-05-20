@@ -16,11 +16,28 @@ export class Position {
     return this._column;
   }
 
+  public get neighbors(): Iterable<Position> {
+    return [
+      new Position(this._row + 1, this._column + 1),
+      new Position(this._row + 1, this._column),
+      new Position(this._row + 1, this._column - 1),
+      new Position(this._row, this._column + 1),
+      new Position(this._row, this._column - 1),
+      new Position(this._row - 1, this._column + 1),
+      new Position(this._row - 1, this._column),
+      new Position(this._row - 1, this._column - 1),
+    ];
+  }
+
   public equals(other: unknown): boolean {
     if (other instanceof Position) {
       return this.row === other.row && this.column === other.column;
     } else {
       return false;
     }
+  }
+
+  public toString(): string {
+    return `(${this._row}, ${this._column})`;
   }
 }

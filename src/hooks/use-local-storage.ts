@@ -4,17 +4,33 @@ export function useLocalStorage(
   key: string,
   defaultValue?: string
 ): [string | null, Dispatch<SetStateAction<string | null>>] {
-  const [value, setValue] = useState(getLocalStorage(key, defaultValue));
+  const [value, setValue] = useState<string | null | undefined>(undefined);
 
   useEffect(() => {
-    if (value === null) {
-      window.localStorage.removeItem(key);
-    } else {
-      window.localStorage.setItem(key, value);
+    if (value === undefined) {
+      setValue(getLocalStorage(key, defaultValue));
     }
-  }, [key, value]);
+  }, [defaultValue, key, value]);
 
-  return [value, setValue];
+  function handleSetValue(action: SetStateAction<string | null>) {
+    setValue((value) => {
+      if (value === undefined) {
+        throw new Error('Not initialized.');
+      }
+
+      const newValue = typeof action === 'function' ? action(value) : action;
+
+      if (newValue === null) {
+        window.localStorage.removeItem(key);
+      } else {
+        window.localStorage.setItem(key, newValue);
+      }
+
+      return newValue;
+    });
+  }
+
+  return [value ?? null, handleSetValue];
 }
 
 function getLocalStorage(key: string, defaultValue?: string): string | null {

@@ -1,4 +1,4 @@
-import { applyTimes } from '../utils';
+import { applyTimes } from '../utils/utils';
 import { MinesweeperBoard } from './minesweeper-board';
 import { MinesweeperCell } from './minesweeper-cell';
 import { type MinesweeperConfig, validateConfig } from './minesweeper-config';

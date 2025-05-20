@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { type MinesweeperBoard } from '../minesweeper-board';
-import { MinesweeperBuilder } from '../minesweeper-builder';
-import { type MinesweeperCell } from '../minesweeper-cell';
+import { MinesweeperBoard } from '../minesweeper-board';
+import { MinesweeperCell } from '../minesweeper-cell';
 import { MinesweeperGame } from '../minesweper-game';
+import { Position } from '../position';
 
 describe('MinesweeperGame', () => {
   let board: MinesweeperBoard;
@@ -13,11 +13,23 @@ describe('MinesweeperGame', () => {
   let safeCells: ReadonlyArray<MinesweeperCell>;
 
   beforeEach(() => {
-    board = MinesweeperBuilder.build({
-      numRows: 6,
-      numColumns: 8,
-      numBombs: 4,
-    });
+    board = MinesweeperBoard.makeFromRows([
+      [
+        new MinesweeperCell(new Position(0, 0), true),
+        new MinesweeperCell(new Position(0, 1), false),
+        new MinesweeperCell(new Position(0, 2), false),
+      ],
+      [
+        new MinesweeperCell(new Position(1, 0), true),
+        new MinesweeperCell(new Position(1, 1), false),
+        new MinesweeperCell(new Position(1, 2), false),
+      ],
+      [
+        new MinesweeperCell(new Position(2, 0), false),
+        new MinesweeperCell(new Position(2, 1), false),
+        new MinesweeperCell(new Position(2, 2), false),
+      ],
+    ]);
 
     game = MinesweeperGame.startNewGame(board);
 
@@ -34,7 +46,7 @@ describe('MinesweeperGame', () => {
     });
 
     it('Reveals one position.', () => {
-      const position = allCells[15].position;
+      const position = allCells[2].position;
 
       const withRevealed = game.reveal(position);
 
@@ -48,8 +60,8 @@ describe('MinesweeperGame', () => {
     });
 
     it('Reveals two positions.', () => {
-      const p1 = allCells[15].position;
-      const p2 = allCells[25].position;
+      const p1 = allCells[2].position;
+      const p2 = allCells[6].position;
 
       const withRevealed = game.reveal(p1).reveal(p2);
 
@@ -72,7 +84,7 @@ describe('MinesweeperGame', () => {
     });
 
     it('Flags one position.', () => {
-      const position = allCells[15].position;
+      const position = allCells[2].position;
 
       const withFlagged = game.toggleFlag(position);
 
@@ -86,8 +98,8 @@ describe('MinesweeperGame', () => {
     });
 
     it('Removes flag.', () => {
-      const p1 = allCells[15].position;
-      const p2 = allCells[25].position;
+      const p1 = allCells[2].position;
+      const p2 = allCells[6].position;
 
       const withNotFlagged = game.toggleFlag(p1).toggleFlag(p2).toggleFlag(p1);
 
@@ -100,5 +112,21 @@ describe('MinesweeperGame', () => {
         }
       }
     });
+  });
+
+  it('Gets zero for no bombs.', () => {
+    expect(game.getNumAdjacentBombs(new Position(0, 2))).toEqual(0);
+    expect(game.getNumAdjacentBombs(new Position(1, 2))).toEqual(0);
+    expect(game.getNumAdjacentBombs(new Position(2, 2))).toEqual(0);
+  });
+
+  it('Gets one for one adjacent bomb.', () => {
+    expect(game.getNumAdjacentBombs(new Position(2, 0))).toEqual(1);
+    expect(game.getNumAdjacentBombs(new Position(2, 1))).toEqual(1);
+  });
+
+  it('Gets two for two adjacent bombs.', () => {
+    expect(game.getNumAdjacentBombs(new Position(0, 1))).toEqual(2);
+    expect(game.getNumAdjacentBombs(new Position(1, 1))).toEqual(2);
   });
 });
