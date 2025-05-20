@@ -1,4 +1,9 @@
-import { type DarkModeAction, type DarkModeState } from './dark-mode-context';
+export type DarkModeState = boolean;
+
+export type DarkModeAction =
+  | { type: 'TOGGLE' }
+  | { type: 'ENABLE' }
+  | { type: 'DISABLE' };
 
 export function darkModeReducer(state: DarkModeState, action: DarkModeAction) {
   switch (action.type) {

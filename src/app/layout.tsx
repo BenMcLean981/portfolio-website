@@ -4,7 +4,6 @@ import { type PropsWithChildren } from 'react';
 import { NavBar } from '../components/nav/navbar';
 import { ResponsiveContainer } from '../components/responsive-container';
 import './globals.css';
-
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="en" className={'dark'}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-slate-900`}
       >

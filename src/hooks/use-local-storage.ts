@@ -3,12 +3,14 @@ import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
 export function useLocalStorage(
   key: string,
   defaultValue?: string
-): [string | null, Dispatch<SetStateAction<string | null>>] {
+): [string | null | undefined, Dispatch<SetStateAction<string | null>>] {
   const [value, setValue] = useState<string | null | undefined>(undefined);
 
   useEffect(() => {
     if (value === undefined) {
-      setValue(getLocalStorage(key, defaultValue));
+      const initial = getLocalStorage(key, defaultValue);
+
+      setValue(initial);
     }
   }, [defaultValue, key, value]);
 
@@ -30,7 +32,7 @@ export function useLocalStorage(
     });
   }
 
-  return [value ?? null, handleSetValue];
+  return [value, handleSetValue];
 }
 
 function getLocalStorage(key: string, defaultValue?: string): string | null {
