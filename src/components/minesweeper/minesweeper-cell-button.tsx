@@ -38,6 +38,29 @@ export function MinesweeperCellButton(props: MinesweeperCellButtonProps) {
     }
   }
 
+  function getTextColorClass(): string {
+    switch (numAdjacentBombs) {
+      case 1:
+        return 'dark:text-blue-600 text-blue-700';
+      case 2:
+        return 'text-green-500';
+      case 3:
+        return 'text-red-700';
+      case 4:
+        return 'text-blue-900';
+      case 5:
+        return 'text-red-900';
+      case 6:
+        return 'text-cyan-700';
+      case 7:
+        return 'text-black';
+      case 8:
+        return 'text-gray-700';
+      default:
+        return '';
+    }
+  }
+
   function handleRightClick(e: React.MouseEvent) {
     e.preventDefault();
 
@@ -51,10 +74,10 @@ export function MinesweeperCellButton(props: MinesweeperCellButtonProps) {
   }
 
   function getColorClass(): string {
-    if (game.isRevealed(cell.position)) {
-      return 'bg-slate-500';
+    if (game.isRevealed(cell.position) || game.isFlagged(cell.position)) {
+      return 'bg-slate-200 dark:bg-slate-300';
     } else {
-      return 'bg-slate-700 hover:bg-slate-500';
+      return 'bg-slate-500 hover:bg-slate-300 dark:bg-slate-600 dark:hover:bg-slate-400';
     }
   }
 
@@ -63,7 +86,7 @@ export function MinesweeperCellButton(props: MinesweeperCellButtonProps) {
 
   return (
     <button
-      className={`aspect-square ${centerClass} ${getColorClass()} ${borderClass} select-none cursor-pointer`}
+      className={`aspect-square ${centerClass} ${getColorClass()} ${getTextColorClass()} ${borderClass} select-none cursor-pointer`}
       onClick={handleLeftClick}
       onContextMenu={handleRightClick}
     >
