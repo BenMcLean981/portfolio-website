@@ -24,21 +24,23 @@ export function MinesweeperGameView(props: MinesweeperGameViewProps) {
   // Each cell should max at 48px
 
   return (
-    <div
-      className={'grid gap-2 mb-48'}
-      style={{ gridTemplateColumns: `repeat(${numColumns}, 1fr)` }}
-    >
-      {game.board.rows.flatMap((row) =>
-        row.map((c) => (
-          <MinesweeperCellButton
-            key={c.position.toString()}
-            cell={c}
-            game={game}
-            onReveal={handleReveal}
-            onToggleFlag={handleToggleFlag}
-          />
-        ))
-      )}
+    <div className={'w-full flex justify-center'}>
+      <div
+        className={'inline-grid gap-0.5 md:gap-1 mb-48'}
+        style={{ gridTemplateColumns: `repeat(${numColumns}, minmax(0, 48px)` }}
+      >
+        {game.board.rows.flatMap((row) =>
+          row.map((c) => (
+            <MinesweeperCellButton
+              key={c.position.toString()}
+              cell={c}
+              game={game}
+              onReveal={handleReveal}
+              onToggleFlag={handleToggleFlag}
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 }

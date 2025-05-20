@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { type MinesweeperCell } from '../../lib/minesweeper/minesweeper-cell';
 import { type MinesweeperGame } from '../../lib/minesweeper/minesweper-game';
 import { type Position } from '../../lib/minesweeper/position';
@@ -19,6 +19,24 @@ export function MinesweeperCellButton(props: MinesweeperCellButtonProps) {
   const isFlagged = game.isFlagged(cell.position);
   const isBombed = cell.isBombed;
   const numAdjacentBombs = game.getNumAdjacentBombs(cell.position);
+
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const [fontSize, setFontSize] = useState<number>(16);
+
+  useEffect(() => {
+    const node = buttonRef.current;
+
+    if (node) {
+      const resizeObserver = new ResizeObserver(() => {
+        // get the height of the button
+        const height = node.clientHeight;
+        // set font size to (say) 80% of height for padding
+        setFontSize(height * 0.75);
+      });
+
+      resizeObserver.observe(node);
+    }
+  }, []);
 
   function getText(): string {
     if (isFlagged && isBombed && game.isGameOver) {
@@ -64,17 +82,23 @@ export function MinesweeperCellButton(props: MinesweeperCellButtonProps) {
   function handleRightClick(e: React.MouseEvent) {
     e.preventDefault();
 
-    onToggleFlag(cell.position);
+    if (!game.isRevealed(cell.position) && !game.isGameOver) {
+      onToggleFlag(cell.position);
+    }
   }
 
   function handleLeftClick() {
-    if (!game.isRevealed(cell.position)) {
+    if (!game.isRevealed(cell.position) && !game.isGameOver) {
       onReveal(cell.position);
     }
   }
 
   function getColorClass(): string {
-    if (game.isRevealed(cell.position) || game.isFlagged(cell.position)) {
+    if (
+      game.isRevealed(cell.position) ||
+      game.isFlagged(cell.position) ||
+      game.isGameOver
+    ) {
       return 'bg-slate-200 dark:bg-slate-300';
     } else {
       return 'bg-slate-500 hover:bg-slate-300 dark:bg-slate-600 dark:hover:bg-slate-400';
@@ -86,11 +110,16 @@ export function MinesweeperCellButton(props: MinesweeperCellButtonProps) {
 
   return (
     <button
-      className={`aspect-square ${centerClass} ${getColorClass()} ${getTextColorClass()} ${borderClass} select-none cursor-pointer`}
+      className={`aspect-square ${centerClass} ${getColorClass()} ${getTextColorClass()} ${borderClass} leading-none select-none cursor-pointer`}
       onClick={handleLeftClick}
       onContextMenu={handleRightClick}
+      ref={buttonRef}
+      style={{ fontSize }}
     >
-      {getText()}
+      {(game.isRevealed(cell.position) ||
+        game.isFlagged(cell.position) ||
+        game.isGameOver) &&
+        getText()}
     </button>
   );
 }
