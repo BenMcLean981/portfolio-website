@@ -1,6 +1,12 @@
 import { type PropsWithChildren } from 'react';
 
-export function GameOverlay(props: PropsWithChildren) {
+export type GameOverlayProps = {
+  resetGame(): void;
+};
+
+export function GameOverlay(props: PropsWithChildren<GameOverlayProps>) {
+  const { resetGame } = props;
+
   return (
     <>
       <div
@@ -15,6 +21,14 @@ export function GameOverlay(props: PropsWithChildren) {
           }
         >
           {props.children}
+          <button
+            className={
+              'bg-blue-800 p-4 text-2xl text-neutral-100 rounded-lg cursor-pointer mt-16 active:translate-y-1'
+            }
+            onClick={resetGame}
+          >
+            Start Over?
+          </button>
         </div>
       </div>
     </>

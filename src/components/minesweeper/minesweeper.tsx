@@ -6,19 +6,24 @@ import { MinesweeperBuilder } from '../../lib/minesweeper/minesweeper-builder';
 import { type MinesweeperConfig } from '../../lib/minesweeper/minesweeper-config';
 import { MinesweeperGame } from '../../lib/minesweeper/minesweper-game';
 import { type Position } from '../../lib/minesweeper/position';
-import {
-  MinesweeperConfigSelector,
-  type NamedMinesweeperConfig,
-} from './minesweeper-config-selector';
+import { MINESWEEPER_STORAGE_SERVICE } from '../../lib/minesweeper/storage/factory';
+import { type StoredMinesweeperConfig } from '../../lib/minesweeper/storage/stored-minesweeper-config';
+import { MinesweeperConfigSelector } from './minesweeper-config-selector';
 import { MinesweeperGameView } from './minesweeper-game-view';
 
+type MinesweeperProps = {
+  configs: ReadonlyArray<StoredMinesweeperConfig>;
+};
+
 type GameState = {
-  config: MinesweeperConfig;
+  config: StoredMinesweeperConfig;
 
   game: MinesweeperGame;
 };
 
-export function Minesweeper() {
+export function Minesweeper(props: MinesweeperProps) {
+  const { configs } = props;
+
   const [state, setState] = useState<GameState | undefined>(undefined);
 
   const timer = useTimer();
@@ -37,7 +42,7 @@ export function Minesweeper() {
     }
   }, [state, timer]);
 
-  function handleSetConfig(config: MinesweeperConfig) {
+  function handleSetConfig(config: StoredMinesweeperConfig) {
     const board = MinesweeperBuilder.build(config);
     const game = MinesweeperGame.startNewGame(board);
 
@@ -47,7 +52,7 @@ export function Minesweeper() {
   if (state === undefined) {
     return (
       <MinesweeperConfigSelector
-        configOptions={CONFIG_OPTIONS}
+        configOptions={configs}
         setConfig={handleSetConfig}
       />
     );
@@ -98,6 +103,18 @@ export function Minesweeper() {
     setState({ ...state, game });
   }
 
+  async function submitTime(milliseconds: number, name: string): Promise<void> {
+    if (state === undefined) {
+      throw new Error('Not configured.');
+    }
+
+    return MINESWEEPER_STORAGE_SERVICE.saveLeaderboardEntry(
+      name,
+      milliseconds,
+      state.config
+    );
+  }
+
   return (
     <div className={'flex flex-col items-center gap-4'}>
       <span className={'text-2xl text-white'}>
@@ -105,8 +122,10 @@ export function Minesweeper() {
       </span>
       <MinesweeperGameView
         game={state.game}
+        milliseconds={timer.seconds * 1000}
         setGame={setGameSafe}
         resetGame={resetGame}
+        submitTime={submitTime}
         onInitialReveal={handleInitialReveal}
       />
     </div>
@@ -118,24 +137,3 @@ function makeNewGame(config: MinesweeperConfig): MinesweeperGame {
 
   return MinesweeperGame.startNewGame(board);
 }
-
-const CONFIG_OPTIONS: ReadonlyArray<NamedMinesweeperConfig> = [
-  {
-    name: 'Beginner',
-    numRows: 8,
-    numColumns: 8,
-    numBombs: 10,
-  },
-  {
-    name: 'Intermediate',
-    numRows: 16,
-    numColumns: 16,
-    numBombs: 40,
-  },
-  {
-    name: 'Expert',
-    numRows: 16,
-    numColumns: 30,
-    numBombs: 99,
-  },
-];
