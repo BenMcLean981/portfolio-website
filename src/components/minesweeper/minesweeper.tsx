@@ -4,23 +4,30 @@ import { type SetStateAction, useState } from 'react';
 import { MinesweeperBuilder } from '../../lib/minesweeper/minesweeper-builder';
 import { type MinesweeperConfig } from '../../lib/minesweeper/minesweeper-config';
 import { MinesweeperGame } from '../../lib/minesweeper/minesweper-game';
+import { type Position } from '../../lib/minesweeper/position';
 import {
   MinesweeperConfigSelector,
   type NamedMinesweeperConfig,
 } from './minesweeper-config-selector';
 import { MinesweeperGameView } from './minesweeper-game-view';
 
+type GameState = {
+  config: MinesweeperConfig;
+
+  game: MinesweeperGame;
+};
+
 export function Minesweeper() {
-  const [game, setGame] = useState<MinesweeperGame | undefined>(undefined);
+  const [state, setState] = useState<GameState | undefined>(undefined);
 
   function handleSetConfig(config: MinesweeperConfig) {
     const board = MinesweeperBuilder.build(config);
     const game = MinesweeperGame.startNewGame(board);
 
-    setGame(game);
+    setState({ config, game });
   }
 
-  if (game === undefined) {
+  if (state === undefined) {
     return (
       <MinesweeperConfigSelector
         configOptions={CONFIG_OPTIONS}
@@ -30,34 +37,66 @@ export function Minesweeper() {
   }
 
   function setGameSafe(action: SetStateAction<MinesweeperGame>) {
-    setGame((game) => {
-      if (game === undefined) {
+    setState((state) => {
+      if (state === undefined) {
         throw new Error('Game not initialized.');
       } else if (typeof action === 'function') {
-        return action(game);
+        return { ...state, game: action(state.game) };
       } else {
-        return action;
+        return { ...state, game: action };
       }
     });
   }
 
   function resetGame() {
-    if (!game?.isGameOver) {
+    if (!state?.game.isGameOver) {
       throw new Error('Game not over.');
     }
 
-    setGame(undefined);
+    setState(undefined);
+  }
+
+  function handleInitialReveal(initialRevealedPosition: Position) {
+    // Handle case where user clicks bomb on first go.
+
+    if (state === undefined) {
+      throw new Error('Game not initialized.');
+    }
+
+    if (!state.game.isNewGame) {
+      throw new Error('Cannot initialize an in-progress game.');
+    }
+
+    let game = state.game;
+
+    while (
+      game.getNumAdjacentBombs(initialRevealedPosition) !== 0 ||
+      game.board.getCell(initialRevealedPosition)?.isBombed
+    ) {
+      game = makeNewGame(state.config);
+    }
+
+    game = game.reveal(initialRevealedPosition);
+
+    setState({ ...state, game });
   }
 
   return (
     <div className={'mb-48'}>
       <MinesweeperGameView
-        game={game}
+        game={state.game}
         setGame={setGameSafe}
         resetGame={resetGame}
+        onInitialReveal={handleInitialReveal}
       />
     </div>
   );
+}
+
+function makeNewGame(config: MinesweeperConfig): MinesweeperGame {
+  const board = MinesweeperBuilder.build(config);
+
+  return MinesweeperGame.startNewGame(board);
 }
 
 const CONFIG_OPTIONS: ReadonlyArray<NamedMinesweeperConfig> = [

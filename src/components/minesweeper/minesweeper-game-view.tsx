@@ -8,11 +8,13 @@ export type MinesweeperGameViewProps = {
   game: MinesweeperGame;
   setGame: Dispatch<SetStateAction<MinesweeperGame>>;
 
+  onInitialReveal(position: Position): void;
+
   resetGame(): void;
 };
 
 export function MinesweeperGameView(props: MinesweeperGameViewProps) {
-  const { game, setGame, resetGame } = props;
+  const { game, onInitialReveal, setGame, resetGame } = props;
 
   const numColumns = game.board.columns.length;
 
@@ -21,10 +23,12 @@ export function MinesweeperGameView(props: MinesweeperGameViewProps) {
   }
 
   function handleReveal(position: Position): void {
-    setGame((game) => game.reveal(position));
+    if (game.isNewGame) {
+      onInitialReveal(position);
+    } else {
+      setGame((game) => game.reveal(position));
+    }
   }
-
-  // Each cell should max at 48px
 
   return (
     <div className={'w-full flex justify-center'}>
