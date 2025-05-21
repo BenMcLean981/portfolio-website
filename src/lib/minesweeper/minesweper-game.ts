@@ -94,6 +94,10 @@ export class MinesweeperGame {
       );
     }
 
+    if (this.isFlagged(position)) {
+      return this;
+    }
+
     const states: Record<string, CellState> = {
       ...this._states,
       [getKey(position)]: 'Revealed',
@@ -109,19 +113,23 @@ export class MinesweeperGame {
       this._board,
       states,
       this._numAdjacentBombs,
-      cell?.isBombed
+      cell.isBombed
     );
 
     if (this.getNumAdjacentBombs(position) === 0) {
-      return [...position.neighbors]
-        .filter((p) => this._board.getCell(p) !== undefined)
-        .reduce(
-          (game, p) => (game.isRevealed(p) ? game : game.reveal(p)),
-          revealed
-        );
+      return revealed.revealNeighbors(position);
     } else {
       return revealed;
     }
+  }
+
+  private revealNeighbors(position: Position): MinesweeperGame {
+    return [...position.neighbors]
+      .filter((p) => this._board.getCell(p) !== undefined)
+      .reduce(
+        (g, p) => (g.isRevealed(p) ? g : g.reveal(p)),
+        this as MinesweeperGame
+      );
   }
 
   public isRevealed(position: Position): boolean {

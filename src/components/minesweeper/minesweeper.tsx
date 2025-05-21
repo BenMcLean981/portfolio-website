@@ -41,7 +41,23 @@ export function Minesweeper() {
     });
   }
 
-  return <MinesweeperGameView game={game} setGame={setGameSafe} />;
+  function resetGame() {
+    if (!game?.isGameOver) {
+      throw new Error('Game not over.');
+    }
+
+    setGame(undefined);
+  }
+
+  return (
+    <div className={'mb-48'}>
+      <MinesweeperGameView
+        game={game}
+        setGame={setGameSafe}
+        resetGame={resetGame}
+      />
+    </div>
+  );
 }
 
 const CONFIG_OPTIONS: ReadonlyArray<NamedMinesweeperConfig> = [
