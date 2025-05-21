@@ -22,7 +22,7 @@ export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en" className={'dark'}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-slate-900`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-slate-900 mb-48`}
       >
         <header>
           <NavBar />

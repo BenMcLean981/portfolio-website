@@ -9,7 +9,7 @@ import { UnorderedList } from '../components/utils/unordered-list';
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-2 mb-48">
+    <div className="flex flex-col gap-2">
       <p className="text-center text-md font-medium dark:text-white italic">
         The views expressed on this website are mine alone and do not
         necessarily reflect the views of my employer.

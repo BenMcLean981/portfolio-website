@@ -99,7 +99,7 @@ export function Minesweeper() {
   }
 
   return (
-    <div className={'flex flex-col items-center gap-4 mb-48'}>
+    <div className={'flex flex-col items-center gap-4'}>
       <span className={'text-2xl text-white'}>
         <strong>Your Time:</strong> {timer.format()}
       </span>
