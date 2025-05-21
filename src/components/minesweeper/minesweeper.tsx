@@ -32,7 +32,7 @@ export function Minesweeper() {
 
     if (timer.isEnabled && isGameDone) {
       timer.disable();
-    } else if (!timer.isEnabled && !state.game.isNewGame) {
+    } else if (!timer.isEnabled && !state.game.isNewGame && !isGameDone) {
       timer.enable();
     }
   }, [state, timer]);
