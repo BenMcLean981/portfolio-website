@@ -27,6 +27,7 @@ export function NavBar() {
   const routes: NavRoute[] = [
     { name: 'Minesweeper', path: '/minesweeper' },
     { name: 'Advent of Code', path: '/advent-of-code' },
+    { name: 'Resume', path: '/resume' },
   ];
 
   return (
