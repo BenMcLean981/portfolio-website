@@ -7,7 +7,7 @@ export function useMediaQuery(query: string): boolean | undefined {
     if (window !== undefined && matches === undefined) {
       setMatches(window.matchMedia(query).matches !== null);
     }
-  }, [query]);
+  }, [matches, query]);
 
   useEffect(() => {
     function updateMatches() {

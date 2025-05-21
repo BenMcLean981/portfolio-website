@@ -12,6 +12,8 @@ import { type StoredMinesweeperConfig } from '../../lib/minesweeper/storage/stor
 
 const LIMIT = 5;
 
+export const dynamic = 'force-dynamic';
+
 async function getTable(
   config: StoredMinesweeperConfig
 ): Promise<LeaderboardTable> {
