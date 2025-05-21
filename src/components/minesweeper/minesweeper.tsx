@@ -1,6 +1,7 @@
 'use client';
 
-import { type SetStateAction, useState } from 'react';
+import { type SetStateAction, useEffect, useState } from 'react';
+import { useTimer } from '../../hooks/use-timer';
 import { MinesweeperBuilder } from '../../lib/minesweeper/minesweeper-builder';
 import { type MinesweeperConfig } from '../../lib/minesweeper/minesweeper-config';
 import { MinesweeperGame } from '../../lib/minesweeper/minesweper-game';
@@ -19,6 +20,22 @@ type GameState = {
 
 export function Minesweeper() {
   const [state, setState] = useState<GameState | undefined>(undefined);
+
+  const timer = useTimer();
+
+  useEffect(() => {
+    if (state === undefined) {
+      return;
+    }
+
+    const isGameDone = state.game.isGameWon || state.game.isGameOver;
+
+    if (timer.isEnabled && isGameDone) {
+      timer.disable();
+    } else if (!timer.isEnabled && !state.game.isNewGame) {
+      timer.enable();
+    }
+  }, [state, timer]);
 
   function handleSetConfig(config: MinesweeperConfig) {
     const board = MinesweeperBuilder.build(config);
@@ -82,7 +99,10 @@ export function Minesweeper() {
   }
 
   return (
-    <div className={'mb-48'}>
+    <div className={'flex flex-col items-center gap-4 mb-48'}>
+      <span className={'text-2xl text-white'}>
+        <strong>Your Time:</strong> {timer.format()}
+      </span>
       <MinesweeperGameView
         game={state.game}
         setGame={setGameSafe}
