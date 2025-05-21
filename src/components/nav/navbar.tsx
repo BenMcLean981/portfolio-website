@@ -44,7 +44,6 @@ export function NavBar() {
               <DarkModeSwitch />
               <MobileDropdownButton
                 handleToggle={() => setMobileOpen((open) => !open)}
-                open={mobileOpen}
               />
             </div>
           </div>
