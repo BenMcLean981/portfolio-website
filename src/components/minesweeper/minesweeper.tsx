@@ -49,7 +49,7 @@ export function Minesweeper() {
   }
 
   function resetGame() {
-    if (!state?.game.isGameOver) {
+    if (!state?.game.isGameOver && !state?.game.isGameWon) {
       throw new Error('Game not over.');
     }
 

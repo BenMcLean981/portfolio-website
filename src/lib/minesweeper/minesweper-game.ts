@@ -13,6 +13,8 @@ export class MinesweeperGame {
 
   private readonly _isGameOver: boolean;
 
+  private readonly _isGameWon: boolean;
+
   private constructor(
     board: MinesweeperBoard,
     states: Record<string, CellState>,
@@ -25,6 +27,13 @@ export class MinesweeperGame {
     this._numAdjacentBombs = numAdjacentBombs;
     this._isNewGame = isNewGame;
     this._isGameOver = isGameOver;
+    this._isGameWon = this.computeIsGameWon();
+  }
+
+  private computeIsGameWon(): boolean {
+    return this._board.cells
+      .filter((c) => c.isBombed)
+      .every((bombedCell) => this.isFlagged(bombedCell.position));
   }
 
   public static startNewGame(board: MinesweeperBoard): MinesweeperGame {
@@ -46,6 +55,10 @@ export class MinesweeperGame {
 
   public get isGameOver(): boolean {
     return this._isGameOver;
+  }
+
+  public get isGameWon(): boolean {
+    return this._isGameWon;
   }
 
   public get board(): MinesweeperBoard {

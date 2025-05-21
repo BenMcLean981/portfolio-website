@@ -1,10 +1,10 @@
 import { GameOverlay } from './game-overlay';
 
-export type GameOverViewProps = {
+export type GameWonViewProps = {
   resetGame(): void;
 };
 
-export function GameOverView(props: GameOverViewProps) {
+export function GameWonView(props: GameWonViewProps) {
   const { resetGame } = props;
 
   return (
@@ -12,7 +12,7 @@ export function GameOverView(props: GameOverViewProps) {
       <span
         className={'text-4xl bg-neutral-800 p-4 rounded-lg text-neutral-100'}
       >
-        Game Over
+        Game Won
       </span>
       <button
         className={

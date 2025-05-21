@@ -2,6 +2,7 @@ import { type Dispatch, type SetStateAction } from 'react';
 import { type MinesweeperGame } from '../../lib/minesweeper/minesweper-game';
 import { type Position } from '../../lib/minesweeper/position';
 import { GameOverView } from './game-over-view';
+import { GameWonView } from './game-won-view';
 import { MinesweeperCellButton } from './minesweeper-cell-button';
 
 export type MinesweeperGameViewProps = {
@@ -36,6 +37,7 @@ export function MinesweeperGameView(props: MinesweeperGameViewProps) {
         className={'relative inline-grid gap-0.5 md:gap-1'}
         style={{ gridTemplateColumns: `repeat(${numColumns}, minmax(0, 48px)` }}
       >
+        {game.isGameWon && <GameWonView resetGame={resetGame} />}
         {game.isGameOver && <GameOverView resetGame={resetGame} />}
         {game.board.rows.flatMap((row) =>
           row.map((c) => (
