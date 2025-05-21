@@ -16,16 +16,22 @@ describe('MinesweeperGame', () => {
         new MinesweeperCell(new Position(0, 0), true),
         new MinesweeperCell(new Position(0, 1), false),
         new MinesweeperCell(new Position(0, 2), false),
+        new MinesweeperCell(new Position(0, 3), false),
+        new MinesweeperCell(new Position(0, 4), true),
       ],
       [
         new MinesweeperCell(new Position(1, 0), true),
         new MinesweeperCell(new Position(1, 1), false),
         new MinesweeperCell(new Position(1, 2), false),
+        new MinesweeperCell(new Position(1, 3), false),
+        new MinesweeperCell(new Position(1, 4), false),
       ],
       [
         new MinesweeperCell(new Position(2, 0), false),
         new MinesweeperCell(new Position(2, 1), false),
         new MinesweeperCell(new Position(2, 2), false),
+        new MinesweeperCell(new Position(2, 3), false),
+        new MinesweeperCell(new Position(2, 4), false),
       ],
     ]);
 
@@ -69,6 +75,18 @@ describe('MinesweeperGame', () => {
           expect(withRevealed.isRevealed(c.position)).toBe(false);
         }
       }
+    });
+
+    it('Sets game to lost when bomb revealed.', () => {
+      const withRevealed = game.reveal(new Position(0, 0));
+
+      expect(withRevealed.isGameOver).toBe(true);
+    });
+
+    it('Sets game to lost when bomb revealed on zero tile.', () => {
+      const withRevealed = game.reveal(new Position(0, 4));
+
+      expect(withRevealed.isGameOver).toBe(true);
     });
   });
 

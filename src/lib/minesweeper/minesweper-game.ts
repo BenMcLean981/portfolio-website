@@ -137,7 +137,7 @@ export class MinesweeperGame {
       states,
       this._numAdjacentBombs,
       false,
-      cell.isBombed
+      this.isGameOver || cell.isBombed
     );
 
     if (this.getNumAdjacentBombs(position) === 0) {
