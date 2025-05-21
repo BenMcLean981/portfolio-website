@@ -15,7 +15,13 @@ export default function Home() {
         necessarily reflect the views of my employer.
       </p>
       <HorizontalRow />
-      <H1>Ben McLean - Full Stack Developer</H1>
+      <H1>
+        Ben McLean<span className={'hidden sm:inline'}> |</span>
+        <span className={'inline sm:hidden'}>
+          :<br />
+        </span>{' '}
+        Full Stack Developer
+      </H1>
       <Paragraph>
         My name is Ben McLean, I am {getAgeInYears()} years old and am employed
         at Catalyst Technologies. Catalyst develops software to be used in the
@@ -98,7 +104,7 @@ export default function Home() {
         </ListItem>
       </UnorderedList>
       <HorizontalRow />
-      <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         <div>
           <Paragraph>Some of my past projects include:</Paragraph>
           <UnorderedList>
@@ -128,12 +134,13 @@ export default function Home() {
             </ListItem>
           </UnorderedList>
         </div>
-        <div className="relative min-h-[500px]">
+        <div className="relative flex justify-center">
           <Image
             src={'/images/snowplow.png'}
             alt="autonomous snowplow"
             className={'object-contain object-center'}
-            fill
+            width={752}
+            height={501}
           />
         </div>
       </div>

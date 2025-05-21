@@ -2,7 +2,7 @@ import { type PropsWithChildren } from 'react';
 
 export function H1(props: PropsWithChildren) {
   return (
-    <h1 className="text-6xl font-medium my-2 dark:text-white">
+    <h1 className="text-4xl font-medium my-2 dark:text-white">
       {props.children}
     </h1>
   );
@@ -10,7 +10,7 @@ export function H1(props: PropsWithChildren) {
 
 export function H2(props: PropsWithChildren) {
   return (
-    <h2 className="text-4xl font-medium my-2 dark:text-white">
+    <h2 className="text-2xl font-medium my-2 dark:text-white">
       {props.children}
     </h2>
   );
@@ -18,7 +18,7 @@ export function H2(props: PropsWithChildren) {
 
 export function H3(props: PropsWithChildren) {
   return (
-    <h3 className="text-2xl font-medium my-2 dark:text-white">
+    <h3 className="text-xl font-medium my-2 dark:text-white">
       {props.children}
     </h3>
   );
