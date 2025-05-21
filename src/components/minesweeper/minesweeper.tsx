@@ -6,11 +6,13 @@ import { MinesweeperBuilder } from '../../lib/minesweeper/minesweeper-builder';
 import { type MinesweeperConfig } from '../../lib/minesweeper/minesweeper-config';
 import { MinesweeperGame } from '../../lib/minesweeper/minesweper-game';
 import { type Position } from '../../lib/minesweeper/position';
-import {
-  MinesweeperConfigSelector,
-  type NamedMinesweeperConfig,
-} from './minesweeper-config-selector';
+import { type StoredMinesweeperConfig } from '../../lib/minesweeper/storage/stored-minesweeper-config';
+import { MinesweeperConfigSelector } from './minesweeper-config-selector';
 import { MinesweeperGameView } from './minesweeper-game-view';
+
+type MinesweeperProps = {
+  configs: ReadonlyArray<StoredMinesweeperConfig>;
+};
 
 type GameState = {
   config: MinesweeperConfig;
@@ -18,7 +20,9 @@ type GameState = {
   game: MinesweeperGame;
 };
 
-export function Minesweeper() {
+export function Minesweeper(props: MinesweeperProps) {
+  const { configs } = props;
+
   const [state, setState] = useState<GameState | undefined>(undefined);
 
   const timer = useTimer();
@@ -47,7 +51,7 @@ export function Minesweeper() {
   if (state === undefined) {
     return (
       <MinesweeperConfigSelector
-        configOptions={CONFIG_OPTIONS}
+        configOptions={configs}
         setConfig={handleSetConfig}
       />
     );
@@ -118,24 +122,3 @@ function makeNewGame(config: MinesweeperConfig): MinesweeperGame {
 
   return MinesweeperGame.startNewGame(board);
 }
-
-const CONFIG_OPTIONS: ReadonlyArray<NamedMinesweeperConfig> = [
-  {
-    name: 'Beginner',
-    numRows: 8,
-    numColumns: 8,
-    numBombs: 10,
-  },
-  {
-    name: 'Intermediate',
-    numRows: 16,
-    numColumns: 16,
-    numBombs: 40,
-  },
-  {
-    name: 'Expert',
-    numRows: 16,
-    numColumns: 30,
-    numBombs: 99,
-  },
-];
