@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
+export function useMediaQuery(query: string): boolean | undefined {
+  const [matches, setMatches] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
-    if (window !== undefined) {
+    if (window !== undefined && matches === undefined) {
       setMatches(window.matchMedia(query).matches !== null);
     }
   }, [query]);
@@ -12,7 +12,10 @@ export function useMediaQuery(query: string): boolean {
   useEffect(() => {
     function updateMatches() {
       const media = window.matchMedia(query);
-      if (media.matches !== matches) setMatches(media.matches);
+
+      if (media.matches !== matches) {
+        setMatches(media.matches);
+      }
     }
 
     updateMatches();

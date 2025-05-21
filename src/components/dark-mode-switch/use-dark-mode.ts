@@ -4,16 +4,17 @@ import { useMediaQuery } from '../../hooks/use-media-query';
 
 export type DarkMode = {
   enabled: boolean;
-  toggle: () => void;
-  enable: () => void;
-  disable: () => void;
+
+  toggle(): void;
+  enable(): void;
+  disable(): void;
 };
 
 export function useDarkMode(): DarkMode {
-  const systemDark = useMediaQuery('(prefers-color-scheme: dark)');
+  const systemDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [storedDarkMode, setStoredDarkMode] = useLocalStorage(
     'storedDarkMode',
-    systemDark ? 'true' : 'false'
+    convertMediaQueryResult(systemDarkMode)
   );
 
   const [darkMode, setDarkMode] = useState<boolean | undefined>(() => {
@@ -54,4 +55,14 @@ export function useDarkMode(): DarkMode {
       return setDarkMode(false);
     },
   };
+}
+
+function convertMediaQueryResult(
+  result: boolean | undefined
+): string | undefined {
+  if (result === undefined) {
+    return undefined;
+  } else {
+    return result ? 'true' : 'false';
+  }
 }
