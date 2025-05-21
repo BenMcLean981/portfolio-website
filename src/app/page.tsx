@@ -9,7 +9,7 @@ import { UnorderedList } from '../components/utils/unordered-list';
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 mb-48">
       <p className="text-center text-md font-medium dark:text-white italic">
         The views expressed on this website are mine alone and do not
         necessarily reflect the views of my employer.
@@ -76,17 +76,18 @@ export default function Home() {
           moved decisively towards frameworks.
         </ListItem>
         <ListItem>
-          <strong>E-Cad:</strong> Another R&D project I have hoped to spin into
-          a side business. This project is closed source, but is currently in a
+          <strong>E-Cad:</strong> An R&D project I have hoped to spin into a
+          side business. This project is closed source, but is currently in a
           state where it can be demoed.
         </ListItem>
         <ListItem>
-          <strong>Syncify:</strong> An R&D project for synchronizing datastores
-          in a manner similar to git. Syncify is still in development and quite
-          immature, but can be viewed{' '}
+          <strong>Syncify:</strong> Another R&D project for synchronizing
+          datastores in a manner similar to git. Syncify is still in development
+          and quite immature, but can be viewed{' '}
           <Anchor href={'https://github.com/BenMcLean981/syncify'} newWindow>
             here.
           </Anchor>
+          . Syncify was a spin-off project from E-Cad.
         </ListItem>
         <ListItem>
           <strong>Work Projects:</strong> I cannot discuss these in detail due
@@ -110,7 +111,7 @@ export default function Home() {
               the total time.
             </ListItem>
             <ListItem>
-              <strong>My co-op project:</strong> I developed a working 2D plate
+              <strong>Plate Nester:</strong> I developed a working 2D plate
               nester. A user could load a list of part files, select a piece of
               rectangular stock, and have the parts placed optimally inside of
               the stock. I developed a 2D geometry library for this, all
