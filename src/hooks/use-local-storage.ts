@@ -41,8 +41,18 @@ function getLocalStorage(key: string, defaultValue?: string): string | null {
   if (item) {
     return item;
   } else if (defaultValue !== undefined) {
+    setLocalStorage(key, defaultValue);
+
     return defaultValue;
   } else {
     return null;
+  }
+}
+
+function setLocalStorage(key: string, value?: string): void {
+  if (value === undefined) {
+    window.localStorage.removeItem(key);
+  } else {
+    window.localStorage.setItem(key, value);
   }
 }

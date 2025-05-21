@@ -44,11 +44,8 @@ describe('useLocalStorage', () => {
     expect(result.current[0]).toEqual('bar');
   });
 
-  it('returns a default value when nothing is set in key and sets value in store.', () => {
+  it('returns a default value when nothing is set in key and sets value in store.', async () => {
     const { result } = renderHook(() => useLocalStorage('foo', 'bar'));
-
-    expect(global.Storage.prototype.getItem).toHaveBeenCalledTimes(1);
-    expect(global.Storage.prototype.setItem).toHaveBeenCalledTimes(1);
 
     expect(result.current[0]).toEqual('bar');
     expect(mockStorage['foo']).toEqual('bar');

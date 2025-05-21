@@ -9,8 +9,6 @@ describe('MinesweeperGame', () => {
   let game: MinesweeperGame;
 
   let allCells: ReadonlyArray<MinesweeperCell>;
-  let bombedCells: ReadonlyArray<MinesweeperCell>;
-  let safeCells: ReadonlyArray<MinesweeperCell>;
 
   beforeEach(() => {
     board = MinesweeperBoard.makeFromRows([
@@ -34,8 +32,6 @@ describe('MinesweeperGame', () => {
     game = MinesweeperGame.startNewGame(board);
 
     allCells = board.rows.flat();
-    bombedCells = allCells.filter((c) => c.isBombed);
-    safeCells = allCells.filter((c) => !c.isBombed);
   });
 
   describe('reveal', () => {
@@ -46,7 +42,7 @@ describe('MinesweeperGame', () => {
     });
 
     it('Reveals one position.', () => {
-      const position = allCells[2].position;
+      const position = new Position(0, 1);
 
       const withRevealed = game.reveal(position);
 
@@ -60,8 +56,8 @@ describe('MinesweeperGame', () => {
     });
 
     it('Reveals two positions.', () => {
-      const p1 = allCells[2].position;
-      const p2 = allCells[6].position;
+      const p1 = new Position(2, 0);
+      const p2 = new Position(0, 1);
 
       const withRevealed = game.reveal(p1).reveal(p2);
 
