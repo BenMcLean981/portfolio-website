@@ -6,6 +6,7 @@ import { MinesweeperBuilder } from '../../lib/minesweeper/minesweeper-builder';
 import { type MinesweeperConfig } from '../../lib/minesweeper/minesweeper-config';
 import { MinesweeperGame } from '../../lib/minesweeper/minesweper-game';
 import { type Position } from '../../lib/minesweeper/position';
+import { MINESWEEPER_STORAGE_SERVICE } from '../../lib/minesweeper/storage/factory';
 import { type StoredMinesweeperConfig } from '../../lib/minesweeper/storage/stored-minesweeper-config';
 import { MinesweeperConfigSelector } from './minesweeper-config-selector';
 import { MinesweeperGameView } from './minesweeper-game-view';
@@ -15,7 +16,7 @@ type MinesweeperProps = {
 };
 
 type GameState = {
-  config: MinesweeperConfig;
+  config: StoredMinesweeperConfig;
 
   game: MinesweeperGame;
 };
@@ -41,7 +42,7 @@ export function Minesweeper(props: MinesweeperProps) {
     }
   }, [state, timer]);
 
-  function handleSetConfig(config: MinesweeperConfig) {
+  function handleSetConfig(config: StoredMinesweeperConfig) {
     const board = MinesweeperBuilder.build(config);
     const game = MinesweeperGame.startNewGame(board);
 
@@ -102,6 +103,18 @@ export function Minesweeper(props: MinesweeperProps) {
     setState({ ...state, game });
   }
 
+  async function submitTime(milliseconds: number, name: string): Promise<void> {
+    if (state === undefined) {
+      throw new Error('Not configured.');
+    }
+
+    return MINESWEEPER_STORAGE_SERVICE.saveLeaderboardEntry(
+      name,
+      milliseconds,
+      state.config
+    );
+  }
+
   return (
     <div className={'flex flex-col items-center gap-4'}>
       <span className={'text-2xl text-white'}>
@@ -109,8 +122,10 @@ export function Minesweeper(props: MinesweeperProps) {
       </span>
       <MinesweeperGameView
         game={state.game}
+        milliseconds={timer.seconds * 1000}
         setGame={setGameSafe}
         resetGame={resetGame}
+        submitTime={submitTime}
         onInitialReveal={handleInitialReveal}
       />
     </div>

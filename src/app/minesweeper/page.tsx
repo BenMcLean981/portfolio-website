@@ -7,22 +7,24 @@ import { Anchor } from '../../components/utils/anchor';
 import { H1 } from '../../components/utils/headings';
 import { HorizontalRow } from '../../components/utils/horizontal-row';
 import { Paragraph } from '../../components/utils/paragraph';
-import { makeMinesweeperStorageService } from '../../lib/minesweeper/storage/factory';
+import { MINESWEEPER_STORAGE_SERVICE } from '../../lib/minesweeper/storage/factory';
 import { type StoredMinesweeperConfig } from '../../lib/minesweeper/storage/stored-minesweeper-config';
 
-const STORAGE_SERVICE = makeMinesweeperStorageService();
 const LIMIT = 5;
 
 async function getTable(
   config: StoredMinesweeperConfig
 ): Promise<LeaderboardTable> {
-  const entries = await STORAGE_SERVICE.getLeaderboardEntries(config, LIMIT);
+  const entries = await MINESWEEPER_STORAGE_SERVICE.getLeaderboardEntries(
+    config,
+    LIMIT
+  );
 
   return { config, entries };
 }
 
 export default async function Page() {
-  const configs = await STORAGE_SERVICE.getConfigs();
+  const configs = await MINESWEEPER_STORAGE_SERVICE.getConfigs();
 
   const tables = await Promise.all(configs.map(getTable));
 
@@ -41,7 +43,7 @@ export default async function Page() {
         </Anchor>
       </Paragraph>
       <HorizontalRow />
-      <div className={'min-h-96'}>
+      <div className={'min-h-72'}>
         <Minesweeper configs={configs} />
       </div>
       <HorizontalRow />
