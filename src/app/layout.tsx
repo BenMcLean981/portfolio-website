@@ -1,9 +1,11 @@
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { type PropsWithChildren } from 'react';
 import { NavBar } from '../components/nav/navbar';
 import { ResponsiveContainer } from '../components/responsive-container';
 import './globals.css';
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -30,6 +32,7 @@ export default function RootLayout(props: PropsWithChildren) {
         <div className="my-2">
           <ResponsiveContainer>{props.children}</ResponsiveContainer>
         </div>
+        <Analytics />
       </body>
     </html>
   );
