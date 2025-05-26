@@ -12,7 +12,7 @@ export function DesktopNavLink(props: PropsWithChildren<DesktopNavLinkProps>) {
     <div>
       <Link
         href={props.route.path}
-        className="flex justify-center align-middle items-center "
+        className="flex justify-center align-middle items-center"
       >
         {props.children}
         <ButtonContainer>{props.route.name}</ButtonContainer>
