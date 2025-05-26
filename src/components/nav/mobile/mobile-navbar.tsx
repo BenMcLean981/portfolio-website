@@ -49,7 +49,7 @@ export function MobileNavbar(props: MobileNavbarProps) {
       </div>
       {mobileOpen && (
         <div className="mobile-menu md:hidden border-t border-t-neutral-400 border-b dark:border-b-neutral-400">
-          <MobileNavDropdown routes={routes} homeRoute={homeRoute} />
+          <MobileNavDropdown routes={routes} />
         </div>
       )}
     </>
