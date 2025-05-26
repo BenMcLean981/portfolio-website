@@ -33,7 +33,7 @@ export default function Home() {
         <ListItem>
           <strong>This Website:</strong> whose source code you can clone{' '}
           <Anchor
-            href="https://github.com/BenMcLean981/BenMcLean981.github.io"
+            href="https://github.com/BenMcLean981/portfolio-website"
             newWindow
           >
             here!
