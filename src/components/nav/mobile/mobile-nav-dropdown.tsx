@@ -1,14 +1,12 @@
 import { type NavRoute } from '../nav-route';
 import { MobileNavLink } from './mobile-nav-link';
 
-interface Props {
-  homeRoute: NavRoute;
-
+export interface MobileNavDropdownProps {
   routes: ReadonlyArray<NavRoute>;
 }
 
-export function MobileNavDropdown(props: Props) {
-  const { homeRoute, routes } = props;
+export function MobileNavDropdown(props: MobileNavDropdownProps) {
+  const { routes } = props;
 
   return (
     <ul className="bg-gray-700">
