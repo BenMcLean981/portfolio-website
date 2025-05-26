@@ -25,9 +25,9 @@ export function PortfolioHeadshotLayout() {
 function SmallLayout() {
   return (
     <Stack>
-      <Introduction />
-      <HorizontalRow />
       <Headshot />
+      <HorizontalRow />
+      <Introduction />
       <HorizontalRow />
       <Passions />
     </Stack>
