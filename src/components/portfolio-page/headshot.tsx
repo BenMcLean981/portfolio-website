@@ -8,6 +8,7 @@ export function Headshot() {
         alt={'Ben McLean Headshot'}
         objectFit="cover"
         fill
+        priority
       />
     </div>
   );
