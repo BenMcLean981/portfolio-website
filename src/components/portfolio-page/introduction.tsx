@@ -5,13 +5,12 @@ export function Introduction() {
     <>
       <Paragraph>Hi! Thank you for visiting my portfolio website!</Paragraph>
       <Paragraph>
-        My name is Ben McLean, I am a {getAgeInYears()} year old software
-        developer. I am a passionate problem solver, and I enjoy developing
-        high-quality well crafted software. I am currently employed by a company
-        called Catalyst Reaction Technologies Ltd. Catalyst develops software
-        for companies in the Agricultural sector. I maintain a system of several
-        frontend and backend applications, as well as associated software
-        libraries.
+        My name is Ben McLean, I'm a {getAgeInYears()} year old software
+        developer. I'm a passionate problem solver and I enjoy developing
+        high-quality well crafted software. I'm currently employed by Catalyst
+        Reaction Technologies Ltd. Catalyst develops software for companies in
+        the Agricultural sector. I maintain a system of several frontend and
+        backend applications, as well as associated software libraries.
       </Paragraph>
       <Paragraph>
         My previous role was at Inovatech Engineering, a Lincoln Electric
