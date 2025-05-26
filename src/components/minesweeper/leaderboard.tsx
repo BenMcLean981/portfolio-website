@@ -22,17 +22,16 @@ export function MinesweeperLeaderboard(props: MinesweeperLeaderboardProps) {
       <div className={'flex justify-center w-full'}>
         <H2>Leaderboard</H2>
       </div>
-      <div className={'flex justify-between gap-4 flex-wrap'}>
+      <div className={'grid grid-cols-1 lg:grid-cols-3 gap-8 content-center'}>
         {tables.map((table) => (
-          <div
-            className={'flex-1 flex justify-center max-w-[250px]'}
-            key={table.config.id}
-          >
-            <LeaderboardTable
-              key={table.config.id}
-              table={table}
-              limit={limit}
-            />
+          <div className={'flex justify-center w-full'} key={table.config.id}>
+            <div className={'w-[250px]'}>
+              <LeaderboardTable
+                key={table.config.id}
+                table={table}
+                limit={limit}
+              />
+            </div>
           </div>
         ))}
       </div>
