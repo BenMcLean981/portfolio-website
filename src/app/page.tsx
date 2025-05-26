@@ -1,65 +1,28 @@
+import { Stack } from '@/components/stack';
 import Image from 'next/image';
-import { Anchor } from '../components/utils/anchor';
-import { H1, H2 } from '../components/utils/headings';
-import { HorizontalRow } from '../components/utils/horizontal-row';
-import { ListItem } from '../components/utils/list-item';
-import { OrderedList } from '../components/utils/ordered-list';
-import { Paragraph } from '../components/utils/paragraph';
-import { UnorderedList } from '../components/utils/unordered-list';
+import { PortfolioHeadshotLayout } from '../components/portfolio-page/portfolio-headshot-layout';
+import { Title } from '../components/portfolio-page/title';
+import { Anchor } from '../components/typography/anchor';
+import { H1, H2 } from '../components/typography/headings';
+import { HorizontalRow } from '../components/typography/horizontal-row';
+import { ListItem } from '../components/typography/list-item';
+import { OrderedList } from '../components/typography/ordered-list';
+import { Paragraph } from '../components/typography/paragraph';
+import { UnorderedList } from '../components/typography/unordered-list';
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-2">
+    <Stack>
       <p className="text-center text-md font-medium dark:text-white italic">
         The views expressed on this website are mine alone and do not
         necessarily reflect the views of my employer.
       </p>
       <HorizontalRow />
-      <H1>
-        Ben McLean<span className={'hidden sm:inline'}> |</span>
-        <span className={'inline sm:hidden'}>
-          :<br />
-        </span>{' '}
-        Full Stack Developer
-      </H1>
-      <Paragraph>
-        My name is Ben McLean, I am {getAgeInYears()} years old and am employed
-        at Catalyst Technologies. Catalyst develops software to be used in the
-        agricultural sector. I am currently working on several NextJS TypeScript
-        Applications.
-      </Paragraph>
-      <Paragraph>
-        My previous role was at Inovatech Engineering, a Lincoln Electric
-        company. I helped maintain a large .NET/C# codebase, but also did some
-        projects with TypeScript, React and Python.
-      </Paragraph>
-      <Paragraph>
-        In June 2022 I graduated Cum Laude from the University of Ottawa. I
-        completed a double degree in which I studied Mechanical Engineering and
-        Computing Technology. I participated in the co-op program where I
-        discovered that I greatly enjoy writing software. I am passionate about
-        software and engineering, and I hope to be able to use my skills to make
-        a positive impact on the world.
-      </Paragraph>
+      <Title />
       <HorizontalRow />
 
-      <H1>My Passions</H1>
-      <Paragraph>
-        I believe that in today&apos;s world we are tasked with some of the most
-        difficult problems of any generation. I like to believe that these
-        problems have technical solutions and that through innovation, the most
-        difficult problems can be solved. I believe that I can make a positive
-        impact in the world with my talent and with good software, and I am most
-        interested in working in the following fields and solving the following
-        problems:
-      </Paragraph>
-      <UnorderedList>
-        <ListItem>Climate Change</ListItem>
-        <ListItem>Space Exploration</ListItem>
-        <ListItem>Sustainability</ListItem>
-        <ListItem>Robotics and Automation</ListItem>
-        <ListItem>Access to Education</ListItem>
-      </UnorderedList>
+      <PortfolioHeadshotLayout />
+
       <HorizontalRow />
 
       <H1>My Projects</H1>
@@ -204,15 +167,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </Stack>
   );
-}
-
-function getAgeInYears() {
-  const DATE_OF_BIRTH = new Date(1999, 2, 19);
-  const today = new Date();
-  const milliseconds = today.getTime() - DATE_OF_BIRTH.getTime();
-  const years = milliseconds / 1000 / 3600 / 24 / 365.24225;
-
-  return Math.floor(years);
 }

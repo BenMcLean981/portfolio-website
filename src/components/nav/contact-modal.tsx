@@ -1,9 +1,9 @@
 import { type PropsWithChildren, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin, FaStackOverflow, FaX } from 'react-icons/fa6';
 import { useOutsideAlerter } from '../../hooks/use-outside-alerter';
-import { Anchor } from '../utils/anchor';
-import { H2, H5 } from '../utils/headings';
-import { HorizontalRow } from '../utils/horizontal-row';
+import { Anchor } from '../typography/anchor';
+import { H2, H5 } from '../typography/headings';
+import { HorizontalRow } from '../typography/horizontal-row';
 import { ButtonContainer } from './button-container';
 
 export function ContactCard(props: PropsWithChildren) {

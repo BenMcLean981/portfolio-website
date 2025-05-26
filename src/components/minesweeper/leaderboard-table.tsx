@@ -1,8 +1,8 @@
 import { type StoredMinesweeperLeaderboardEntry } from '../../lib/minesweeper/storage/stored-minesweeper-leaderboard-entry';
 import { notUndefined } from '../../lib/utils/utils';
-import { H3 } from '../utils/headings';
-import { ListItem } from '../utils/list-item';
-import { OrderedList } from '../utils/ordered-list';
+import { H3 } from '../typography/headings';
+import { ListItem } from '../typography/list-item';
+import { OrderedList } from '../typography/ordered-list';
 import { type LeaderboardTable } from './leaderboard';
 
 export type LeaderboardTableProps = {

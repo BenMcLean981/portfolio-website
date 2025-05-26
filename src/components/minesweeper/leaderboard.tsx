@@ -1,6 +1,6 @@
 import { type StoredMinesweeperConfig } from '@/lib/minesweeper/storage/stored-minesweeper-config';
 import { type StoredMinesweeperLeaderboardEntry } from '../../lib/minesweeper/storage/stored-minesweeper-leaderboard-entry';
-import { H2 } from '../utils/headings';
+import { H2 } from '../typography/headings';
 import { LeaderboardTable } from './leaderboard-table';
 
 export type LeaderboardTable = {

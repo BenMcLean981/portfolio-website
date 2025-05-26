@@ -1,8 +1,8 @@
-import { Anchor } from '../../components/utils/anchor';
-import { H1, H2 } from '../../components/utils/headings';
-import { ListItem } from '../../components/utils/list-item';
-import { Paragraph } from '../../components/utils/paragraph';
-import { UnorderedList } from '../../components/utils/unordered-list';
+import { Anchor } from '../../components/typography/anchor';
+import { H1, H2 } from '../../components/typography/headings';
+import { ListItem } from '../../components/typography/list-item';
+import { Paragraph } from '../../components/typography/paragraph';
+import { UnorderedList } from '../../components/typography/unordered-list';
 
 export default async function Page() {
   return (

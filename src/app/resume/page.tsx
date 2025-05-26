@@ -1,5 +1,5 @@
-import { H1 } from '../../components/utils/headings';
-import { HorizontalRow } from '../../components/utils/horizontal-row';
+import { H1 } from '../../components/typography/headings';
+import { HorizontalRow } from '../../components/typography/horizontal-row';
 
 export default async function Page() {
   return (

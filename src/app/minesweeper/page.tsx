@@ -3,10 +3,10 @@ import {
   MinesweeperLeaderboard,
 } from '../../components/minesweeper/leaderboard';
 import { Minesweeper } from '../../components/minesweeper/minesweeper';
-import { Anchor } from '../../components/utils/anchor';
-import { H1 } from '../../components/utils/headings';
-import { HorizontalRow } from '../../components/utils/horizontal-row';
-import { Paragraph } from '../../components/utils/paragraph';
+import { Anchor } from '../../components/typography/anchor';
+import { H1 } from '../../components/typography/headings';
+import { HorizontalRow } from '../../components/typography/horizontal-row';
+import { Paragraph } from '../../components/typography/paragraph';
 import { MINESWEEPER_STORAGE_SERVICE } from '../../lib/minesweeper/storage/factory';
 import { type StoredMinesweeperConfig } from '../../lib/minesweeper/storage/stored-minesweeper-config';
 
