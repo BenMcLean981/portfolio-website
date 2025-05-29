@@ -8,7 +8,7 @@ import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
  */
 export function useLocalStorage(
   key: string,
-  defaultValue: string | null | undefined
+  defaultValue?: string | null
 ): [string | null | undefined, Dispatch<SetStateAction<string | null>>] {
   const [value, setValue] = useState<string | null | undefined>(undefined);
 
@@ -49,7 +49,7 @@ function getLocalStorage(
 
   if (item) {
     return item;
-  } else if (defaultValue !== null) {
+  } else if (defaultValue !== undefined) {
     setLocalStorage(key, defaultValue);
 
     return defaultValue;
