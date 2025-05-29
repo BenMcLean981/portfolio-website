@@ -1,11 +1,11 @@
 import { FaBars } from 'react-icons/fa6';
 import { ButtonContainer } from '../button-container';
 
-export interface MobileDropdownButtonProps {
+export interface MobileNavDropdownButtonProps {
   handleToggle: VoidFunction;
 }
 
-export function MobileDropdownButton(props: MobileDropdownButtonProps) {
+export function MobileNavDropdownButton(props: MobileNavDropdownButtonProps) {
   const { handleToggle } = props;
 
   return (
