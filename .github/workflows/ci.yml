@@ -14,9 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Debug ENV
-        run: env | grep SUPABASE
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
