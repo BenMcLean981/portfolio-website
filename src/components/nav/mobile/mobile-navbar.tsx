@@ -7,6 +7,7 @@ import { ContactCard } from '../contact-modal';
 import { DesktopNavLink } from '../desktop/desktop-nav-link';
 import type { NavRoute } from '../nav-route';
 import { MobileNavDropdown } from './mobile-nav-dropdown';
+import { MobileNavDropdownButton } from './mobile-nav-dropdown-button';
 
 export type MobileNavbarProps = {
   homeRoute: NavRoute;
@@ -19,17 +20,17 @@ export function MobileNavbar(props: MobileNavbarProps) {
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const navRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   function forceClose() {
     setMobileOpen(false);
   }
 
-  useOutsideAlerter(navRef, forceClose);
+  useOutsideAlerter(dropdownRef, forceClose);
 
   return (
     <>
-      <div className="flex justify-between items-center px-4" ref={navRef}>
+      <div className="flex justify-between items-center px-4">
         <DesktopNavLink route={homeRoute}>
           <Image
             src="/favicon.ico"
@@ -45,10 +46,14 @@ export function MobileNavbar(props: MobileNavbarProps) {
             <ButtonContainer>Contact</ButtonContainer>
           </ContactCard>
           <DarkModeSwitch />
+          <MobileNavDropdownButton handleToggle={() => setMobileOpen(true)} />
         </div>
       </div>
       {mobileOpen && (
-        <div className="mobile-menu md:hidden border-t border-t-neutral-400 border-b dark:border-b-neutral-400">
+        <div
+          className="mobile-menu md:hidden border-t border-t-neutral-400 border-b dark:border-b-neutral-400"
+          ref={dropdownRef}
+        >
           <MobileNavDropdown routes={routes} />
         </div>
       )}
