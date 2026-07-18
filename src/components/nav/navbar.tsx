@@ -10,6 +10,7 @@ export function NavBar() {
   const routes: NavRoute[] = [
     { name: 'Minesweeper', path: '/minesweeper' },
     { name: 'Advent of Code', path: '/advent-of-code' },
+    { name: 'Stack', path: 'https://benmclean981.github.io/stack-dev/' },
     { name: 'Resume', path: '/resume' },
   ];
 

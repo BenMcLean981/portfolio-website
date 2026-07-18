@@ -9,9 +9,9 @@ export function Introduction() {
         developer. I&apos;m a passionate problem solver and I enjoy developing
         high-quality well crafted software. I&apos;m currently a full stack
         engineer at Afresh Technologies, where I work on the DC (distribution
-        center) product. Afresh builds AI-powered software that helps grocers
-        forecast demand for fresh food, cutting down on food waste across the
-        supply chain — a mission I&apos;m proud to contribute to.
+          center) product. Afresh builds AI-powered software that helps grocers
+          forecast demand for fresh food, cutting down on food waste across the
+          supply chain; a mission I&apos;m proud to contribute to.
       </Paragraph>
       <Paragraph>
         Previously I worked at Catalyst Reaction Technologies Ltd., where I
