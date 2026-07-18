@@ -10,6 +10,10 @@ import { OrderedList } from '../components/typography/ordered-list';
 import { Paragraph } from '../components/typography/paragraph';
 import { UnorderedList } from '../components/typography/unordered-list';
 
+// Rendered per-request so values computed at render time (e.g. my age in the
+// introduction) stay current instead of being frozen at build time.
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   return (
     <Stack>
@@ -60,10 +64,10 @@ export default function Home() {
         </ListItem>
         <ListItem>
           <strong>Work Projects:</strong> I cannot discuss these in detail due
-          to confidentiality. What I can say is that I have developed a platform
-          of applications and libraries for my employer who is in the AgTech
-          (Agricultural Technology) sector. Some of these projects involve AI,
-          some are more traditional business apps.
+          to confidentiality. What I can say is that at Afresh Technologies I
+          work on the DC (distribution center) product, building full stack
+          applications that help grocers forecast demand for fresh food and
+          reduce food waste across the supply chain.
         </ListItem>
       </UnorderedList>
       <HorizontalRow />
