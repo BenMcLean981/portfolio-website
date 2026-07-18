@@ -7,18 +7,21 @@ export function Introduction() {
       <Paragraph>
         My name is Ben McLean, I&apos;m a {getAgeInYears()} year old software
         developer. I&apos;m a passionate problem solver and I enjoy developing
-        high-quality well crafted software. I&apos;m currently employed by
-        Catalyst Reaction Technologies Ltd. Catalyst develops software for
-        companies in the Agricultural sector. I maintain a system of several
-        frontend and backend applications, as well as associated software
-        libraries.
+        high-quality well crafted software. I&apos;m currently a full stack
+        engineer at Afresh Technologies, where I work on the DC (distribution
+        center) product. Afresh builds AI-powered software that helps grocers
+        forecast demand for fresh food, cutting down on food waste across the
+        supply chain — a mission I&apos;m proud to contribute to.
       </Paragraph>
       <Paragraph>
-        My previous role was at Inovatech Engineering, a Lincoln Electric
-        company. I helped maintain a large .NET/C# codebase, but also did some
-        projects with TypeScript, React and Python. I worked on robotic CNC
-        plasma cutters, and developed software for CAD/CAM, geometry, and
-        robotics applications.
+        Previously I worked at Catalyst Reaction Technologies Ltd., where I
+        developed software for companies in the Agricultural sector, maintaining
+        a system of several frontend and backend applications along with
+        associated software libraries. Before that I was at Inovatech
+        Engineering, a Lincoln Electric company, where I helped maintain a large
+        .NET/C# codebase and also did some projects with TypeScript, React and
+        Python. I worked on robotic CNC plasma cutters, and developed software
+        for CAD/CAM, geometry, and robotics applications.
       </Paragraph>
       <Paragraph>
         In June 2022 I graduated Cum Laude from the University of Ottawa. I
