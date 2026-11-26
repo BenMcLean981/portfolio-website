@@ -1,26 +1,22 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import js from '@eslint/js';
+import reactHooks from 'eslint-plugin-react-hooks';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.config({
-    extends: ['next/core-web-vitals', 'next/typescript', 'prettier'],
+export default tseslint.config(
+  { ignores: ['.next', 'next-env.d.ts', 'coverage'] },
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    plugins: { 'react-hooks': reactHooks },
     rules: {
-      // Components stay framework-agnostic so they can move off Next.js.
-      '@next/next/no-img-element': 'off',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
       '@typescript-eslint/consistent-type-imports': [
         'error',
         { fixStyle: 'inline-type-imports' },
       ],
     },
-  }),
-];
-
-export default eslintConfig;
+  }
+);
