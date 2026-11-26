@@ -1,3 +1,89 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import '@fontsource-variable/literata/opsz.css';
+@import '@fontsource-variable/literata/opsz-italic.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Bound manual. The site is set like a well-made technical book: one reading
+ * column, a margin for figures and notes, and a colophon. The only color is
+ * the green of the book's cloth binding.
+ */
+:root {
+  --paper: #fbfbf8;
+  --paper-sunk: #f0efea;
+  --ink: #22201c;
+  --ink-soft: #6a645b;
+  --rule: #dad6ce;
+  --cloth: #2f5d4e;
+
+  --ms-1: #2a5a9b;
+  --ms-2: #2f6b3f;
+  --ms-3: #a3352a;
+  --ms-4: #26336b;
+  --ms-5: #7a3b1d;
+  --ms-6: #1f6b6b;
+  --ms-7: #22201c;
+  --ms-8: #6a645b;
+}
+
+.dark {
+  --paper: #1b2421;
+  --paper-sunk: #222d29;
+  --ink: #e8e4dc;
+  --ink-soft: #a39e94;
+  --rule: #36443f;
+  --cloth: #9ccbb6;
+
+  --ms-1: #9cc3f5;
+  --ms-2: #a6dcb1;
+  --ms-3: #f3a99c;
+  --ms-4: #c3b9f2;
+  --ms-5: #f1c48f;
+  --ms-6: #8fdcd6;
+  --ms-7: #ffffff;
+  --ms-8: #c8c2b8;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-sunk: var(--paper-sunk);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-rule: var(--rule);
+  --color-cloth: var(--cloth);
+
+  --font-serif: 'Literata Variable', Georgia, serif;
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--cloth);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--cloth);
+    outline-offset: 3px;
+  }
+}
+
+@utility small-caps {
+  /* True small caps from the font, for running heads and run-in names. */
+  font-variant-caps: small-caps;
+  letter-spacing: 0.04em;
+}
+
+@utility lining {
+  font-variant-numeric: lining-nums tabular-nums;
+}

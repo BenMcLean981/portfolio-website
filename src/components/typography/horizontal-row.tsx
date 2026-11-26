@@ -1,3 +1,3 @@
 export function HorizontalRow() {
-  return <hr className="my-4 dark:border-white" />;
+  return <hr className="mx-auto my-14 w-16 border-rule" />;
 }

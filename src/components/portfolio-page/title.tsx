@@ -1,11 +1,12 @@
 export function Title() {
   return (
-    <h1 className="text-4xl lg:text-6xl font-medium my-2 dark:text-white">
-      Ben McLean<span className={'hidden sm:inline'}> |</span>
-      <span className={'inline sm:hidden'}>
-        :<br />
-      </span>{' '}
-      Full Stack Developer
-    </h1>
+    <div className="mb-14 lg:mb-20">
+      <h1 className="text-[clamp(3.25rem,8vw,6rem)] leading-[1.02] font-light tracking-[-0.02em] text-ink">
+        Ben McLean
+      </h1>
+      <p className="mt-3 text-2xl text-ink-soft italic md:text-[1.75rem]">
+        Full stack developer
+      </p>
+    </div>
   );
 }

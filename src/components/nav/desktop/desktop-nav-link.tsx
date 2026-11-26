@@ -1,21 +1,25 @@
-import { type PropsWithChildren } from 'react';
-import { ButtonContainer } from '../button-container';
+import { useCurrentPath } from '../../../hooks/use-current-path';
+import { isCurrentRoute } from '../is-current-route';
 import { type NavRoute } from '../nav-route';
 
 export interface DesktopNavLinkProps {
   route: NavRoute;
 }
 
-export function DesktopNavLink(props: PropsWithChildren<DesktopNavLinkProps>) {
+export function DesktopNavLink(props: DesktopNavLinkProps) {
+  const { route } = props;
+
+  const isCurrent = isCurrentRoute(route.path, useCurrentPath());
+
   return (
-    <div>
-      <a
-        href={props.route.path}
-        className="flex justify-center align-middle items-center"
-      >
-        {props.children}
-        <ButtonContainer>{props.route.name}</ButtonContainer>
-      </a>
-    </div>
+    <a
+      href={route.path}
+      aria-current={isCurrent ? 'page' : undefined}
+      className={`small-caps text-[1.05rem] transition-colors ${
+        isCurrent ? 'text-cloth' : 'text-ink-soft hover:text-ink'
+      }`}
+    >
+      {route.name}
+    </a>
   );
 }

@@ -3,7 +3,7 @@ import { useOutsideAlerter } from '../../../hooks/use-outside-alerter';
 import { DarkModeSwitch } from '../../dark-mode-switch/dark-mode-switch';
 import { ButtonContainer } from '../button-container';
 import { ContactCard } from '../contact-modal';
-import { DesktopNavLink } from '../desktop/desktop-nav-link';
+import { HomeLink } from '../home-link';
 import type { NavRoute } from '../nav-route';
 import { MobileNavDropdown } from './mobile-nav-dropdown';
 import { MobileNavDropdownButton } from './mobile-nav-dropdown-button';
@@ -29,18 +29,10 @@ export function MobileNavbar(props: MobileNavbarProps) {
 
   return (
     <>
-      <div className="flex justify-between items-center px-4">
-        <DesktopNavLink route={homeRoute}>
-          <img
-            src="/favicon.ico"
-            alt="Logo"
-            className={'mr-2'}
-            width={32}
-            height={32}
-          />
-        </DesktopNavLink>
+      <div className="flex items-center justify-between gap-4 py-4">
+        <HomeLink route={homeRoute} />
 
-        <div className="flex justify-end w-full md:w-auto items-center gap-x-6 my-6">
+        <div className="flex items-center gap-x-5">
           <ContactCard>
             <ButtonContainer>Contact</ButtonContainer>
           </ContactCard>
@@ -50,7 +42,7 @@ export function MobileNavbar(props: MobileNavbarProps) {
       </div>
       {mobileOpen && (
         <div
-          className="mobile-menu md:hidden border-t border-t-neutral-400 border-b dark:border-b-neutral-400"
+          className="mobile-menu border-t border-rule md:hidden"
           ref={dropdownRef}
         >
           <MobileNavDropdown routes={routes} />

@@ -1,5 +1,7 @@
 ---
+import { Colophon } from '../components/book/colophon';
 import { NavBar } from '../components/nav/navbar';
+import { readBuildInfo } from '../lib/build-info/build-info';
 import { canonicalUrl } from '../lib/seo/canonical-url';
 import '../styles/globals.css';
 
@@ -8,6 +10,8 @@ type Props = {
 };
 
 const { title = 'Ben McLean | Full Stack Developer' } = Astro.props;
+
+const { buildHash } = readBuildInfo(process.env);
 ---
 
 <html lang="en" class="dark">
@@ -20,16 +24,20 @@ const { title = 'Ben McLean | Full Stack Developer' } = Astro.props;
         <link rel="canonical" href={canonicalUrl(Astro.url.pathname, Astro.site)} />
       )
     }
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
   </head>
-  <body class="antialiased dark:bg-slate-900 mb-48">
-    <header>
-      <NavBar client:load />
-    </header>
-    <div class="my-2">
-      <div class="xl:mx-48 lg:mx-36 md:mx-12 sm:mx-6 mx-4">
+  <body class="min-h-screen">
+    <div class="mx-auto max-w-[72rem] px-6 sm:px-10 lg:px-16">
+      <header class="border-b border-rule">
+        <NavBar client:load />
+      </header>
+      <main class="py-12 lg:py-20">
         <slot />
-      </div>
+      </main>
+      <footer class="border-t border-rule py-10">
+        <Colophon buildHash={buildHash} builtOn={new Date()} />
+      </footer>
     </div>
   </body>
 </html>

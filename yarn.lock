@@ -805,6 +805,11 @@
     "@eslint/core" "^0.14.0"
     levn "^0.4.1"
 
+"@fontsource-variable/literata@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/literata/-/literata-5.3.0.tgz#954648604745856c3f6d4827712c840c029a1aa4"
+  integrity sha512-1Jw7xvOcoGyB83lxB2nG4bfNbqtX2/TTbdh9sHAOmU064SvmSdulDtA5RBu5JYWf64fdaKX7xU+z3GO1T2bCHA==
+
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/@humanfs/core/-/core-0.19.1.tgz#17c55ca7d426733fe3c561906b8173c336b40a77"

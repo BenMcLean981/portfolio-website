@@ -2,7 +2,7 @@ import { type PropsWithChildren } from 'react';
 
 export function ButtonContainer(props: PropsWithChildren) {
   return (
-    <span className="font-semibold text-gray-500 text-lg fill-gray-500 hover:text-blue-500 hover:fill-blue-500 hover:cursor-pointer transition duration-150">
+    <span className="small-caps cursor-pointer fill-current text-[1.05rem] text-ink-soft transition-colors hover:text-ink">
       {props.children}
     </span>
   );

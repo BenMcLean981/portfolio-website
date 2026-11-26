@@ -115,7 +115,7 @@ export function Minesweeper(props: MinesweeperProps) {
 
   return (
     <div className={'flex flex-col items-center gap-4'}>
-      <span className={'text-2xl text-white'}>
+      <span className={'lining text-xl text-ink'}>
         <strong>Your Time:</strong> {timer.format()}
       </span>
       <MinesweeperGameView

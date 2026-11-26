@@ -9,13 +9,14 @@ export function MobileNavDropdownButton(props: MobileNavDropdownButtonProps) {
   const { handleToggle } = props;
 
   return (
-    <div className="md:hidden flex items-center">
+    <div className="flex items-center md:hidden">
       <button
-        className="outline-none mobile-menu-button"
+        className="mobile-menu-button"
         onClick={handleToggle}
+        aria-label="Open menu"
       >
         <ButtonContainer>
-          <FaBars size={24} role={'img'} />
+          <FaBars size={20} role={'img'} />
         </ButtonContainer>
       </button>
     </div>
