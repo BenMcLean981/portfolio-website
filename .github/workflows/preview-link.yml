@@ -1,0 +1,36 @@
+name: Preview link
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  checks: read
+  issues: write
+  pull-requests: write
+
+concurrency:
+  # A new push supersedes the wait for the previous commit's build.
+  group: preview-link-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Comment the Cloudflare preview link
+        run: .github/scripts/comment-preview-link.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+          CHECK_NAME: 'Workers Builds: portfolio-website'
+          WORKER_NAME: portfolio-website
+          WORKERS_SUBDOMAIN: benmclean981
