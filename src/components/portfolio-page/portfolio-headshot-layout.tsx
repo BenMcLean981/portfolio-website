@@ -4,43 +4,47 @@ import { Headshot } from './headshot';
 import { Introduction } from './introduction';
 import { Passions } from './passions';
 
-export function PortfolioHeadshotLayout() {
+export type PortfolioHeadshotLayoutProps = {
+  renderedAt: number;
+};
+
+export function PortfolioHeadshotLayout(props: PortfolioHeadshotLayoutProps) {
   return (
     <>
       <div className="block md:hidden">
-        <SmallLayout />
+        <SmallLayout {...props} />
       </div>
 
       <div className="hidden md:block 2xl:hidden">
-        <MediumLayout />
+        <MediumLayout {...props} />
       </div>
 
       <div className="hidden 2xl:block">
-        <LargeLayout />
+        <LargeLayout {...props} />
       </div>
     </>
   );
 }
 
-function SmallLayout() {
+function SmallLayout(props: PortfolioHeadshotLayoutProps) {
   return (
     <Stack>
       <Headshot />
       <HorizontalRow />
-      <Introduction />
+      <Introduction renderedAt={props.renderedAt} />
       <HorizontalRow />
       <Passions />
     </Stack>
   );
 }
 
-function MediumLayout() {
+function MediumLayout(props: PortfolioHeadshotLayoutProps) {
   return (
     <>
       <div className={'flex flex-row gap-4'}>
         <div className={'w-1/2 lg:w-10/16 2xl:w-11/16'}>
           <Stack>
-            <Introduction />
+            <Introduction renderedAt={props.renderedAt} />
           </Stack>
         </div>
         <div className={'grow'}>
@@ -53,12 +57,12 @@ function MediumLayout() {
   );
 }
 
-function LargeLayout() {
+function LargeLayout(props: PortfolioHeadshotLayoutProps) {
   return (
     <div className={'flex flex-row gap-4'}>
       <div className={'w-11/16'}>
         <Stack>
-          <Introduction />
+          <Introduction renderedAt={props.renderedAt} />
           <HorizontalRow />
           <Passions />
         </Stack>

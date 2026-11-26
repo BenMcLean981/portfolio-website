@@ -3,16 +3,20 @@ import { AgeInYears } from './age-in-years';
 
 const DATE_OF_BIRTH = new Date(1999, 2, 19);
 
-export function Introduction() {
+export type IntroductionProps = {
+  renderedAt: number;
+};
+
+export function Introduction(props: IntroductionProps) {
   return (
     <>
       <Paragraph>Hi! Thank you for visiting my portfolio website!</Paragraph>
       <Paragraph>
         My name is Ben McLean, I&apos;m a{' '}
-        <AgeInYears dateOfBirth={DATE_OF_BIRTH} renderedAt={Date.now()} /> year
-        old software developer. I&apos;m a passionate problem solver and I enjoy
-        developing high-quality well crafted software. I&apos;m currently a full
-        stack engineer at Afresh Technologies, where I work on the DC
+        <AgeInYears dateOfBirth={DATE_OF_BIRTH} renderedAt={props.renderedAt} />{' '}
+        year old software developer. I&apos;m a passionate problem solver and I
+        enjoy developing high-quality well crafted software. I&apos;m currently
+        a full stack engineer at Afresh Technologies, where I work on the DC
         (distribution center) product. Afresh builds AI-powered software that
         helps grocers forecast demand for fresh food, cutting down on food waste
         across the supply chain; a mission I&apos;m proud to contribute to.
