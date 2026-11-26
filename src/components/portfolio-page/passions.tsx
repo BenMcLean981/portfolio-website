@@ -1,7 +1,13 @@
 import { H1 } from '../typography/headings';
-import { ListItem } from '../typography/list-item';
 import { Paragraph } from '../typography/paragraph';
-import { UnorderedList } from '../typography/unordered-list';
+
+const PASSIONS = [
+  'Climate Change',
+  'Space Exploration',
+  'Sustainability',
+  'Robotics and Automation',
+  'Access to Education',
+];
 
 export function Passions() {
   return (
@@ -16,13 +22,16 @@ export function Passions() {
         interested in working in the following fields and solving the following
         problems:
       </Paragraph>
-      <UnorderedList>
-        <ListItem>Climate Change</ListItem>
-        <ListItem>Space Exploration</ListItem>
-        <ListItem>Sustainability</ListItem>
-        <ListItem>Robotics and Automation</ListItem>
-        <ListItem>Access to Education</ListItem>
-      </UnorderedList>
+      <ul className="mt-2 flex flex-wrap gap-x-8 gap-y-2">
+        {PASSIONS.map((passion) => (
+          <li
+            key={passion}
+            className="lettering border-b border-construction pb-1 text-xl font-medium text-ink"
+          >
+            {passion}
+          </li>
+        ))}
+      </ul>
     </>
   );
 }

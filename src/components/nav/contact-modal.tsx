@@ -2,9 +2,21 @@ import { type PropsWithChildren, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin, FaStackOverflow, FaX } from 'react-icons/fa6';
 import { useOutsideAlerter } from '../../hooks/use-outside-alerter';
 import { Anchor } from '../typography/anchor';
-import { H2, H5 } from '../typography/headings';
-import { HorizontalRow } from '../typography/horizontal-row';
 import { ButtonContainer } from './button-container';
+
+const LINKS = [
+  { name: 'GitHub', href: 'https://github.com/BenMcLean981', Icon: FaGithub },
+  {
+    name: 'Stack Overflow',
+    href: 'https://stackoverflow.com/users/12833553/bigbadbenny',
+    Icon: FaStackOverflow,
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/BenMcLean981',
+    Icon: FaLinkedin,
+  },
+];
 
 export function ContactCard(props: PropsWithChildren) {
   const [open, setOpen] = useState(false);
@@ -24,71 +36,52 @@ export function ContactCard(props: PropsWithChildren) {
   return (
     <div>
       <div
-        className={`fixed top-0 left-0 w-full h-screen flex justify-center items-center ${
+        className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${
           open ? '' : 'hidden'
         }`}
         id="contact-modal"
       >
-        <div
-          className={
-            'fixed top-0 left-0 opacity-75 bg-neutral-500 w-full h-full'
-          }
-        />
+        <div className="fixed inset-0 bg-paper/85" />
         <div
           ref={ref}
-          className="z-10 min-w-[300px] flex-col bg-neutral-100 dark:bg-slate-800 rounded-lg p-4 border dark:border-neutral-500"
+          role="dialog"
+          aria-labelledby="contact-title"
+          className="relative w-full max-w-sm border-[1.5px] border-ink bg-paper p-1.5"
         >
-          <div className="flex justify-between align-center gap-16">
-            <H2>Contact Information</H2>
-            <button onClick={forceClose}>
-              <ButtonContainer>
-                <FaX size={24} />
-              </ButtonContainer>
-            </button>
-          </div>
-          <HorizontalRow />
-          <div>
-            <H5>
-              <strong>Name: </strong> Ben McLean
-            </H5>
-            <H5>
-              <strong>Email: </strong>
+          <div className="border border-ink px-6 py-5">
+            <div className="flex items-baseline justify-between gap-8 border-b border-construction pb-3">
+              <h2
+                id="contact-title"
+                className="lettering text-2xl font-semibold text-ink"
+              >
+                Contact
+              </h2>
+              <button onClick={forceClose} aria-label="Close">
+                <ButtonContainer>
+                  <FaX size={16} />
+                </ButtonContainer>
+              </button>
+            </div>
+            <p className="mt-4 text-lg text-ink">
               <Anchor href="mailto:BenMcLean981@gmail.com">
                 BenMcLean981@gmail.com
               </Anchor>
-            </H5>
-          </div>
-          <HorizontalRow />
-          <div>
-            <div className="flex flex-col items-center w-full">
-              <H5>Links</H5>
-              <div className="flex justify-center gap-x-4">
-                <a
-                  className="text-4xl bg-white w-10 text-center rounded"
-                  href="https://github.com/BenMcLean981"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaGithub className="text-zinc-900 rounded" />
-                </a>
-                <a
-                  className="text-4xl bg-zinc-700 w-10 text-center rounded"
-                  href="https://stackoverflow.com/users/12833553/bigbadbenny"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaStackOverflow className="text-orange-500 rounded" />
-                </a>
-                <a
-                  className="text-4xl bg-white w-10 text-center rounded"
-                  href="https://www.linkedin.com/in/BenMcLean981"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaLinkedin className="text-blue-600 rounded" />
-                </a>
-              </div>
-            </div>
+            </p>
+            <ul className="mt-4 flex flex-col gap-2">
+              {LINKS.map(({ name, href, Icon }) => (
+                <li key={name}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="lettering inline-flex items-center gap-3 text-lg font-medium text-ink transition-colors hover:text-redline"
+                  >
+                    <Icon size={20} aria-hidden="true" />
+                    {name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

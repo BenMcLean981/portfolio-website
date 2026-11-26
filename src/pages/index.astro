@@ -5,6 +5,6 @@ import BaseLayout from '../layouts/base-layout.astro';
 const renderedAt = Date.now();
 ---
 
-<BaseLayout>
+<BaseLayout sheet={{ title: 'Portfolio', number: 1 }}>
   <HomePage client:load renderedAt={renderedAt} />
 </BaseLayout>

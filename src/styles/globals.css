@@ -1,3 +1,118 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import '@fontsource-variable/archivo/wdth.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Drawing sheet. Light mode is drafting film; dark mode is a cyanotype
+ * (blueprint). Redline is reserved for "this is where you are" and for
+ * hover, the way a checker marks up a print.
+ */
+:root {
+  --paper: #edf0eb;
+  --ink: #1d2327;
+  --ink-soft: #4a555c;
+  --construction: #a9b2b6;
+  --redline: #b42318;
+
+  --ms-1: #2456a4;
+  --ms-2: #2e7d4f;
+  --ms-3: #b42318;
+  --ms-4: #1c3a6e;
+  --ms-5: #7a2418;
+  --ms-6: #1f6f78;
+  --ms-7: #1d2327;
+  --ms-8: #4a555c;
+}
+
+.dark {
+  --paper: #173a5e;
+  --ink: #eef4f8;
+  --ink-soft: #a9c3d9;
+  --construction: #4f7499;
+  --redline: #f6c945;
+
+  --ms-1: #9fd0ff;
+  --ms-2: #9be3b5;
+  --ms-3: #ffb4a8;
+  --ms-4: #c7b8ff;
+  --ms-5: #ffcf8a;
+  --ms-6: #8ee8e8;
+  --ms-7: #ffffff;
+  --ms-8: #c9d6e0;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-construction: var(--construction);
+  --color-redline: var(--redline);
+
+  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-variation-settings: 'wdth' 100;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--redline);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--redline);
+    outline-offset: 3px;
+  }
+}
+
+@utility lettering {
+  /* Condensed technical lettering, as on a drawing's title block. */
+  font-variation-settings: 'wdth' 72;
+  letter-spacing: 0.01em;
+}
+
+@utility lettering-tight {
+  font-variation-settings: 'wdth' 62;
+  letter-spacing: -0.01em;
+}
+
+/* The sheet border and title block are drawn in once, like a pen plotter. */
+.plot {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: plot 1.4s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+}
+
+.plot-late {
+  animation-delay: 0.9s;
+}
+
+@keyframes plot {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plot {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Section lining: on a drawing, hatching marks solid material. Covered
+   minesweeper cells are "solid" until revealed. */
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--construction) 0 1px,
+    transparent 1px 7px
+  );
+}

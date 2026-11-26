@@ -1,3 +1,3 @@
 export function HorizontalRow() {
-  return <hr className="my-4 dark:border-white" />;
+  return <hr className="my-10 border-construction" />;
 }

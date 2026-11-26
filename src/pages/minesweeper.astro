@@ -3,6 +3,6 @@ import { MinesweeperPage } from '../components/pages/minesweeper-page';
 import BaseLayout from '../layouts/base-layout.astro';
 ---
 
-<BaseLayout>
+<BaseLayout sheet={{ title: 'Minesweeper', number: 2 }}>
   <MinesweeperPage client:load />
 </BaseLayout>
