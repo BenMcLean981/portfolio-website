@@ -2,3 +2,8 @@
 # they never compete with the real domain. Custom domains don't match this.
 https://:version.:subdomain.workers.dev/*
   X-Robots-Tag: noindex
+
+# /versionz is built as an extensionless file, so give it its JSON type.
+/versionz
+  Content-Type: application/json
+  Cache-Control: no-store
