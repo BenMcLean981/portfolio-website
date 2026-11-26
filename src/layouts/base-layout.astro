@@ -1,5 +1,4 @@
 ---
-import Analytics from '@vercel/analytics/astro';
 import { NavBar } from '../components/nav/navbar';
 import '../styles/globals.css';
 
@@ -26,6 +25,5 @@ const { title = 'Ben McLean | Full Stack Developer' } = Astro.props;
         <slot />
       </div>
     </div>
-    <Analytics />
   </body>
 </html>

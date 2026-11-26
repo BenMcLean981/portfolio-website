@@ -5,9 +5,9 @@ import { SupabaseMinesweeperStorageService } from './supabase-minesweeper-storag
 export const MINESWEEPER_STORAGE_SERVICE = makeMinesweeperStorageService();
 
 function makeMinesweeperStorageService(): MinesweeperStorageService {
-  const SUPABASE_URL = getVariable(import.meta.env.NEXT_PUBLIC_SUPABASE_URL);
+  const SUPABASE_URL = getVariable(import.meta.env.PUBLIC_SUPABASE_URL);
   const SUPABASE_ANON_KEY = getVariable(
-    import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    import.meta.env.PUBLIC_SUPABASE_ANON_KEY
   );
 
   const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

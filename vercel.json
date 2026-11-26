@@ -1,5 +1,0 @@
-{
-  "framework": "astro",
-  "buildCommand": "yarn build",
-  "outputDirectory": "dist"
-}

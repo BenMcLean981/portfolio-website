@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "yarn build && wrangler pages dev dist",
     "lint": "eslint .",
     "test": "vitest --run",
     "test:watch": "vitest"
@@ -14,7 +14,6 @@
   "dependencies": {
     "@astrojs/react": "^7.1.9",
     "@supabase/supabase-js": "^2.49.7",
-    "@vercel/analytics": "^2.0.1",
     "astro": "^7.4.13",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -45,6 +44,7 @@
     "typescript": "^5",
     "typescript-eslint": "^8.74.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "wrangler": "^4.168.0"
   }
 }

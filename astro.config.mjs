@@ -7,8 +7,9 @@ export default defineConfig({
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
-    // Keep the existing NEXT_PUBLIC_ variable names working until the
-    // Cloudflare cutover renames them.
-    envPrefix: ['PUBLIC_', 'NEXT_PUBLIC_'],
   },
+  // Emit /resume.html rather than /resume/index.html. Cloudflare Pages serves
+  // it at /resume, matching the URLs the site has always used.
+  build: { format: 'file' },
+  trailingSlash: 'never',
 });
