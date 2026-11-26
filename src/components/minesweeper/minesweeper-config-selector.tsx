@@ -19,11 +19,15 @@ export function MinesweeperConfigSelector(
         <button
           key={getKey(option)}
           className={
-            'bg-zinc-300 rounded border dark:border-white p-4 flex flex-col hover:cursor-pointer hover:bg-zinc-400 transition duration-100'
+            'flex min-w-44 cursor-pointer flex-col border border-edge-soft/50 p-5 text-left text-edge transition-colors hover:border-straw'
           }
           onClick={() => setConfig(option)}
         >
-          <span className={'text-center text-2xl font-bold'}>
+          <span
+            className={
+              'mb-2 font-[family-name:var(--font-condensed)] text-3xl font-bold'
+            }
+          >
             {option.name}
           </span>
           <span>

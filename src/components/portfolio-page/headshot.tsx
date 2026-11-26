@@ -1,6 +1,6 @@
 export function Headshot() {
   return (
-    <div className={'relative w-full aspect-[3/4]'}>
+    <div className="relative aspect-[3/4] h-full w-full lg:aspect-auto">
       <img
         src={'/images/headshot.jpg'}
         alt={'Ben McLean Headshot'}

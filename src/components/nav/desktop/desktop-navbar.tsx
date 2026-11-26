@@ -1,6 +1,7 @@
 import { DarkModeSwitch } from '../../dark-mode-switch/dark-mode-switch';
 import { ButtonContainer } from '../button-container';
 import { ContactCard } from '../contact-modal';
+import { HomeLink } from '../home-link';
 import type { NavRoute } from '../nav-route';
 import { DesktopNavLink } from './desktop-nav-link';
 
@@ -14,24 +15,14 @@ export function DesktopNavbar(props: DesktopNavbarProps) {
   const { routes, homeRoute } = props;
 
   return (
-    <div className="flex justify-between items-center px-4">
-      <div className="hidden md:flex justify-center align-middle space-x-7 items-center gap-2">
-        <DesktopNavLink route={homeRoute}>
-          <img
-            src="/favicon.ico"
-            alt="Logo"
-            className={'mr-2'}
-            width={32}
-            height={32}
-          />
-        </DesktopNavLink>
+    <div className="flex items-center justify-between gap-8 px-1 py-5">
+      <HomeLink route={homeRoute} />
 
+      <div className="flex items-center gap-6 lg:gap-8">
         {routes.map((route) => (
           <DesktopNavLink key={route.path} route={route} />
         ))}
-      </div>
-
-      <div className="flex justify-end w-full md:w-auto items-center gap-x-6 my-6">
+        <span className="h-5 w-px bg-kerf" aria-hidden="true" />
         <ContactCard>
           <ButtonContainer>Contact</ButtonContainer>
         </ContactCard>

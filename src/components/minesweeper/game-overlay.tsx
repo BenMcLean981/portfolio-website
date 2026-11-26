@@ -9,11 +9,7 @@ export function GameOverlay(props: PropsWithChildren<GameOverlayProps>) {
 
   return (
     <>
-      <div
-        className={
-          'absolute top-0 left-0 bottom-0 right-0 bg-neutral-500 opacity-50'
-        }
-      />
+      <div className={'absolute inset-0 bg-plate/75'} />
       <div className={'absolute top-0 left-0 bottom-0 right-0'}>
         <div
           className={
@@ -23,7 +19,7 @@ export function GameOverlay(props: PropsWithChildren<GameOverlayProps>) {
           {props.children}
           <button
             className={
-              'bg-blue-800 p-4 text-2xl text-neutral-100 rounded-lg cursor-pointer mt-16 active:translate-y-1'
+              'mt-16 cursor-pointer bg-straw px-6 py-3 font-[family-name:var(--font-condensed)] text-2xl font-bold text-table'
             }
             onClick={resetGame}
           >

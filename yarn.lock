@@ -805,6 +805,16 @@
     "@eslint/core" "^0.14.0"
     levn "^0.4.1"
 
+"@fontsource/barlow-condensed@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/barlow-condensed/-/barlow-condensed-5.3.0.tgz#dd483e66b0609da9abad599533c29270337ce0d4"
+  integrity sha512-RA7MmIx0v3eQ6Gcf74qLVLOwLB0GpPOzx+eU9iG/AmCnSJGcIWYeU8y6CEMGZ210MGwGg5CZhzLkkvyZdTTk1g==
+
+"@fontsource/barlow@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/barlow/-/barlow-5.3.0.tgz#a0dba34af073385c3deea92fc9b84eb0da40654a"
+  integrity sha512-tGR0y6QObRtKv71MOth44222+mdNFM/ZWFWDV1VLzNbG4oK9PNRlyJzmkck4vHAi9ibHBXgt4SlY51amFP55CA==
+
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/@humanfs/core/-/core-0.19.1.tgz#17c55ca7d426733fe3c561906b8173c336b40a77"

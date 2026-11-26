@@ -115,7 +115,11 @@ export function Minesweeper(props: MinesweeperProps) {
 
   return (
     <div className={'flex flex-col items-center gap-4'}>
-      <span className={'text-2xl text-white'}>
+      <span
+        className={
+          'font-[family-name:var(--font-condensed)] text-2xl text-edge tabular-nums'
+        }
+      >
         <strong>Your Time:</strong> {timer.format()}
       </span>
       <MinesweeperGameView

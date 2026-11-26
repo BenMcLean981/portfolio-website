@@ -56,27 +56,10 @@ export function MinesweeperCellButton(props: MinesweeperCellButtonProps) {
     }
   }
 
-  function getTextColorClass(): string {
-    switch (numAdjacentBombs) {
-      case 1:
-        return 'dark:text-blue-600 text-blue-700';
-      case 2:
-        return 'text-green-500';
-      case 3:
-        return 'text-red-700';
-      case 4:
-        return 'text-blue-900';
-      case 5:
-        return 'text-red-900';
-      case 6:
-        return 'text-cyan-700';
-      case 7:
-        return 'text-black';
-      case 8:
-        return 'text-gray-700';
-      default:
-        return '';
-    }
+  function getNumberColor(): string | undefined {
+    return numAdjacentBombs >= 1 && numAdjacentBombs <= 8
+      ? `var(--ms-${numAdjacentBombs})`
+      : undefined;
   }
 
   function handleRightClick(e: React.MouseEvent) {
@@ -99,22 +82,23 @@ export function MinesweeperCellButton(props: MinesweeperCellButtonProps) {
       game.isFlagged(cell.position) ||
       game.isGameOver
     ) {
-      return 'bg-slate-200 dark:bg-slate-300';
+      return 'bg-kerf border-kerf';
     } else {
-      return 'bg-slate-500 hover:bg-slate-300 dark:bg-slate-600 dark:hover:bg-slate-400';
+      return 'bg-plate border-edge-soft/50 hover:border-straw';
     }
   }
 
   const centerClass = 'flex items-center justify-center';
-  const borderClass = 'border border-neutral-500 rounded-sm';
+  const borderClass =
+    'border font-bold font-[family-name:var(--font-condensed)]';
 
   return (
     <button
-      className={`aspect-square ${centerClass} ${getColorClass()} ${getTextColorClass()} ${borderClass} leading-none select-none cursor-pointer`}
+      className={`aspect-square ${centerClass} ${getColorClass()} ${borderClass} leading-none select-none cursor-pointer`}
       onClick={handleLeftClick}
       onContextMenu={handleRightClick}
       ref={buttonRef}
-      style={{ fontSize }}
+      style={{ fontSize, color: getNumberColor() }}
     >
       {(game.isRevealed(cell.position) ||
         game.isFlagged(cell.position) ||

@@ -13,15 +13,13 @@ export function NavBar() {
   ];
 
   return (
-    <div>
-      <nav className="bg-gray-800 shadow-lg">
-        <div className={'hidden md:block'}>
-          <DesktopNavbar homeRoute={homeRoute} routes={routes} />
-        </div>
-        <div className={'block md:hidden'}>
-          <MobileNavbar routes={routes} homeRoute={homeRoute} />
-        </div>
-      </nav>
-    </div>
+    <nav>
+      <div className={'hidden md:block'}>
+        <DesktopNavbar homeRoute={homeRoute} routes={routes} />
+      </div>
+      <div className={'block md:hidden'}>
+        <MobileNavbar routes={routes} homeRoute={homeRoute} />
+      </div>
+    </nav>
   );
 }

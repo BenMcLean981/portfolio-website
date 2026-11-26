@@ -10,7 +10,9 @@ export function GameOverView(props: GameOverViewProps) {
   return (
     <GameOverlay resetGame={resetGame}>
       <span
-        className={'text-4xl bg-neutral-800 p-4 rounded-lg text-neutral-100'}
+        className={
+          'bg-kerf px-6 py-3 font-[family-name:var(--font-condensed)] text-4xl font-bold text-edge'
+        }
       >
         Game Over
       </span>

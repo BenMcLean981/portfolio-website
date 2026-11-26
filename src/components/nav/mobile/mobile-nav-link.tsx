@@ -1,4 +1,5 @@
 import { useCurrentPath } from '../../../hooks/use-current-path';
+import { isCurrentRoute } from '../is-current-route';
 import { type NavRoute } from '../nav-route';
 
 export interface MobileNavProps {
@@ -8,13 +9,18 @@ export interface MobileNavProps {
 export function MobileNavLink(props: MobileNavProps) {
   const { route } = props;
 
-  const pathname = useCurrentPath();
+  const isCurrent = isCurrentRoute(route.path, useCurrentPath());
 
   return (
-    <li className={pathname === route.path ? 'active' : undefined}>
+    <li>
       <a
         href={route.path}
-        className="block text-sm px-6 py-4 text-white hover:bg-blue-500 transition duration-300 font-semibold"
+        aria-current={isCurrent ? 'page' : undefined}
+        className={`block border-l-[3px] px-4 py-3 font-[family-name:var(--font-condensed)] text-xl font-semibold transition-colors ${
+          isCurrent
+            ? 'border-straw text-edge'
+            : 'border-transparent text-edge-soft hover:text-edge'
+        }`}
       >
         {route.name}
       </a>

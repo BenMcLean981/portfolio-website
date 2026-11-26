@@ -1,3 +1,137 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import '@fontsource/barlow/400.css';
+@import '@fontsource/barlow/500.css';
+@import '@fontsource/barlow/600.css';
+@import '@fontsource/barlow-condensed/600.css';
+@import '@fontsource/barlow-condensed/700.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Cut list. The page is a steel plate on a cutting table; each section is a
+ * part nested on it, separated by kerf. The accents are temper colors, the
+ * straw-to-blue tints steel takes on as it heats.
+ */
+:root {
+  --table: #c4c9ce;
+  --plate: #e9ecee;
+  --kerf: #9ea5ab;
+  --edge: #1d2125;
+  --edge-soft: #565e66;
+  --straw: #8a5f12;
+  --temper-blue: #2f5596;
+  --hot: #c98a1c;
+
+  --ms-1: #2f5596;
+  --ms-2: #3c7a46;
+  --ms-3: #a8321f;
+  --ms-4: #3a3a8c;
+  --ms-5: #7d3f12;
+  --ms-6: #22767a;
+  --ms-7: #1d2125;
+  --ms-8: #565e66;
+}
+
+.dark {
+  --table: #191c1f;
+  --plate: #2c3135;
+  --kerf: #131518;
+  --edge: #dde1e4;
+  --edge-soft: #9aa3aa;
+  --straw: #d8b26a;
+  --temper-blue: #7f9fd6;
+  --hot: #ffe2a0;
+
+  --ms-1: #8fb1ec;
+  --ms-2: #9fd6a6;
+  --ms-3: #f2a08f;
+  --ms-4: #b9b2f2;
+  --ms-5: #e8c07f;
+  --ms-6: #86d5d2;
+  --ms-7: #ffffff;
+  --ms-8: #c3c9ce;
+}
+
+@theme inline {
+  --color-table: var(--table);
+  --color-plate: var(--plate);
+  --color-kerf: var(--kerf);
+  --color-edge: var(--edge);
+  --color-edge-soft: var(--edge-soft);
+  --color-straw: var(--straw);
+  --color-temper-blue: var(--temper-blue);
+
+  --font-sans: 'Barlow', ui-sans-serif, system-ui, sans-serif;
+  --font-condensed: 'Barlow Condensed', 'Barlow', ui-sans-serif, sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--table);
+    color: var(--edge);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--straw);
+    color: var(--table);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--straw);
+    outline-offset: 3px;
+  }
+}
+
+/*
+ * The hero name is cut out of the plate: the torch traces each letter, the
+ * slug drops out to leave a hole, and the heat tint on the edge cools from
+ * straw to plain steel.
+ */
+.cut-path {
+  stroke: var(--hot);
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  fill: transparent;
+  animation:
+    trace 2.2s cubic-bezier(0.45, 0, 0.25, 1) forwards,
+    slug 0.25s 2.2s forwards,
+    cool 1.6s 2.3s ease-out forwards;
+}
+
+@keyframes trace {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes slug {
+  to {
+    fill: var(--kerf);
+  }
+}
+
+@keyframes cool {
+  0% {
+    stroke: var(--hot);
+  }
+  35% {
+    stroke: var(--straw);
+  }
+  70% {
+    stroke: var(--temper-blue);
+  }
+  100% {
+    stroke: var(--edge-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cut-path {
+    animation: none;
+    stroke-dashoffset: 0;
+    fill: var(--kerf);
+    stroke: var(--edge-soft);
+  }
+}

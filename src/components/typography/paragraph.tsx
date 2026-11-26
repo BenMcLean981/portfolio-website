@@ -2,6 +2,8 @@ import { type PropsWithChildren } from 'react';
 
 export function Paragraph(props: PropsWithChildren) {
   return (
-    <p className="text-xl font-medium dark:text-white">{props.children}</p>
+    <p className="mb-4 max-w-[64ch] text-[1.0625rem] leading-relaxed text-edge">
+      {props.children}
+    </p>
   );
 }
