@@ -41,11 +41,13 @@ export function HomePage(props: HomePageProps) {
           >
             here!
           </Anchor>{' '}
-          This website is a full blown NextJS application hosted on Vercel. It
-          features a CI/CD pipeline, automated testing, and a small game.
-          Originally, this application was a statically generated
-          create-react-app hosted on GitHub pages but the React community has
-          moved decisively towards frameworks.
+          This website is an Astro site with React islands, hosted on
+          Cloudflare. It features a CI/CD pipeline, automated testing, and a
+          small game. It started as a statically generated create-react-app on
+          GitHub Pages, then became a Next.js application on Vercel. It moved to
+          Astro because it&apos;s mostly static content with a few interactive
+          pieces, and Astro serves plain HTML and only ships JavaScript for the
+          parts that need it.
         </ListItem>
         <ListItem>
           <strong>E-Cad:</strong> An R&D project I have hoped to spin into a
