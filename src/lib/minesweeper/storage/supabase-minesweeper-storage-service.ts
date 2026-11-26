@@ -49,7 +49,7 @@ export class SupabaseMinesweeperStorageService
       .from('minesweeper_leaderboard_entries')
       .select()
       .eq('minesweeper_config_id', config.id)
-      .order('milliseconds', { ascending: false })
+      .order('milliseconds', { ascending: true })
       .limit(limit);
 
     if (error) {
