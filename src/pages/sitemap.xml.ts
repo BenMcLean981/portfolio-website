@@ -1,30 +1,28 @@
 import type { APIRoute } from 'astro';
 import { renderSitemap, type SitemapEntry } from '../lib/seo/sitemap';
 
-const BASE_URL = 'https://www.ben-mclean-software.com';
-
-function getEntries(): ReadonlyArray<SitemapEntry> {
+function getEntries(baseUrl: string): ReadonlyArray<SitemapEntry> {
   return [
     {
-      url: BASE_URL,
+      url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: `${BASE_URL}/resume`,
+      url: `${baseUrl}/resume`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/minesweeper`,
+      url: `${baseUrl}/minesweeper`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
-      url: `${BASE_URL}/advent-of-code`,
+      url: `${baseUrl}/advent-of-code`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.5,
@@ -32,7 +30,13 @@ function getEntries(): ReadonlyArray<SitemapEntry> {
   ];
 }
 
-export const GET: APIRoute = () =>
-  new Response(renderSitemap(getEntries()), {
+// `site` comes from astro.config.mjs, so the domain is defined in one place.
+export const GET: APIRoute = ({ site }) => {
+  if (!site) {
+    throw new Error('Set `site` in astro.config.mjs to build the sitemap.');
+  }
+
+  return new Response(renderSitemap(getEntries(site.origin)), {
     headers: { 'Content-Type': 'application/xml' },
   });
+};
