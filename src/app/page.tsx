@@ -1,5 +1,4 @@
 import { Stack } from '@/components/stack';
-import Image from 'next/image';
 import { PortfolioHeadshotLayout } from '../components/portfolio-page/portfolio-headshot-layout';
 import { Title } from '../components/portfolio-page/title';
 import { Anchor } from '../components/typography/anchor';
@@ -102,12 +101,13 @@ export default function Home() {
           </UnorderedList>
         </div>
         <div className="relative flex justify-center">
-          <Image
+          <img
             src={'/images/snowplow.png'}
             alt="autonomous snowplow"
             className={'object-contain object-center'}
             width={752}
             height={501}
+            loading={'lazy'}
           />
         </div>
       </div>

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { useOutsideAlerter } from '../../../hooks/use-outside-alerter';
 import { DarkModeSwitch } from '../../dark-mode-switch/dark-mode-switch';
@@ -32,7 +31,7 @@ export function MobileNavbar(props: MobileNavbarProps) {
     <>
       <div className="flex justify-between items-center px-4">
         <DesktopNavLink route={homeRoute}>
-          <Image
+          <img
             src="/favicon.ico"
             alt="Logo"
             className={'mr-2'}

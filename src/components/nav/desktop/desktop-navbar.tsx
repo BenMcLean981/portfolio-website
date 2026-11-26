@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { DarkModeSwitch } from '../../dark-mode-switch/dark-mode-switch';
 import { ButtonContainer } from '../button-container';
 import { ContactCard } from '../contact-modal';
@@ -18,7 +17,7 @@ export function DesktopNavbar(props: DesktopNavbarProps) {
     <div className="flex justify-between items-center px-4">
       <div className="hidden md:flex justify-center align-middle space-x-7 items-center gap-2">
         <DesktopNavLink route={homeRoute}>
-          <Image
+          <img
             src="/favicon.ico"
             alt="Logo"
             className={'mr-2'}

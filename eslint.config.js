@@ -13,6 +13,8 @@ const eslintConfig = [
   ...compat.config({
     extends: ['next/core-web-vitals', 'next/typescript', 'prettier'],
     rules: {
+      // Components stay framework-agnostic so they can move off Next.js.
+      '@next/next/no-img-element': 'off',
       '@typescript-eslint/consistent-type-imports': [
         'error',
         { fixStyle: 'inline-type-imports' },
