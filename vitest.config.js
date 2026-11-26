@@ -11,7 +11,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'), // adjust to your Next.js structure
+      '@': resolve(__dirname, './src')
     },
   },
 });

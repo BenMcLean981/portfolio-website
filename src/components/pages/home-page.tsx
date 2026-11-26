@@ -1,20 +1,19 @@
-import { Stack } from '@/components/stack';
-import Image from 'next/image';
-import { PortfolioHeadshotLayout } from '../components/portfolio-page/portfolio-headshot-layout';
-import { Title } from '../components/portfolio-page/title';
-import { Anchor } from '../components/typography/anchor';
-import { H1, H2 } from '../components/typography/headings';
-import { HorizontalRow } from '../components/typography/horizontal-row';
-import { ListItem } from '../components/typography/list-item';
-import { OrderedList } from '../components/typography/ordered-list';
-import { Paragraph } from '../components/typography/paragraph';
-import { UnorderedList } from '../components/typography/unordered-list';
+import { PortfolioHeadshotLayout } from '../portfolio-page/portfolio-headshot-layout';
+import { Title } from '../portfolio-page/title';
+import { Stack } from '../stack';
+import { Anchor } from '../typography/anchor';
+import { H1, H2 } from '../typography/headings';
+import { HorizontalRow } from '../typography/horizontal-row';
+import { ListItem } from '../typography/list-item';
+import { OrderedList } from '../typography/ordered-list';
+import { Paragraph } from '../typography/paragraph';
+import { UnorderedList } from '../typography/unordered-list';
 
-// Rendered per-request so values computed at render time (e.g. my age in the
-// introduction) stay current instead of being frozen at build time.
-export const dynamic = 'force-dynamic';
+export type HomePageProps = {
+  renderedAt: number;
+};
 
-export default function Home() {
+export function HomePage(props: HomePageProps) {
   return (
     <Stack>
       <p className="text-center text-md font-medium dark:text-white italic">
@@ -25,7 +24,7 @@ export default function Home() {
       <Title />
       <HorizontalRow />
 
-      <PortfolioHeadshotLayout />
+      <PortfolioHeadshotLayout renderedAt={props.renderedAt} />
 
       <HorizontalRow />
 
@@ -102,12 +101,13 @@ export default function Home() {
           </UnorderedList>
         </div>
         <div className="relative flex justify-center">
-          <Image
+          <img
             src={'/images/snowplow.png'}
             alt="autonomous snowplow"
             className={'object-contain object-center'}
             width={752}
             height={501}
+            loading={'lazy'}
           />
         </div>
       </div>

@@ -1,8 +1,9 @@
-import type { MetadataRoute } from 'next';
+import type { APIRoute } from 'astro';
+import { renderSitemap, type SitemapEntry } from '../lib/seo/sitemap';
 
 const BASE_URL = 'https://www.ben-mclean-software.com';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+function getEntries(): ReadonlyArray<SitemapEntry> {
   return [
     {
       url: BASE_URL,
@@ -30,3 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 }
+
+export const GET: APIRoute = () =>
+  new Response(renderSitemap(getEntries()), {
+    headers: { 'Content-Type': 'application/xml' },
+  });

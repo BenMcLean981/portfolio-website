@@ -1,0 +1,14 @@
+// Cloudflare Workers config. The site is fully static, so there is no Worker
+// script: Cloudflare serves dist/ as static assets.
+{
+  "name": "portfolio-website",
+  "compatibility_date": "2026-11-26",
+  "assets": {
+    "directory": "./dist",
+    // dist/resume.html is served at /resume; /resume/ and /resume.html
+    // redirect there.
+    "html_handling": "auto-trailing-slash",
+    // Unknown paths get dist/404.html with a 404 status.
+    "not_found_handling": "404-page"
+  }
+}

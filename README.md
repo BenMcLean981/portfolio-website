@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# portfolio-website
 
-## Getting Started
+Source for [ben-mclean-software.com](https://www.ben-mclean-software.com). It's an [Astro](https://astro.build) site with React islands, hosted on [Cloudflare Workers](https://developers.cloudflare.com/workers/).
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
+yarn dev          # dev server at http://localhost:4321
+yarn test         # vitest
+yarn lint         # eslint
+yarn build        # static output in dist/
+yarn preview      # build, then serve dist/ with Cloudflare's local Workers runtime
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Node version is pinned in `.node-version`. CI and Cloudflare both read it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The Minesweeper leaderboard reads from Supabase in the browser. The values are inlined into the client bundle at build time, so put only public values here.
 
-## Learn More
+| Variable                   | Value                      |
+| -------------------------- | -------------------------- |
+| `PUBLIC_SUPABASE_URL`      | Supabase project URL       |
+| `PUBLIC_SUPABASE_ANON_KEY` | Supabase anon (public) key |
 
-To learn more about Next.js, take a look at the following resources:
+For local builds, put them in `.env`, which git ignores.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How it's put together
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `src/pages/`: routes. Each `.astro` file is a thin template that renders one React component from `src/components/pages/`.
+- `src/layouts/base-layout.astro`: `<head>`, nav and page container.
+- Pages are static HTML. Components marked `client:load` hydrate in the browser as islands. Anything live, like the leaderboard or the age on the homepage, is computed in the browser so a prerendered page never goes stale.
+- Logic lives in plain TypeScript (`src/lib/`) and is unit tested. `.astro` files stay thin.
 
-## Deploy on Vercel
+## Deployment (Cloudflare Workers)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The site is served as [Workers static assets](https://developers.cloudflare.com/workers/static-assets/), configured in `wrangler.jsonc`. There is no Worker script. Workers Builds deploys every push to `main` to production, and every other branch gets a preview URL on `*.workers.dev`. `public/_headers` marks all `workers.dev` URLs `noindex`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### One-time setup
+
+1. **Create the Worker:** Cloudflare dashboard → Workers & Pages → Create → Import a repository → this GitHub repo.
+   - Project name: `portfolio-website`. It must match `name` in `wrangler.jsonc`, or the build fails.
+   - Production branch: `main`
+   - Build command: `yarn build`
+   - Deploy command: `npx wrangler deploy`
+2. **Build variables:** in the Worker, open Settings → Builds → Variables and secrets, and add `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_ANON_KEY`. They are read when the site is built, so they go under Builds, not the runtime Variables.
+3. **Custom domain:** in the Worker, open Settings → Domains & Routes → Add → Custom domain, and add `ben-mclean-software.com` and `www.ben-mclean-software.com`. Workers custom domains need the domain's DNS on Cloudflare, so move the nameservers to Cloudflare first if they aren't already.
+4. **Analytics:** open Analytics & Logs → Web Analytics → Add a site, and pick the domain. Because Cloudflare proxies it, the script is injected automatically, so no code is needed.
+5. **Shut down Vercel:** once the Worker serves the custom domain, disconnect the repo from Vercel and delete the Vercel project.

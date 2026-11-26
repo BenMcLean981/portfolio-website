@@ -1,10 +1,10 @@
-import { Anchor } from '../../components/typography/anchor';
-import { H1, H2 } from '../../components/typography/headings';
-import { ListItem } from '../../components/typography/list-item';
-import { Paragraph } from '../../components/typography/paragraph';
-import { UnorderedList } from '../../components/typography/unordered-list';
+import { Anchor } from '../typography/anchor';
+import { H1, H2 } from '../typography/headings';
+import { ListItem } from '../typography/list-item';
+import { Paragraph } from '../typography/paragraph';
+import { UnorderedList } from '../typography/unordered-list';
 
-export default async function Page() {
+export function AdventOfCodePage() {
   return (
     <>
       <H1>Advent Of Code</H1>

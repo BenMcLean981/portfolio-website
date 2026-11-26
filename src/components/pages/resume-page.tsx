@@ -1,7 +1,7 @@
-import { H1 } from '../../components/typography/headings';
-import { HorizontalRow } from '../../components/typography/horizontal-row';
+import { H1 } from '../typography/headings';
+import { HorizontalRow } from '../typography/horizontal-row';
 
-export default async function Page() {
+export function ResumePage() {
   return (
     <>
       <H1>My Resume</H1>

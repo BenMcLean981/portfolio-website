@@ -1,5 +1,3 @@
-'use client';
-
 import { type SetStateAction, useEffect, useState } from 'react';
 import { useTimer } from '../../hooks/use-timer';
 import { MinesweeperBuilder } from '../../lib/minesweeper/minesweeper-builder';
