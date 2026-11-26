@@ -9,10 +9,6 @@ import { OrderedList } from '../components/typography/ordered-list';
 import { Paragraph } from '../components/typography/paragraph';
 import { UnorderedList } from '../components/typography/unordered-list';
 
-// Rendered per-request so values computed at render time (e.g. my age in the
-// introduction) stay current instead of being frozen at build time.
-export const dynamic = 'force-dynamic';
-
 export default function Home() {
   return (
     <Stack>
