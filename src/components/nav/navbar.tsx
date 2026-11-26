@@ -1,5 +1,3 @@
-'use client';
-
 import { DesktopNavbar } from './desktop/desktop-navbar';
 import { MobileNavbar } from './mobile/mobile-navbar';
 import { type NavRoute } from './nav-route';

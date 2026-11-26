@@ -1,0 +1,10 @@
+---
+import { HomePage } from '../components/pages/home-page';
+import BaseLayout from '../layouts/base-layout.astro';
+
+const renderedAt = Date.now();
+---
+
+<BaseLayout>
+  <HomePage client:load renderedAt={renderedAt} />
+</BaseLayout>

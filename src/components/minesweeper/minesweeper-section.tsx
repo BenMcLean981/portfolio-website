@@ -1,5 +1,3 @@
-'use client';
-
 import { MINESWEEPER_STORAGE_SERVICE } from '../../lib/minesweeper/storage/factory';
 import { HorizontalRow } from '../typography/horizontal-row';
 import { Paragraph } from '../typography/paragraph';
