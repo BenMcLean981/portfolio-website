@@ -8,7 +8,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  // Emit /resume.html rather than /resume/index.html. Cloudflare Pages serves
+  // Emit /resume.html rather than /resume/index.html. Cloudflare serves
   // it at /resume, matching the URLs the site has always used.
   build: { format: 'file' },
   trailingSlash: 'never',

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "yarn build && wrangler pages dev dist",
+    "preview": "yarn build && wrangler dev",
     "lint": "eslint .",
     "test": "vitest --run",
     "test:watch": "vitest"

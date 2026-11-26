@@ -1,7 +1,4 @@
-# Keep Cloudflare Pages preview and *.pages.dev URLs out of search results so
-# they never compete with the real domain.
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex
-
-https://:version.:project.pages.dev/*
+# Keep the workers.dev production and preview URLs out of search results so
+# they never compete with the real domain. Custom domains don't match this.
+https://:version.:subdomain.workers.dev/*
   X-Robots-Tag: noindex
