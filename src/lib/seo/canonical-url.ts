@@ -3,7 +3,7 @@
  * report paths like `/resume.html` and `/index.html`, but Cloudflare serves
  * them at `/resume` and `/`.
  */
-export function canonicalUrl(builtPath: string, site: URL): string {
+export function getCanonicalUrl(builtPath: string, site: URL): string {
   const path = builtPath
     .replace(/(^|\/)index\.html$/, '$1')
     .replace(/\.html$/, '');
