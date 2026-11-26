@@ -1,6 +1,6 @@
 ---
 import { NavBar } from '../components/nav/navbar';
-import { canonicalUrl } from '../lib/seo/canonical-url';
+import { getCanonicalUrl } from '../lib/seo/canonical-url';
 import '../styles/globals.css';
 
 type Props = {
@@ -17,7 +17,7 @@ const { title = 'Ben McLean | Full Stack Developer' } = Astro.props;
     <title>{title}</title>
     {
       Astro.site && (
-        <link rel="canonical" href={canonicalUrl(Astro.url.pathname, Astro.site)} />
+        <link rel="canonical" href={getCanonicalUrl(Astro.url.pathname, Astro.site)} />
       )
     }
     <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16" />
