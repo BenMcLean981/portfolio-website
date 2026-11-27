@@ -47,7 +47,7 @@ function padEntries(
   }
 
   const ids = entries.map((e) => e.id).filter(notUndefined);
-  const MAX_ID = Math.max(...ids);
+  const MAX_ID = Math.max(0, ...ids);
   const BASE_ID = MAX_ID + 1;
 
   const result = [...entries];
