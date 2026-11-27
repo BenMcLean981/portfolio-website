@@ -1,0 +1,27 @@
+---
+import { loadBlogPosts } from '../../../app/blog';
+import { BlogTagPage } from '../../../components/pages/blog-tag-page';
+import BaseLayout from '../../../layouts/base-layout.astro';
+import { type BlogPost } from '../../../lib/blog/blog-post';
+import { getPostsTagged, listTags } from '../../../lib/blog/list-tags';
+
+export async function getStaticPaths() {
+  const posts = await loadBlogPosts();
+
+  return listTags(posts).map((tag) => ({
+    params: { tag },
+    props: { tag, posts: getPostsTagged(posts, tag) },
+  }));
+}
+
+type Props = {
+  tag: string;
+  posts: ReadonlyArray<BlogPost>;
+};
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`Posts tagged ${tag} | Ben McLean`}>
+  <BlogTagPage tag={tag} posts={posts} />
+</BaseLayout>
