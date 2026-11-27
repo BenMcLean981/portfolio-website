@@ -52,7 +52,9 @@ export function TimeSubmitRow(props: TimeSubmitRowProps) {
     case 'Loading':
       return (
         <span
-          className={'rounded-lg border border-line bg-raised px-4 py-2 text-strong'}
+          className={
+            'rounded-lg border border-line bg-raised px-4 py-2 text-strong'
+          }
         >
           Loading...
         </span>
@@ -60,7 +62,9 @@ export function TimeSubmitRow(props: TimeSubmitRowProps) {
     case 'Done':
       return (
         <span
-          className={'rounded-lg border border-line bg-raised px-4 py-2 text-strong'}
+          className={
+            'rounded-lg border border-line bg-raised px-4 py-2 text-strong'
+          }
         >
           Done! (Refresh Page)
         </span>

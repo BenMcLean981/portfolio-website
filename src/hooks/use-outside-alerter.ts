@@ -1,4 +1,4 @@
-import { type RefObject, useEffect } from "react";
+import { type RefObject, useEffect } from 'react';
 
 /**
  * Hook to call function when ref is clicked outside of
@@ -17,11 +17,11 @@ export function useOutsideAlerter(
       }
     }
 
-    document.addEventListener("mousedown", alertOutside);
-    document.addEventListener("touchstart", alertOutside);
+    document.addEventListener('mousedown', alertOutside);
+    document.addEventListener('touchstart', alertOutside);
     return () => {
-      document.removeEventListener("mousedown", alertOutside);
-      document.removeEventListener("touchstart", alertOutside);
+      document.removeEventListener('mousedown', alertOutside);
+      document.removeEventListener('touchstart', alertOutside);
     };
   }, [ref, callback]);
 }

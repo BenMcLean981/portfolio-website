@@ -1,6 +1,6 @@
-import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { defineCollection } from 'astro:content';
 
 /**
  * Blog posts are Markdown files in src/content/blog. The file name is the
