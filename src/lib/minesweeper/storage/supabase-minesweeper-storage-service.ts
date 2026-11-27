@@ -6,9 +6,7 @@ import { type MinesweeperStorageService } from './minesweeper-storage-service';
 import { type StoredMinesweeperConfig } from './stored-minesweeper-config';
 import { type StoredMinesweeperLeaderboardEntry } from './stored-minesweeper-leaderboard-entry';
 
-export class SupabaseMinesweeperStorageService
-  implements MinesweeperStorageService
-{
+export class SupabaseMinesweeperStorageService implements MinesweeperStorageService {
   private readonly _supabase: SupabaseClient;
 
   public constructor(supabase: SupabaseClient) {
@@ -26,15 +24,13 @@ export class SupabaseMinesweeperStorageService
       throw new Error('Minesweeper config SELECT failed.');
     }
 
-    return data.map(
-      (d): StoredMinesweeperConfig => ({
-        id: d.id,
-        name: d.name,
-        numRows: d.num_rows,
-        numColumns: d.num_columns,
-        numBombs: d.num_bombs,
-      })
-    );
+    return data.map((d): StoredMinesweeperConfig => ({
+      id: d.id,
+      name: d.name,
+      numRows: d.num_rows,
+      numColumns: d.num_columns,
+      numBombs: d.num_bombs,
+    }));
   }
 
   public async getLeaderboardEntries(
@@ -58,13 +54,11 @@ export class SupabaseMinesweeperStorageService
       throw new Error('Minesweeper leaderboard SELECT failed.');
     }
 
-    return data.map(
-      (d): StoredMinesweeperLeaderboardEntry => ({
-        id: d.id,
-        name: d.name,
-        milliseconds: d.milliseconds,
-      })
-    );
+    return data.map((d): StoredMinesweeperLeaderboardEntry => ({
+      id: d.id,
+      name: d.name,
+      milliseconds: d.milliseconds,
+    }));
   }
 
   public async saveLeaderboardEntry(

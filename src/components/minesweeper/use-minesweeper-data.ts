@@ -44,12 +44,10 @@ async function loadMinesweeperData(
   const configs = await storage.getConfigs();
 
   const tables = await Promise.all(
-    configs.map(
-      async (config): Promise<LeaderboardTable> => ({
-        config,
-        entries: await storage.getLeaderboardEntries(config, limit),
-      })
-    )
+    configs.map(async (config): Promise<LeaderboardTable> => ({
+      config,
+      entries: await storage.getLeaderboardEntries(config, limit),
+    }))
   );
 
   return { status: 'loaded', configs, tables };
