@@ -2,7 +2,7 @@
 import { SiteFooter } from '../components/footer/site-footer';
 import { NavBar } from '../components/nav/navbar';
 import { readBuildInfo } from '../lib/build-info/build-info';
-import { canonicalUrl } from '../lib/seo/canonical-url';
+import { getCanonicalUrl } from '../lib/seo/canonical-url';
 import '../styles/globals.css';
 
 type Props = {
@@ -22,7 +22,7 @@ const { buildHash } = readBuildInfo(process.env);
     <title>{title}</title>
     {
       Astro.site && (
-        <link rel="canonical" href={canonicalUrl(Astro.url.pathname, Astro.site)} />
+        <link rel="canonical" href={getCanonicalUrl(Astro.url.pathname, Astro.site)} />
       )
     }
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
