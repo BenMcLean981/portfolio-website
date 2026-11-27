@@ -18,21 +18,23 @@ export function H2(props: PropsWithChildren) {
 
 export function H3(props: PropsWithChildren) {
   return (
-    <h3 className="mb-2 text-lg font-medium text-strong">
-      {props.children}
-    </h3>
+    <h3 className="mb-2 text-lg font-medium text-strong">{props.children}</h3>
   );
 }
 
 export function H4(props: PropsWithChildren) {
   return (
-    <h4 className="mb-2 text-base font-semibold text-strong">{props.children}</h4>
+    <h4 className="mb-2 text-base font-semibold text-strong">
+      {props.children}
+    </h4>
   );
 }
 
 export function H5(props: PropsWithChildren) {
   return (
-    <h5 className="mb-1 text-base font-semibold text-strong">{props.children}</h5>
+    <h5 className="mb-1 text-base font-semibold text-strong">
+      {props.children}
+    </h5>
   );
 }
 
