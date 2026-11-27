@@ -18,6 +18,8 @@
   --accent-text: #8f5a12;
   --accent-soft: #6e4a14;
   --nav: rgb(255 255 255 / 0.96);
+  --info: #2f6db5;
+  --info-text: #1f4a7a;
 
   --ms-1: #2f6db5;
   --ms-2: #2f7d4a;
@@ -40,6 +42,8 @@
   --accent-text: #ecc488;
   --accent-soft: #f3d9b1;
   --nav: rgb(34 38 42 / 0.96);
+  --info: #9dbad3;
+  --info-text: #d6e4f0;
 
   --ms-1: #9dbad3;
   --ms-2: #a6d4ae;
@@ -62,6 +66,8 @@
   --color-accent-text: var(--accent-text);
   --color-accent-soft: var(--accent-soft);
   --color-nav: var(--nav);
+  --color-info: var(--info);
+  --color-info-text: var(--info-text);
 
   --font-sans: 'Figtree Variable', system-ui, sans-serif;
 }
