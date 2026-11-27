@@ -2,7 +2,7 @@ import { type PropsWithChildren } from 'react';
 
 export function H1(props: PropsWithChildren) {
   return (
-    <h1 className="text-4xl font-medium my-2 dark:text-white">
+    <h1 className="mb-4 text-[2rem] leading-tight font-medium tracking-[-0.02em] text-strong">
       {props.children}
     </h1>
   );
@@ -10,7 +10,7 @@ export function H1(props: PropsWithChildren) {
 
 export function H2(props: PropsWithChildren) {
   return (
-    <h2 className="text-2xl font-medium my-2 dark:text-white">
+    <h2 className="mb-3 text-xl leading-snug font-medium text-strong">
       {props.children}
     </h2>
   );
@@ -18,7 +18,7 @@ export function H2(props: PropsWithChildren) {
 
 export function H3(props: PropsWithChildren) {
   return (
-    <h3 className="text-xl font-medium my-2 dark:text-white">
+    <h3 className="mb-2 text-lg font-medium text-strong">
       {props.children}
     </h3>
   );
@@ -26,24 +26,18 @@ export function H3(props: PropsWithChildren) {
 
 export function H4(props: PropsWithChildren) {
   return (
-    <h4 className="text-lg font-medium my-2 dark:text-white">
-      {props.children}
-    </h4>
+    <h4 className="mb-2 text-base font-semibold text-strong">{props.children}</h4>
   );
 }
 
 export function H5(props: PropsWithChildren) {
   return (
-    <h5 className="text-md font-medium my-2 dark:text-white">
-      {props.children}
-    </h5>
+    <h5 className="mb-1 text-base font-semibold text-strong">{props.children}</h5>
   );
 }
 
 export function H6(props: PropsWithChildren) {
   return (
-    <h6 className="text-sm font-medium my-2 dark:text-white">
-      {props.children}
-    </h6>
+    <h6 className="mb-1 text-sm font-semibold text-strong">{props.children}</h6>
   );
 }

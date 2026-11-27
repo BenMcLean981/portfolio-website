@@ -1,13 +1,10 @@
-import { H1 } from '../typography/headings';
-import { ListItem } from '../typography/list-item';
-import { Paragraph } from '../typography/paragraph';
-import { UnorderedList } from '../typography/unordered-list';
-
 export function Passions() {
   return (
-    <>
-      <H1>My Passions</H1>
-      <Paragraph>
+    <section className="text-[0.9375rem] leading-relaxed">
+      <h2 className="mb-2 text-[1.0625rem] font-medium text-strong">
+        What I want to work on
+      </h2>
+      <p className="mb-3">
         I believe that in today&apos;s world we are tasked with some of the most
         difficult problems of any generation. I like to believe that these
         problems have technical solutions and that through innovation, the most
@@ -15,14 +12,14 @@ export function Passions() {
         impact in the world with my talent and with good software, and I am most
         interested in working in the following fields and solving the following
         problems:
-      </Paragraph>
-      <UnorderedList>
-        <ListItem>Climate Change</ListItem>
-        <ListItem>Space Exploration</ListItem>
-        <ListItem>Sustainability</ListItem>
-        <ListItem>Robotics and Automation</ListItem>
-        <ListItem>Access to Education</ListItem>
-      </UnorderedList>
-    </>
+      </p>
+      <ul className="ml-5 list-disc marker:text-accent">
+        <li>Climate change</li>
+        <li>Space exploration</li>
+        <li>Sustainability</li>
+        <li>Robotics and automation</li>
+        <li>Access to education</li>
+      </ul>
+    </section>
   );
 }

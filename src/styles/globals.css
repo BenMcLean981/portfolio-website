@@ -1,3 +1,88 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import '@fontsource-variable/figtree';
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Soft slate with a warm amber accent. Dark is the primary theme; light is
+ * derived from the same palette. Everything is set in Figtree.
+ */
+:root {
+  --surface: #f4f5f6;
+  --raised: #ffffff;
+  --line: #dfe2e5;
+  --body: #3b4045;
+  --strong: #1d2023;
+  --muted: #6b7178;
+  --accent: #b9771f;
+  --accent-text: #8f5a12;
+  --accent-soft: #6e4a14;
+  --nav: rgb(255 255 255 / 0.96);
+
+  --ms-1: #2f6db5;
+  --ms-2: #2f7d4a;
+  --ms-3: #b5402f;
+  --ms-4: #3a3f9e;
+  --ms-5: #8a4a1c;
+  --ms-6: #1f7a7a;
+  --ms-7: #1d2023;
+  --ms-8: #6b7178;
+}
+
+.dark {
+  --surface: #1d2023;
+  --raised: #24282c;
+  --line: #2f3439;
+  --body: #c4c8cc;
+  --strong: #f1f3f5;
+  --muted: #868c92;
+  --accent: #e3a857;
+  --accent-text: #ecc488;
+  --accent-soft: #f3d9b1;
+  --nav: rgb(34 38 42 / 0.96);
+
+  --ms-1: #9dbad3;
+  --ms-2: #a6d4ae;
+  --ms-3: #f0a593;
+  --ms-4: #c3b9f2;
+  --ms-5: #ecc488;
+  --ms-6: #8fd1cc;
+  --ms-7: #f1f3f5;
+  --ms-8: #a9aeb3;
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-body: var(--body);
+  --color-strong: var(--strong);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-nav: var(--nav);
+
+  --font-sans: 'Figtree Variable', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--surface);
+    color: var(--body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 35%, transparent);
+    color: var(--strong);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
