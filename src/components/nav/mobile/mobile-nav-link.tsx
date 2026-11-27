@@ -17,10 +17,10 @@ export function MobileNavLink(props: MobileNavProps) {
         href={route.path}
         aria-current={isCurrent ? 'page' : undefined}
         className={`block px-3 py-2.5 rounded-lg text-[0.9375rem] transition-colors ${
-        isCurrent
-          ? 'bg-accent/12 text-strong ring-1 ring-accent/30 ring-inset'
-          : 'text-muted hover:bg-strong/5 hover:text-strong'
-      }`}
+          isCurrent
+            ? 'bg-accent/12 text-strong ring-1 ring-accent/30 ring-inset'
+            : 'text-muted hover:bg-strong/5 hover:text-strong'
+        }`}
       >
         {route.name}
       </a>

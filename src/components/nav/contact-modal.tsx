@@ -18,7 +18,11 @@ const LINKS = [
   },
 ];
 
-export function ContactCard(props: PropsWithChildren) {
+export type ContactCardProps = PropsWithChildren<{
+  label: string;
+}>;
+
+export function ContactCard(props: ContactCardProps) {
   const [open, setOpen] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -49,7 +53,10 @@ export function ContactCard(props: PropsWithChildren) {
           className="relative w-full max-w-sm rounded-2xl border border-line bg-raised px-7 py-6 shadow-[0_24px_60px_-20px_rgb(0_0_0/0.6)]"
         >
           <div className="flex items-center justify-between gap-8">
-            <h2 id="contact-title" className="text-xl font-semibold text-strong">
+            <h2
+              id="contact-title"
+              className="text-xl font-semibold text-strong"
+            >
               Contact
             </h2>
             <button onClick={forceClose} aria-label="Close">
@@ -72,11 +79,7 @@ export function ContactCard(props: PropsWithChildren) {
                   rel="noreferrer"
                   className="-mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 text-body transition-colors hover:bg-strong/5 hover:text-strong"
                 >
-                  <Icon
-                    size={18}
-                    aria-hidden="true"
-                    className="text-accent"
-                  />
+                  <Icon size={18} aria-hidden="true" className="text-accent" />
                   {name}
                 </a>
               </li>
@@ -84,7 +87,9 @@ export function ContactCard(props: PropsWithChildren) {
           </ul>
         </div>
       </div>
-      <button onClick={toggleOpen}>{props.children}</button>
+      <button onClick={toggleOpen} aria-label={props.label} title={props.label}>
+        {props.children}
+      </button>
     </div>
   );
 }

@@ -1,21 +1,22 @@
 import { useRef, useState } from 'react';
 import { useOutsideAlerter } from '../../../hooks/use-outside-alerter';
 import { DarkModeSwitch } from '../../dark-mode-switch/dark-mode-switch';
-import { ButtonContainer } from '../button-container';
-import { ContactCard } from '../contact-modal';
+import { ContactButton } from '../contact-button';
 import { HomeLink } from '../home-link';
-import type { NavRoute } from '../nav-route';
+import type { NavMenu, NavRoute } from '../nav-route';
 import { MobileNavDropdown } from './mobile-nav-dropdown';
 import { MobileNavDropdownButton } from './mobile-nav-dropdown-button';
 
 export type MobileNavbarProps = {
   homeRoute: NavRoute;
 
+  projects: NavMenu;
+
   routes: ReadonlyArray<NavRoute>;
 };
 
 export function MobileNavbar(props: MobileNavbarProps) {
-  const { routes, homeRoute } = props;
+  const { homeRoute, projects, routes } = props;
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -33,9 +34,7 @@ export function MobileNavbar(props: MobileNavbarProps) {
         <HomeLink route={homeRoute} />
 
         <div className="flex items-center gap-x-1">
-          <ContactCard>
-            <ButtonContainer>Contact</ButtonContainer>
-          </ContactCard>
+          <ContactButton />
           <DarkModeSwitch />
           <MobileNavDropdownButton handleToggle={() => setMobileOpen(true)} />
         </div>
@@ -45,7 +44,7 @@ export function MobileNavbar(props: MobileNavbarProps) {
           className="mobile-menu border-t border-line pb-2 md:hidden"
           ref={dropdownRef}
         >
-          <MobileNavDropdown routes={routes} />
+          <MobileNavDropdown projects={projects} routes={routes} />
         </div>
       )}
     </>

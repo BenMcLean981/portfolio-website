@@ -3,3 +3,9 @@ export interface NavRoute {
 
   name: string;
 }
+
+export interface NavMenu {
+  name: string;
+
+  routes: ReadonlyArray<NavRoute>;
+}
