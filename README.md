@@ -8,7 +8,7 @@ Source for [ben-mclean-software.com](https://www.ben-mclean-software.com). It's 
 yarn install
 yarn dev          # dev server at http://localhost:4321
 yarn test         # vitest
-yarn lint         # eslint
+yarn lint         # oxlint
 yarn build        # static output in dist/
 yarn preview      # build, then serve dist/ with Cloudflare's local Workers runtime
 ```
