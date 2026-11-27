@@ -1,6 +1,7 @@
 import { type PropsWithChildren } from 'react';
 import { type BlogPost } from '../../lib/blog/blog-post';
 import { formatPostDate } from '../../lib/blog/format-post-date';
+import { TagLinks } from '../blog/tag-links';
 
 export type BlogPostPageProps = PropsWithChildren<{
   post: BlogPost;
@@ -65,27 +66,6 @@ function PostDetails(props: PostDetailsProps) {
         </Detail>
       )}
     </dl>
-  );
-}
-
-type TagLinksProps = {
-  tags: ReadonlyArray<string>;
-};
-
-function TagLinks(props: TagLinksProps) {
-  return (
-    <ul className="mt-1 flex flex-wrap gap-1.5">
-      {props.tags.map((tag) => (
-        <li key={tag}>
-          <a
-            href={`/blog/tags/${tag}`}
-            className="inline-block rounded-md border border-line px-1.5 py-0.5 text-xs text-body transition-colors hover:border-accent/50 hover:text-accent-text"
-          >
-            {tag}
-          </a>
-        </li>
-      ))}
-    </ul>
   );
 }
 
