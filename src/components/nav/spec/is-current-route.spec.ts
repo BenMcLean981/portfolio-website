@@ -17,4 +17,8 @@ describe('isCurrentRoute', () => {
   it('treats /index.html as the home page.', () => {
     expect(isCurrentRoute('/', '/index.html')).toBe(true);
   });
+
+  it('counts a page under a route as part of it.', () => {
+    expect(isCurrentRoute('/blog', '/blog/on-craftsmanship')).toBe(true);
+  });
 });

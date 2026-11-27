@@ -6,15 +6,9 @@ const REPOSITORY = 'https://github.com/BenMcLean981/portfolio-website';
 
 export function SiteFooter(props: SiteFooterProps) {
   return (
-    <div className="flex flex-col gap-2 text-sm text-muted sm:flex-row sm:justify-between sm:gap-8">
-      <p className="max-w-xl">
-        The views expressed on this website are mine alone and do not
-        necessarily reflect the views of my employer.
-      </p>
-      <p className="shrink-0">
-        <BuildLabel buildHash={props.buildHash} />
-      </p>
-    </div>
+    <p className="text-right text-sm text-muted">
+      <BuildLabel buildHash={props.buildHash} />
+    </p>
   );
 }
 

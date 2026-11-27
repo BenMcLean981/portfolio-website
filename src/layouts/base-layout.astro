@@ -1,4 +1,5 @@
 ---
+import { ViewsDisclaimer } from '../components/disclaimer/views-disclaimer';
 import { SiteFooter } from '../components/footer/site-footer';
 import { NavBar } from '../components/nav/navbar';
 import { readBuildInfo } from '../lib/build-info/build-info';
@@ -37,7 +38,10 @@ const { buildHash } = readBuildInfo(process.env);
         <NavBar client:load />
       </div>
     </header>
-    <main class="mx-auto max-w-[68rem] px-6 pt-10 pb-16">
+    <main class="mx-auto max-w-[68rem] px-6 pt-6 pb-16">
+      <div class="mb-8">
+        <ViewsDisclaimer />
+      </div>
       <slot />
     </main>
     <footer class="mx-auto max-w-[68rem] px-6 pb-12">
