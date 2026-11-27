@@ -26,9 +26,7 @@ export function DesktopNavbar(props: DesktopNavbarProps) {
           <DesktopNavLink key={route.path} route={route} />
         ))}
         <ContactButton />
-        <div className="ml-2">
-          <DarkModeSwitch />
-        </div>
+        <DarkModeSwitch />
       </div>
     </div>
   );
