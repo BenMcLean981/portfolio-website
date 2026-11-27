@@ -17,6 +17,12 @@ describe('BlogIndexPage', () => {
       screen.getByRole('link', { name: 'On craftsmanship' })
     ).toHaveAttribute('href', '/blog/on-craftsmanship');
   });
+
+  it('marks drafts.', () => {
+    render(<BlogIndexPage posts={[makePost({ draft: true })]} />);
+
+    expect(screen.getByText('Draft')).toBeInTheDocument();
+  });
 });
 
 function makePost(overrides: Partial<BlogPost>): BlogPost {

@@ -30,14 +30,18 @@ function PostSummary(props: PostSummaryProps) {
 
   return (
     <article>
-      {post.published && (
-        <time
-          dateTime={post.published.toISOString()}
-          className="text-sm text-muted"
-        >
-          {formatPostDate(post.published)}
-        </time>
-      )}
+      <div className="flex items-center gap-2 text-sm text-muted">
+        {post.published && (
+          <time dateTime={post.published.toISOString()}>
+            {formatPostDate(post.published)}
+          </time>
+        )}
+        {post.draft && (
+          <span className="rounded-md bg-accent/12 px-1.5 py-0.5 text-xs font-medium text-accent-text ring-1 ring-accent/30 ring-inset">
+            Draft
+          </span>
+        )}
+      </div>
       <h2 className="mt-1 text-xl font-medium text-strong">
         <a
           href={`/blog/${post.slug}`}
