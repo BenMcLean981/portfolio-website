@@ -219,4 +219,21 @@
   .post-body img {
     border-radius: 12px;
   }
+
+  .post-body figure {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  .post-body figcaption {
+    margin-top: 0.6em;
+    font-size: 0.9rem;
+    font-style: normal;
+    color: var(--muted);
+  }
+
+  /* Leave room for the sticky nav when a figure link scrolls to it. */
+  .post-body [id] {
+    scroll-margin-top: 6rem;
+  }
 }

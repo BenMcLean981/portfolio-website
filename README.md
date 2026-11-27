@@ -40,6 +40,32 @@ cp .env.development.default .env.development
 
 On Cloudflare, preview deployments show drafts and production never does.
 
+## Writing a post
+
+Add `src/content/blog/<slug>.md`. The file name is the URL, `/blog/<slug>`.
+
+```md
+---
+title: On craftsmanship
+description: One sentence for the blog index, search results and link previews.
+draft: true
+tags: [craft, test-driven]
+---
+```
+
+- **Drafts** show under `yarn dev` (with `.env.development`) and on branch previews, never in production.
+- **Publishing:** remove `draft: true` and add `published: 2026-12-01`. Add `updated:` when you revise a post. A non-draft post without `published` fails the build.
+- **Tags** are lowercase kebab-case, because each one is also a page at `/blog/tags/<tag>`.
+- **Figures** use pandoc-crossref syntax. The bracket text is the caption, and references become links that read "Figure 1". A reference to a missing label fails the build.
+
+  ```md
+  ![The build pipeline](/images/pipeline.png){#fig:pipeline}
+
+  As @fig:pipeline shows, ...
+  ```
+
+  Put images in `public/images`.
+
 ## How it's put together
 
 - `src/pages/`: routes. Each `.astro` file is a thin template that renders one React component from `src/components/pages/`.

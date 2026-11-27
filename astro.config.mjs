@@ -1,7 +1,9 @@
+import { unified } from '@astrojs/markdown-remark';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
+import { numberFigures } from './src/lib/markdown/number-figures';
 
 // Figtree comes from the @fontsource-variable/figtree package, split into
 // the same two subsets Fontsource ships. Astro preloads it and generates a
@@ -39,6 +41,11 @@ export default defineConfig({
       },
     },
   ],
+  // Sätteri, Astro's default Markdown processor, has its own plugin API.
+  // unified() keeps figures a plain remark plugin that works anywhere.
+  markdown: {
+    processor: unified({ remarkPlugins: [numberFigures] }),
+  },
   vite: {
     plugins: [tailwindcss()],
   },

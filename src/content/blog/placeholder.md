@@ -33,4 +33,10 @@ function greet(name: string): string {
 }
 ```
 
-A closing paragraph after the code block.
+## A figure
+
+Figures are numbered in order, and @fig:snowplow links to its figure by number.
+
+![OAVG's autonomous snowplow](/images/snowplow.png){#fig:snowplow}
+
+A closing paragraph after the figure.

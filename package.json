@@ -26,6 +26,7 @@
     "ws": "^8.21.0"
   },
   "devDependencies": {
+    "@astrojs/markdown-remark": "^7.3.10",
     "@astrojs/sitemap": "^3.7.6",
     "@astrojs/rss": "^4.0.19",
     "@eslint/js": "^9",
@@ -33,6 +34,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
+    "@types/mdast": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -45,9 +47,14 @@
     "jsdom": "^26.1.0",
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
+    "rehype-stringify": "^10",
+    "remark-parse": "^11",
+    "remark-rehype": "^11",
     "tailwindcss": "^4",
     "typescript": "^5",
     "typescript-eslint": "^8.74.0",
+    "unified": "^11",
+    "unist-util-visit": "^5",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.1.10",
     "wrangler": "^4.168.0"
