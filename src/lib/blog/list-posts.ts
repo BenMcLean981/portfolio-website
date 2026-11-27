@@ -6,6 +6,12 @@ export function getPublishedPosts(
   return posts.filter((post) => !post.draft).toSorted(compareNewestFirst);
 }
 
+export function getAllPosts(
+  posts: ReadonlyArray<BlogPost>
+): ReadonlyArray<BlogPost> {
+  return posts.toSorted(compareNewestFirst);
+}
+
 function compareNewestFirst(a: BlogPost, b: BlogPost): number {
   return getTime(b) - getTime(a);
 }

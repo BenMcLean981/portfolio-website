@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { type BlogPost } from '../blog-post';
-import { getPublishedPosts } from '../list-posts';
+import { getAllPosts, getPublishedPosts } from '../list-posts';
 
 describe('getPublishedPosts', () => {
   it('leaves out drafts.', () => {
@@ -21,6 +21,15 @@ describe('getPublishedPosts', () => {
     });
 
     expect(getPublishedPosts([older, newer])).toEqual([newer, older]);
+  });
+});
+
+describe('getAllPosts', () => {
+  it('includes drafts.', () => {
+    const published = makePost({ slug: 'published' });
+    const draft = makePost({ slug: 'draft', draft: true });
+
+    expect(getAllPosts([published, draft])).toEqual([published, draft]);
   });
 });
 
