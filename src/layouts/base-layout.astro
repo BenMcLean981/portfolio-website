@@ -4,13 +4,30 @@ import { SiteFooter } from '../components/footer/site-footer';
 import { NavBar } from '../components/nav/navbar';
 import { readBuildInfo } from '../lib/build-info/build-info';
 import { getCanonicalUrl } from '../lib/seo/canonical-url';
+import { listMetaTags, type ArticleDates } from '../lib/seo/list-meta-tags';
 import '../styles/globals.css';
 
 type Props = {
   title?: string;
+  description: string;
+  article?: ArticleDates;
 };
 
-const { title = 'Ben McLean | Full Stack Developer' } = Astro.props;
+const {
+  title = 'Ben McLean | Full Stack Developer',
+  description,
+  article,
+} = Astro.props;
+
+const site = Astro.site ?? Astro.url;
+const canonicalUrl = getCanonicalUrl(Astro.url.pathname, site);
+const metaTags = listMetaTags({
+  title,
+  description,
+  url: canonicalUrl,
+  imageUrl: new URL('/images/portrait.jpg', site).href,
+  article,
+});
 
 const { buildHash } = readBuildInfo(process.env);
 ---
@@ -21,11 +38,8 @@ const { buildHash } = readBuildInfo(process.env);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1d2023" />
     <title>{title}</title>
-    {
-      Astro.site && (
-        <link rel="canonical" href={getCanonicalUrl(Astro.url.pathname, Astro.site)} />
-      )
-    }
+    {metaTags.map((tag) => <meta {...tag} />)}
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

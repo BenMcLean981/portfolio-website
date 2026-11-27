@@ -3,6 +3,9 @@ import { MinesweeperPage } from '../components/pages/minesweeper-page';
 import BaseLayout from '../layouts/base-layout.astro';
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="Minesweeper | Ben McLean"
+  description="A game of Minesweeper written in TypeScript, with a leaderboard for each difficulty."
+>
   <MinesweeperPage client:load />
 </BaseLayout>
