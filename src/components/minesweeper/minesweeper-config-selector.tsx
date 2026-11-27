@@ -23,7 +23,9 @@ export function MinesweeperConfigSelector(
           }
           onClick={() => setConfig(option)}
         >
-          <span className={'mb-2 text-xl font-medium text-strong'}>{option.name}</span>
+          <span className={'mb-2 text-xl font-medium text-strong'}>
+            {option.name}
+          </span>
           <span>
             <strong>Rows:</strong> {option.numRows}
           </span>

@@ -26,6 +26,7 @@
     "ws": "^8.21.0"
   },
   "devDependencies": {
+    "@astrojs/rss": "^4.0.19",
     "@eslint/js": "^9",
     "@tailwindcss/vite": "^4.3.5",
     "@testing-library/dom": "^10.4.0",

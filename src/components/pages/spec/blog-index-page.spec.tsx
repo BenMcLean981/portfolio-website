@@ -29,6 +29,15 @@ describe('BlogIndexPage', () => {
 
     expect(screen.getByText('No posts yet.')).toBeInTheDocument();
   });
+
+  it('links to the RSS feed.', () => {
+    render(<BlogIndexPage posts={[]} />);
+
+    expect(screen.getByRole('link', { name: 'RSS feed' })).toHaveAttribute(
+      'href',
+      '/blog/rss.xml'
+    );
+  });
 });
 
 function makePost(overrides: Partial<BlogPost>): BlogPost {

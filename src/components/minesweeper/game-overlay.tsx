@@ -9,7 +9,11 @@ export function GameOverlay(props: PropsWithChildren<GameOverlayProps>) {
 
   return (
     <>
-      <div className={'absolute inset-0 rounded-lg bg-surface/75 backdrop-blur-[1px]'} />
+      <div
+        className={
+          'absolute inset-0 rounded-lg bg-surface/75 backdrop-blur-[1px]'
+        }
+      />
       <div className={'absolute top-0 left-0 bottom-0 right-0'}>
         <div
           className={
