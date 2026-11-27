@@ -39,54 +39,58 @@ export function ContactCard(props: ContactCardProps) {
 
   return (
     <div>
-      <div
-        className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${
-          open ? '' : 'hidden'
-        }`}
-        id="contact-modal"
-      >
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-[2px]" />
+      {open && (
         <div
-          ref={ref}
-          role="dialog"
-          aria-labelledby="contact-title"
-          className="relative w-full max-w-sm rounded-2xl border border-line bg-raised px-7 py-6 shadow-[0_24px_60px_-20px_rgb(0_0_0/0.6)]"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          id="contact-modal"
         >
-          <div className="flex items-center justify-between gap-8">
-            <h2
-              id="contact-title"
-              className="text-xl font-semibold text-strong"
-            >
-              Contact
-            </h2>
-            <button onClick={forceClose} aria-label="Close">
-              <ButtonContainer>
-                <FaX size={14} />
-              </ButtonContainer>
-            </button>
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-[2px]" />
+          <div
+            ref={ref}
+            role="dialog"
+            aria-labelledby="contact-title"
+            className="relative w-full max-w-sm rounded-2xl border border-line bg-raised px-7 py-6 shadow-[0_24px_60px_-20px_rgb(0_0_0/0.6)]"
+          >
+            <div className="flex items-center justify-between gap-8">
+              <h2
+                id="contact-title"
+                className="text-xl font-semibold text-strong"
+              >
+                Contact
+              </h2>
+              <button onClick={forceClose} aria-label="Close">
+                <ButtonContainer>
+                  <FaX size={14} />
+                </ButtonContainer>
+              </button>
+            </div>
+            <p className="mt-3 text-[1.0625rem]">
+              <Anchor href="mailto:BenMcLean981@gmail.com">
+                BenMcLean981@gmail.com
+              </Anchor>
+            </p>
+            <ul className="mt-5 flex flex-col gap-1 border-t border-line pt-4">
+              {LINKS.map(({ name, href, Icon }) => (
+                <li key={name}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="-mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 text-body transition-colors hover:bg-strong/5 hover:text-strong"
+                  >
+                    <Icon
+                      size={18}
+                      aria-hidden="true"
+                      className="text-accent"
+                    />
+                    {name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-          <p className="mt-3 text-[1.0625rem]">
-            <Anchor href="mailto:BenMcLean981@gmail.com">
-              BenMcLean981@gmail.com
-            </Anchor>
-          </p>
-          <ul className="mt-5 flex flex-col gap-1 border-t border-line pt-4">
-            {LINKS.map(({ name, href, Icon }) => (
-              <li key={name}>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="-mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 text-body transition-colors hover:bg-strong/5 hover:text-strong"
-                >
-                  <Icon size={18} aria-hidden="true" className="text-accent" />
-                  {name}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
-      </div>
+      )}
       <button onClick={toggleOpen} aria-label={props.label} title={props.label}>
         {props.children}
       </button>
