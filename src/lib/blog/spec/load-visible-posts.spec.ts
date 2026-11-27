@@ -30,7 +30,6 @@ function makePost(overrides: Partial<BlogPost>): BlogPost {
     updated: undefined,
     isDraft: false,
     tags: [],
-    hn: undefined,
     ...overrides,
   };
 }

@@ -6,5 +6,4 @@ export type BlogPost = {
   updated: Date | undefined;
   isDraft: boolean;
   tags: ReadonlyArray<string>;
-  hn: string | undefined;
 };

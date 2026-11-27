@@ -12,6 +12,5 @@ export function mapEntryToBlogPost(entry: CollectionEntry<'blog'>): BlogPost {
     updated: data.updated,
     isDraft: data.draft,
     tags: data.tags,
-    hn: data.hn,
   };
 }

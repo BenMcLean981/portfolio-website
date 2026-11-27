@@ -16,7 +16,6 @@ const blog = defineCollection({
       updated: z.coerce.date().optional(),
       draft: z.boolean().default(false),
       tags: z.array(z.string()).default([]),
-      hn: z.url().optional(),
     })
     .refine((post) => post.draft || post.published !== undefined, {
       message: 'A post needs a published date unless it is a draft.',

@@ -39,6 +39,5 @@ function makeDraft(): BlogPost {
     updated: undefined,
     isDraft: true,
     tags: [],
-    hn: undefined,
   };
 }
