@@ -2,6 +2,8 @@ import { type PropsWithChildren } from 'react';
 
 export function ListItem(props: PropsWithChildren) {
   return (
-    <li className="text-xl font-medium dark:text-white">{props.children}</li>
+    <li className="pl-1 leading-[1.7] text-body">
+      {props.children}
+    </li>
   );
 }

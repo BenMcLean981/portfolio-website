@@ -6,7 +6,7 @@ export function ResumePage() {
     <>
       <H1>My Resume</H1>
       <HorizontalRow />
-      <div className="h-screen w-full">
+      <div className="h-screen w-full overflow-hidden rounded-[14px] border border-line">
         <iframe
           src="/resume.pdf"
           className="w-full h-full border-0"

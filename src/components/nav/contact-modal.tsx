@@ -1,12 +1,28 @@
-import { type PropsWithChildren, useRef, useState } from 'react';
+import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin, FaStackOverflow, FaX } from 'react-icons/fa6';
 import { useOutsideAlerter } from '../../hooks/use-outside-alerter';
 import { Anchor } from '../typography/anchor';
-import { H2, H5 } from '../typography/headings';
-import { HorizontalRow } from '../typography/horizontal-row';
 import { ButtonContainer } from './button-container';
 
-export function ContactCard(props: PropsWithChildren) {
+const LINKS = [
+  { name: 'GitHub', href: 'https://github.com/BenMcLean981', Icon: FaGithub },
+  {
+    name: 'Stack Overflow',
+    href: 'https://stackoverflow.com/users/12833553/bigbadbenny',
+    Icon: FaStackOverflow,
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/BenMcLean981',
+    Icon: FaLinkedin,
+  },
+];
+
+export type ContactCardProps = PropsWithChildren<{
+  label: string;
+}>;
+
+export function ContactCard(props: ContactCardProps) {
   const [open, setOpen] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -21,78 +37,79 @@ export function ContactCard(props: PropsWithChildren) {
 
   useOutsideAlerter(ref, forceClose);
 
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    function closeOnEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener('keydown', closeOnEscape);
+
+    return () => document.removeEventListener('keydown', closeOnEscape);
+  }, [open]);
+
   return (
     <div>
-      <div
-        className={`fixed top-0 left-0 w-full h-screen flex justify-center items-center ${
-          open ? '' : 'hidden'
-        }`}
-        id="contact-modal"
-      >
+      {open && (
         <div
-          className={
-            'fixed top-0 left-0 opacity-75 bg-neutral-500 w-full h-full'
-          }
-        />
-        <div
-          ref={ref}
-          className="z-10 min-w-[300px] flex-col bg-neutral-100 dark:bg-slate-800 rounded-lg p-4 border dark:border-neutral-500"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          id="contact-modal"
         >
-          <div className="flex justify-between align-center gap-16">
-            <H2>Contact Information</H2>
-            <button onClick={forceClose}>
-              <ButtonContainer>
-                <FaX size={24} />
-              </ButtonContainer>
-            </button>
-          </div>
-          <HorizontalRow />
-          <div>
-            <H5>
-              <strong>Name: </strong> Ben McLean
-            </H5>
-            <H5>
-              <strong>Email: </strong>
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-[2px]" />
+          <div
+            ref={ref}
+            role="dialog"
+            aria-labelledby="contact-title"
+            className="relative w-full max-w-sm rounded-2xl border border-line bg-raised px-7 py-6 shadow-[0_24px_60px_-20px_rgb(0_0_0/0.6)]"
+          >
+            <div className="flex items-center justify-between gap-8">
+              <h2
+                id="contact-title"
+                className="text-xl font-semibold text-strong"
+              >
+                Contact
+              </h2>
+              <button onClick={forceClose} aria-label="Close">
+                <ButtonContainer>
+                  <FaX size={14} />
+                </ButtonContainer>
+              </button>
+            </div>
+            <p className="mt-3 text-[1.0625rem]">
               <Anchor href="mailto:BenMcLean981@gmail.com">
                 BenMcLean981@gmail.com
               </Anchor>
-            </H5>
-          </div>
-          <HorizontalRow />
-          <div>
-            <div className="flex flex-col items-center w-full">
-              <H5>Links</H5>
-              <div className="flex justify-center gap-x-4">
-                <a
-                  className="text-4xl bg-white w-10 text-center rounded"
-                  href="https://github.com/BenMcLean981"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaGithub className="text-zinc-900 rounded" />
-                </a>
-                <a
-                  className="text-4xl bg-zinc-700 w-10 text-center rounded"
-                  href="https://stackoverflow.com/users/12833553/bigbadbenny"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaStackOverflow className="text-orange-500 rounded" />
-                </a>
-                <a
-                  className="text-4xl bg-white w-10 text-center rounded"
-                  href="https://www.linkedin.com/in/BenMcLean981"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaLinkedin className="text-blue-600 rounded" />
-                </a>
-              </div>
-            </div>
+            </p>
+            <ul className="mt-5 flex flex-col gap-1 border-t border-line pt-4">
+              {LINKS.map(({ name, href, Icon }) => (
+                <li key={name}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="-mx-2 flex items-center gap-3 rounded-lg px-2 py-1.5 text-body transition-colors hover:bg-strong/5 hover:text-strong"
+                  >
+                    <Icon
+                      size={18}
+                      aria-hidden="true"
+                      className="text-accent"
+                    />
+                    {name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
-      <button onClick={toggleOpen}>{props.children}</button>
+      )}
+      <button onClick={toggleOpen} aria-label={props.label} title={props.label}>
+        {props.children}
+      </button>
     </div>
   );
 }

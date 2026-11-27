@@ -1,5 +1,7 @@
 ---
+import { SiteFooter } from '../components/footer/site-footer';
 import { NavBar } from '../components/nav/navbar';
+import { readBuildInfo } from '../lib/build-info/build-info';
 import { getCanonicalUrl } from '../lib/seo/canonical-url';
 import '../styles/globals.css';
 
@@ -8,28 +10,40 @@ type Props = {
 };
 
 const { title = 'Ben McLean | Full Stack Developer' } = Astro.props;
+
+const { buildHash } = readBuildInfo(process.env);
 ---
 
 <html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1d2023" />
     <title>{title}</title>
     {
       Astro.site && (
         <link rel="canonical" href={getCanonicalUrl(Astro.url.pathname, Astro.site)} />
       )
     }
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
-  <body class="antialiased dark:bg-slate-900 mb-48">
-    <header>
-      <NavBar client:load />
-    </header>
-    <div class="my-2">
-      <div class="xl:mx-48 lg:mx-36 md:mx-12 sm:mx-6 mx-4">
-        <slot />
+  <body class="min-h-screen">
+    <header
+      class="sticky top-0 z-40 border-b border-line bg-nav shadow-[0_10px_24px_-18px_rgb(0_0_0/0.6)]"
+    >
+      <div class="mx-auto max-w-[68rem] px-6">
+        <NavBar client:load />
       </div>
-    </div>
+    </header>
+    <main class="mx-auto max-w-[68rem] px-6 pt-10 pb-16">
+      <slot />
+    </main>
+    <footer class="mx-auto max-w-[68rem] px-6 pb-12">
+      <div class="border-t border-line pt-8">
+        <SiteFooter buildHash={buildHash} />
+      </div>
+    </footer>
   </body>
 </html>

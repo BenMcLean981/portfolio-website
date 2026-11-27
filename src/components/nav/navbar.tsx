@@ -1,27 +1,37 @@
 import { DesktopNavbar } from './desktop/desktop-navbar';
 import { MobileNavbar } from './mobile/mobile-navbar';
-import { type NavRoute } from './nav-route';
+import { type NavMenu, type NavRoute } from './nav-route';
 
 export function NavBar() {
   const homeRoute: NavRoute = { name: 'Home', path: '/' };
 
-  const routes: NavRoute[] = [
-    { name: 'Minesweeper', path: '/minesweeper' },
-    { name: 'Advent of Code', path: '/advent-of-code' },
-    { name: 'Stack', path: 'https://benmclean981.github.io/stack-dev/' },
-    { name: 'Resume', path: '/resume' },
-  ];
+  const projects: NavMenu = {
+    name: 'Projects',
+    routes: [
+      { name: 'Minesweeper', path: '/minesweeper' },
+      { name: 'Advent of Code', path: '/advent-of-code' },
+      { name: 'Stack', path: 'https://benmclean981.github.io/stack-dev/' },
+    ],
+  };
+
+  const routes: NavRoute[] = [{ name: 'Resume', path: '/resume' }];
 
   return (
-    <div>
-      <nav className="bg-gray-800 shadow-lg">
-        <div className={'hidden md:block'}>
-          <DesktopNavbar homeRoute={homeRoute} routes={routes} />
-        </div>
-        <div className={'block md:hidden'}>
-          <MobileNavbar routes={routes} homeRoute={homeRoute} />
-        </div>
-      </nav>
-    </div>
+    <nav>
+      <div className={'hidden md:block'}>
+        <DesktopNavbar
+          homeRoute={homeRoute}
+          projects={projects}
+          routes={routes}
+        />
+      </div>
+      <div className={'block md:hidden'}>
+        <MobileNavbar
+          homeRoute={homeRoute}
+          projects={projects}
+          routes={routes}
+        />
+      </div>
+    </nav>
   );
 }

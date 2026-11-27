@@ -31,7 +31,7 @@ export function TimeSubmitRow(props: TimeSubmitRowProps) {
               type="email"
               name="email"
               placeholder="Your Name"
-              className="w-full px-4 py-2 border bg-neutral-200 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out"
+              className="w-full rounded-lg border border-line bg-raised px-4 py-2 text-strong placeholder:text-muted"
               maxLength={16}
               minLength={3}
               value={name}
@@ -41,7 +41,7 @@ export function TimeSubmitRow(props: TimeSubmitRowProps) {
           <button
             disabled={!isValid}
             className={
-              'h-full bg-neutral-800 px-4 rounded-lg text-neutral-100 text-nowrap cursor-pointer enabled:active:translate-y-1 disabled:bg-neutral-600'
+              'h-full cursor-pointer rounded-lg bg-accent px-4 font-semibold text-nowrap text-surface disabled:cursor-not-allowed disabled:opacity-40'
             }
             onClick={handleSubmit}
           >
@@ -52,7 +52,7 @@ export function TimeSubmitRow(props: TimeSubmitRowProps) {
     case 'Loading':
       return (
         <span
-          className={'bg-neutral-800 px-4 py-2 rounded-lg text-lg text-white'}
+          className={'rounded-lg border border-line bg-raised px-4 py-2 text-strong'}
         >
           Loading...
         </span>
@@ -60,7 +60,7 @@ export function TimeSubmitRow(props: TimeSubmitRowProps) {
     case 'Done':
       return (
         <span
-          className={'bg-neutral-500 px-4 py-2 rounded-lg text-lg text-white'}
+          className={'rounded-lg border border-line bg-raised px-4 py-2 text-strong'}
         >
           Done! (Refresh Page)
         </span>

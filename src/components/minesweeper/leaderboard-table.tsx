@@ -24,10 +24,12 @@ export function LeaderboardTable(props: LeaderboardTableProps) {
         {entries.map((entry) => (
           <ListItem key={entry.id}>
             <div
-              className={`flex justify-between ${entry.milliseconds !== 0 ? 'font-bold' : ''}`}
+              className={`flex justify-between ${entry.milliseconds !== 0 ? '' : 'text-muted'}`}
             >
-              <span>{entry.name}</span>
-              <span>{formatMilliseconds(entry.milliseconds)}</span>
+              <span>{entry.name || '\u00a0'}</span>
+              <span className="tabular-nums">
+                {formatMilliseconds(entry.milliseconds)}
+              </span>
             </div>
           </ListItem>
         ))}
