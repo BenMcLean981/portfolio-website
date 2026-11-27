@@ -6,7 +6,13 @@ export function listVisiblePosts(
   posts: ReadonlyArray<BlogPost>,
   env: BuildEnvironment
 ): ReadonlyArray<BlogPost> {
-  return env.WORKERS_CI_BRANCH === undefined
-    ? getPublishedPosts(posts)
-    : getAllPosts(posts);
+  return isPreviewBuild(env) ? getAllPosts(posts) : getPublishedPosts(posts);
+}
+
+const PRODUCTION_BRANCH = 'main';
+
+function isPreviewBuild(env: BuildEnvironment): boolean {
+  const branch = env.WORKERS_CI_BRANCH;
+
+  return branch !== undefined && branch !== PRODUCTION_BRANCH;
 }

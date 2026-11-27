@@ -16,6 +16,12 @@ describe('listVisiblePosts', () => {
   it('hides drafts by default.', () => {
     expect(listVisiblePosts([makeDraft()], {})).toEqual([]);
   });
+
+  it('hides drafts on the production branch.', () => {
+    expect(
+      listVisiblePosts([makeDraft()], { WORKERS_CI_BRANCH: 'main' })
+    ).toEqual([]);
+  });
 });
 
 function makeDraft(): BlogPost {
