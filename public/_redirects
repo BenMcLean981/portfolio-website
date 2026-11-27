@@ -1,0 +1,2 @@
+# The sitemap moved when @astrojs/sitemap replaced the hand-written one.
+/sitemap.xml /sitemap-index.xml 301
