@@ -8,7 +8,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "yarn build && wrangler dev",
-    "blog:generate": "node scripts/generate-blog-post.ts",
+    "blog:create": "node scripts/create-blog-post.ts",
     "lint": "oxlint .",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",

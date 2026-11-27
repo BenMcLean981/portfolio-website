@@ -51,7 +51,7 @@ function greet(name: string): string {
 ```
 
 ```bash
-yarn blog:generate "On craftsmanship"
+yarn blog:create "On craftsmanship"
 ```
 
 ## Tables

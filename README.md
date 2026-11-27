@@ -12,7 +12,7 @@ yarn lint         # oxlint
 yarn fmt          # oxfmt (fmt:check to check without writing)
 yarn build        # static output in dist/
 yarn preview      # build, then serve dist/ with Cloudflare's local Workers runtime
-yarn blog:generate "Title"  # new draft post, see "Writing a post"
+yarn blog:create "Title"  # new draft post, see "Writing a post"
 ```
 
 Node version is pinned in `.node-version`. CI and Cloudflare both read it.
@@ -45,7 +45,7 @@ On Cloudflare, preview deployments show drafts and production never does.
 ## Writing a post
 
 ```bash
-yarn blog:generate "On craftsmanship"
+yarn blog:create "On craftsmanship"
 ```
 
 This creates a draft, `src/content/blog/2026-11-27-on-craftsmanship.md`, from `scripts/blog-post-template.md`. The date is today's, so posts sort by date on disk. The URL leaves the date out: `/blog/on-craftsmanship`. Fill in the description and tags:

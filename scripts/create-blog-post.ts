@@ -1,5 +1,5 @@
 // Creates a draft post from blog-post-template.md.
-// Usage: yarn blog:generate "The role of programmers in the age of AI"
+// Usage: yarn blog:create "The role of programmers in the age of AI"
 import { readFile, writeFile } from 'node:fs/promises';
 import { getPostFileName } from '../src/lib/blog/post-file-name.ts';
 import { renderPostTemplate } from '../src/lib/blog/render-post-template.ts';
@@ -10,7 +10,7 @@ const POSTS_DIRECTORY = 'src/content/blog';
 const title = process.argv.slice(2).join(' ').trim();
 
 if (title === '') {
-  exitWithError('Give the post a title: yarn blog:generate "Post title"');
+  exitWithError('Give the post a title: yarn blog:create "Post title"');
 }
 
 const path = `${POSTS_DIRECTORY}/${getPostFileName(title, new Date())}`;
