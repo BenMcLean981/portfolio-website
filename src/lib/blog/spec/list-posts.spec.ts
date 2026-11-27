@@ -31,6 +31,17 @@ describe('getAllPosts', () => {
 
     expect(getAllPosts([published, draft])).toEqual([published, draft]);
   });
+
+  it('puts undated drafts first.', () => {
+    const published = makePost({ slug: 'published' });
+    const undated = makePost({
+      slug: 'undated',
+      draft: true,
+      published: undefined,
+    });
+
+    expect(getAllPosts([published, undated])).toEqual([undated, published]);
+  });
 });
 
 function makePost(overrides: Partial<BlogPost>): BlogPost {
