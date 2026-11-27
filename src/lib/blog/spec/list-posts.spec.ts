@@ -9,6 +9,19 @@ describe('getPublishedPosts', () => {
 
     expect(getPublishedPosts([published, draft])).toEqual([published]);
   });
+
+  it('lists the newest post first.', () => {
+    const older = makePost({
+      slug: 'older',
+      published: new Date('2026-01-01'),
+    });
+    const newer = makePost({
+      slug: 'newer',
+      published: new Date('2026-02-01'),
+    });
+
+    expect(getPublishedPosts([older, newer])).toEqual([newer, older]);
+  });
 });
 
 function makePost(overrides: Partial<BlogPost>): BlogPost {
