@@ -21,6 +21,15 @@ describe('BlogTagPage', () => {
       screen.getByRole('link', { name: 'On craftsmanship' })
     ).toHaveAttribute('href', '/blog/on-craftsmanship');
   });
+
+  it('links to the RSS feed.', () => {
+    render(<BlogTagPage tag="craft" posts={[]} />);
+
+    expect(screen.getByRole('link', { name: 'RSS feed' })).toHaveAttribute(
+      'href',
+      '/blog/rss.xml'
+    );
+  });
 });
 
 function makePost(overrides: Partial<BlogPost>): BlogPost {

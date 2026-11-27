@@ -1,6 +1,6 @@
 import { type BlogPost } from '../../lib/blog/blog-post';
+import { BlogHeader } from '../blog/blog-header';
 import { PostList } from '../blog/post-list';
-import { H1 } from '../typography/headings';
 
 export type BlogTagPageProps = {
   tag: string;
@@ -10,7 +10,7 @@ export type BlogTagPageProps = {
 export function BlogTagPage(props: BlogTagPageProps) {
   return (
     <div>
-      <H1>Posts tagged {props.tag}</H1>
+      <BlogHeader>Posts tagged {props.tag}</BlogHeader>
       <PostList posts={props.posts} />
     </div>
   );
