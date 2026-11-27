@@ -9,6 +9,7 @@ yarn install
 yarn dev          # dev server at http://localhost:4321
 yarn test         # vitest
 yarn lint         # oxlint
+yarn fmt          # oxfmt (fmt:check to check without writing)
 yarn build        # static output in dist/
 yarn preview      # build, then serve dist/ with Cloudflare's local Workers runtime
 ```
