@@ -1,0 +1,21 @@
+import { describe, expect, it } from 'vitest';
+import { type BlogPost } from '../blog-post';
+import { getPublishedPosts } from '../list-posts';
+
+describe('getPublishedPosts', () => {
+  it('leaves out drafts.', () => {
+    const published = makePost({ slug: 'published' });
+    const draft = makePost({ slug: 'draft', draft: true });
+
+    expect(getPublishedPosts([published, draft])).toEqual([published]);
+  });
+});
+
+function makePost(overrides: Partial<BlogPost>): BlogPost {
+  return {
+    slug: 'post',
+    published: new Date('2026-01-01'),
+    draft: false,
+    ...overrides,
+  };
+}
