@@ -4,7 +4,7 @@ export type BlogPost = {
   description: string;
   published: Date | undefined;
   updated: Date | undefined;
-  draft: boolean;
+  isDraft: boolean;
   tags: ReadonlyArray<string>;
   hn: string | undefined;
 };

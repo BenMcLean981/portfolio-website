@@ -5,7 +5,7 @@ import { getAllPosts, getPublishedPosts } from '../list-posts';
 describe('getPublishedPosts', () => {
   it('leaves out drafts.', () => {
     const published = makePost({ slug: 'published' });
-    const draft = makePost({ slug: 'draft', draft: true });
+    const draft = makePost({ slug: 'draft', isDraft: true });
 
     expect(getPublishedPosts([published, draft])).toEqual([published]);
   });
@@ -27,7 +27,7 @@ describe('getPublishedPosts', () => {
 describe('getAllPosts', () => {
   it('includes drafts.', () => {
     const published = makePost({ slug: 'published' });
-    const draft = makePost({ slug: 'draft', draft: true });
+    const draft = makePost({ slug: 'draft', isDraft: true });
 
     expect(getAllPosts([published, draft])).toEqual([published, draft]);
   });
@@ -36,7 +36,7 @@ describe('getAllPosts', () => {
     const published = makePost({ slug: 'published' });
     const undated = makePost({
       slug: 'undated',
-      draft: true,
+      isDraft: true,
       published: undefined,
     });
 
@@ -51,7 +51,7 @@ function makePost(overrides: Partial<BlogPost>): BlogPost {
     description: 'Description',
     published: new Date('2026-01-01'),
     updated: undefined,
-    draft: false,
+    isDraft: false,
     tags: [],
     hn: undefined,
     ...overrides,

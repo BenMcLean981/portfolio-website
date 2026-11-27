@@ -37,7 +37,7 @@ function makeDraft(): BlogPost {
     description: 'A draft.',
     published: undefined,
     updated: undefined,
-    draft: true,
+    isDraft: true,
     tags: [],
     hn: undefined,
   };

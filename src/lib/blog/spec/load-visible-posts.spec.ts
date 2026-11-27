@@ -6,7 +6,7 @@ import { loadVisiblePosts } from '../load-visible-posts';
 describe('loadVisiblePosts', () => {
   it('loads the visible posts from the repository.', async () => {
     const published = makePost({ slug: 'published' });
-    const draft = makePost({ slug: 'draft', draft: true });
+    const draft = makePost({ slug: 'draft', isDraft: true });
     const repository = new InMemoryBlogPostRepository([published, draft]);
 
     expect(await loadVisiblePosts(repository, {})).toEqual([published]);
@@ -28,7 +28,7 @@ function makePost(overrides: Partial<BlogPost>): BlogPost {
     description: 'Description',
     published: new Date('2026-01-01'),
     updated: undefined,
-    draft: false,
+    isDraft: false,
     tags: [],
     hn: undefined,
     ...overrides,

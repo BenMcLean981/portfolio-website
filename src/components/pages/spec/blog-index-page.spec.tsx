@@ -19,7 +19,7 @@ describe('BlogIndexPage', () => {
   });
 
   it('marks drafts.', () => {
-    render(<BlogIndexPage posts={[makePost({ draft: true })]} />);
+    render(<BlogIndexPage posts={[makePost({ isDraft: true })]} />);
 
     expect(screen.getByText('Draft')).toBeInTheDocument();
   });
@@ -32,7 +32,7 @@ function makePost(overrides: Partial<BlogPost>): BlogPost {
     description: 'Description',
     published: new Date('2026-01-01'),
     updated: undefined,
-    draft: false,
+    isDraft: false,
     tags: [],
     hn: undefined,
     ...overrides,

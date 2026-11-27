@@ -36,7 +36,7 @@ function PostSummary(props: PostSummaryProps) {
             {formatPostDate(post.published)}
           </time>
         )}
-        {post.draft && (
+        {post.isDraft && (
           <span className="rounded-md bg-accent/12 px-1.5 py-0.5 text-xs font-medium text-accent-text ring-1 ring-accent/30 ring-inset">
             Draft
           </span>
