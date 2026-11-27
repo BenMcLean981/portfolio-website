@@ -17,9 +17,17 @@ type Props = {
 const { post } = Astro.props;
 
 const Content = await renderBlogPost(post.slug);
+
+function getArticleDates(post: BlogPost) {
+  return post.published && { published: post.published, updated: post.updated };
+}
 ---
 
-<BaseLayout title={`${post.title} | Ben McLean`}>
+<BaseLayout
+  title={`${post.title} | Ben McLean`}
+  description={post.description}
+  article={getArticleDates(post)}
+>
   <BlogPostPage post={post}>
     <Content />
   </BlogPostPage>

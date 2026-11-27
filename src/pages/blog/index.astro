@@ -6,6 +6,9 @@ import BaseLayout from '../../layouts/base-layout.astro';
 const posts = await loadBlogPosts();
 ---
 
-<BaseLayout title="Blog | Ben McLean">
+<BaseLayout
+  title="Blog | Ben McLean"
+  description="Ben McLean writes about software craftsmanship and engineering principles."
+>
   <BlogIndexPage posts={posts} />
 </BaseLayout>

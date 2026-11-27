@@ -5,6 +5,8 @@ import BaseLayout from '../layouts/base-layout.astro';
 const renderedAt = Date.now();
 ---
 
-<BaseLayout>
+<BaseLayout
+  description="Ben McLean is a full stack developer at Afresh Technologies. Projects, writing and a resume."
+>
   <HomePage client:load renderedAt={renderedAt} />
 </BaseLayout>
