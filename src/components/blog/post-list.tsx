@@ -1,5 +1,6 @@
 import { type BlogPost } from '../../lib/blog/blog-post';
 import { formatPostDate } from '../../lib/blog/format-post-date';
+import { TagLinks } from './tag-links';
 
 export type PostListProps = {
   posts: ReadonlyArray<BlogPost>;
@@ -52,6 +53,11 @@ function PostSummary(props: PostSummaryProps) {
           </a>
         </h2>
         <p className="mt-2 max-w-[42rem] leading-[1.7]">{post.description}</p>
+        {post.tags.length > 0 && (
+          <div className="mt-2">
+            <TagLinks tags={post.tags} />
+          </div>
+        )}
       </div>
     </article>
   );

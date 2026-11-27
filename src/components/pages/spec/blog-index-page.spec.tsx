@@ -18,6 +18,15 @@ describe('BlogIndexPage', () => {
     ).toHaveAttribute('href', '/blog/on-craftsmanship');
   });
 
+  it("links each post's tags to their pages.", () => {
+    render(<BlogIndexPage posts={[makePost({ tags: ['craft'] })]} />);
+
+    expect(screen.getByRole('link', { name: 'craft' })).toHaveAttribute(
+      'href',
+      '/blog/tags/craft'
+    );
+  });
+
   it('marks drafts.', () => {
     render(<BlogIndexPage posts={[makePost({ isDraft: true })]} />);
 
