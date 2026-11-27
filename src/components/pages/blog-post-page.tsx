@@ -1,6 +1,7 @@
 import { type PropsWithChildren } from 'react';
 import { type BlogPost } from '../../lib/blog/blog-post';
 import { formatPostDate } from '../../lib/blog/format-post-date';
+import { TagLinks } from '../blog/tag-links';
 
 export type BlogPostPageProps = PropsWithChildren<{
   post: BlogPost;
@@ -60,7 +61,9 @@ function PostDetails(props: PostDetailsProps) {
         </Detail>
       )}
       {post.tags.length > 0 && (
-        <Detail label="Tags">{post.tags.join(', ')}</Detail>
+        <Detail label="Tags">
+          <TagLinks tags={post.tags} />
+        </Detail>
       )}
     </dl>
   );
