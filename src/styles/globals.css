@@ -232,6 +232,52 @@
     color: var(--muted);
   }
 
+  .post-body table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .post-body th,
+  .post-body td {
+    border-bottom: 1px solid var(--line);
+    padding: 0.5em 0.75em;
+    text-align: left;
+  }
+
+  .post-body th {
+    font-weight: 600;
+    color: var(--strong);
+  }
+
+  .post-body th:first-child,
+  .post-body td:first-child {
+    padding-left: 0;
+  }
+
+  .post-body .contains-task-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .post-body .task-list-item input {
+    margin-right: 0.5em;
+    accent-color: var(--accent);
+  }
+
+  .post-body .footnotes {
+    margin-top: 3em;
+    border-top: 1px solid var(--line);
+    padding-top: 1em;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .post-body .footnotes h2 {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+
   /* Leave room for the sticky nav when a figure link scrolls to it. */
   .post-body [id] {
     scroll-margin-top: 6rem;
