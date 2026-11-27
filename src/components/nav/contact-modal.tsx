@@ -1,4 +1,4 @@
-import { type PropsWithChildren, useRef, useState } from 'react';
+import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin, FaStackOverflow, FaX } from 'react-icons/fa6';
 import { useOutsideAlerter } from '../../hooks/use-outside-alerter';
 import { Anchor } from '../typography/anchor';
@@ -36,6 +36,22 @@ export function ContactCard(props: ContactCardProps) {
   }
 
   useOutsideAlerter(ref, forceClose);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    function closeOnEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener('keydown', closeOnEscape);
+
+    return () => document.removeEventListener('keydown', closeOnEscape);
+  }, [open]);
 
   return (
     <div>
