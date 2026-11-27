@@ -22,6 +22,9 @@ type Props = {
 const { tag, posts } = Astro.props;
 ---
 
-<BaseLayout title={`Posts tagged ${tag} | Ben McLean`}>
+<BaseLayout
+  title={`Posts tagged ${tag} | Ben McLean`}
+  description={`Ben McLean's blog posts tagged ${tag}.`}
+>
   <BlogTagPage tag={tag} posts={posts} />
 </BaseLayout>
