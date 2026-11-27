@@ -31,5 +31,14 @@ describe('listVisiblePosts', () => {
 });
 
 function makeDraft(): BlogPost {
-  return { slug: 'draft', published: undefined, draft: true };
+  return {
+    slug: 'draft',
+    title: 'Draft',
+    description: 'A draft.',
+    published: undefined,
+    updated: undefined,
+    draft: true,
+    tags: [],
+    hn: undefined,
+  };
 }

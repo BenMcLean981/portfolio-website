@@ -47,8 +47,13 @@ describe('getAllPosts', () => {
 function makePost(overrides: Partial<BlogPost>): BlogPost {
   return {
     slug: 'post',
+    title: 'Title',
+    description: 'Description',
     published: new Date('2026-01-01'),
+    updated: undefined,
     draft: false,
+    tags: [],
+    hn: undefined,
     ...overrides,
   };
 }
