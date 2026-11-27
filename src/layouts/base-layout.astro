@@ -2,6 +2,8 @@
 import { ViewsDisclaimer } from '../components/disclaimer/views-disclaimer';
 import { SiteFooter } from '../components/footer/site-footer';
 import { NavBar } from '../components/nav/navbar';
+import { readBuildEnvironment } from '../adapters/astro/read-build-environment';
+import { getAnalyticsToken } from '../lib/analytics/get-analytics-token';
 import { readBuildInfo } from '../lib/build-info/build-info';
 import { getCanonicalUrl } from '../lib/seo/canonical-url';
 import '../styles/globals.css';
@@ -13,6 +15,7 @@ type Props = {
 const { title = 'Ben McLean | Full Stack Developer' } = Astro.props;
 
 const { buildHash } = readBuildInfo(process.env);
+const analyticsToken = getAnalyticsToken(readBuildEnvironment());
 ---
 
 <html lang="en" class="dark">
@@ -29,6 +32,16 @@ const { buildHash } = readBuildInfo(process.env);
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {
+      analyticsToken && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: analyticsToken })}
+        />
+      )
+    }
   </head>
   <body class="min-h-screen">
     <header

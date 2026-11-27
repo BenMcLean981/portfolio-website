@@ -24,6 +24,8 @@ The Minesweeper leaderboard reads from Supabase in the browser. The values are i
 | `PUBLIC_SUPABASE_URL`      | Supabase project URL       |
 | `PUBLIC_SUPABASE_ANON_KEY` | Supabase anon (public) key |
 
+Production builds also read `PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN`, the Cloudflare Web Analytics token. Without it the site builds with no analytics. See [One-time setup](#one-time-setup).
+
 For local builds, put them in `.env`, which git ignores.
 
 ### Local development settings
@@ -60,5 +62,5 @@ The site is served as [Workers static assets](https://developers.cloudflare.com/
    - Deploy command: `npx wrangler deploy`
 2. **Build variables:** in the Worker, open Settings → Builds → Variables and secrets, and add `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_ANON_KEY`. They are read when the site is built, so they go under Builds, not the runtime Variables.
 3. **Custom domain:** in the Worker, open Settings → Domains & Routes → Add → Custom domain, and add `ben-mclean-software.com` and `www.ben-mclean-software.com`. Workers custom domains need the domain's DNS on Cloudflare, so move the nameservers to Cloudflare first if they aren't already.
-4. **Analytics:** open Analytics & Logs → Web Analytics → Add a site, and pick the domain. Because Cloudflare proxies it, the script is injected automatically, so no code is needed.
+4. **Analytics:** open Analytics & Logs → Web Analytics → Add a site, enter `ben-mclean-software.com`, and choose the JavaScript snippet rather than automatic setup, so visits aren't counted twice. Copy the token from the snippet and add it as the build variable `PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN`, as in step 2. Only production builds include the script, so previews and local runs don't count as visits.
 5. **Shut down Vercel:** once the Worker serves the custom domain, disconnect the repo from Vercel and delete the Vercel project.
