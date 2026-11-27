@@ -14,7 +14,10 @@ export function NavBar() {
     ],
   };
 
-  const routes: NavRoute[] = [{ name: 'Resume', path: '/resume' }];
+  const routes: NavRoute[] = [
+    { name: 'Blog', path: '/blog' },
+    { name: 'Resume', path: '/resume' },
+  ];
 
   return (
     <nav>
