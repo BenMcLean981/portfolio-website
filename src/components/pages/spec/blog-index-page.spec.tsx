@@ -1,0 +1,34 @@
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import { type BlogPost } from '../../../lib/blog/blog-post';
+import { BlogIndexPage } from '../blog-index-page';
+
+describe('BlogIndexPage', () => {
+  it('links each post to its page.', () => {
+    render(
+      <BlogIndexPage
+        posts={[
+          makePost({ slug: 'on-craftsmanship', title: 'On craftsmanship' }),
+        ]}
+      />
+    );
+
+    expect(
+      screen.getByRole('link', { name: 'On craftsmanship' })
+    ).toHaveAttribute('href', '/blog/on-craftsmanship');
+  });
+});
+
+function makePost(overrides: Partial<BlogPost>): BlogPost {
+  return {
+    slug: 'post',
+    title: 'Title',
+    description: 'Description',
+    published: new Date('2026-01-01'),
+    updated: undefined,
+    draft: false,
+    tags: [],
+    hn: undefined,
+    ...overrides,
+  };
+}

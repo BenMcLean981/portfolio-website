@@ -1,0 +1,52 @@
+import { type BlogPost } from '../../lib/blog/blog-post';
+import { formatPostDate } from '../../lib/blog/format-post-date';
+import { H1 } from '../typography/headings';
+
+export type BlogIndexPageProps = {
+  posts: ReadonlyArray<BlogPost>;
+};
+
+export function BlogIndexPage(props: BlogIndexPageProps) {
+  return (
+    <div className="max-w-[42rem]">
+      <H1>Blog</H1>
+      <ol className="mt-8 flex flex-col">
+        {props.posts.map((post) => (
+          <li key={post.slug} className="border-t border-line py-6">
+            <PostSummary post={post} />
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+type PostSummaryProps = {
+  post: BlogPost;
+};
+
+function PostSummary(props: PostSummaryProps) {
+  const { post } = props;
+
+  return (
+    <article>
+      {post.published && (
+        <time
+          dateTime={post.published.toISOString()}
+          className="text-sm text-muted"
+        >
+          {formatPostDate(post.published)}
+        </time>
+      )}
+      <h2 className="mt-1 text-xl font-medium text-strong">
+        <a
+          href={`/blog/${post.slug}`}
+          className="transition-colors hover:text-accent-text"
+        >
+          {post.title}
+        </a>
+      </h2>
+      <p className="mt-2 leading-[1.7]">{post.description}</p>
+    </article>
+  );
+}
