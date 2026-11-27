@@ -8,7 +8,7 @@ export type BlogIndexPageProps = {
 
 export function BlogIndexPage(props: BlogIndexPageProps) {
   return (
-    <div className="max-w-[42rem]">
+    <div>
       <H1>Blog</H1>
       <PostList posts={props.posts} />
     </div>
@@ -39,8 +39,8 @@ function PostSummary(props: PostSummaryProps) {
   const { post } = props;
 
   return (
-    <article>
-      <div className="flex items-center gap-2 text-sm text-muted">
+    <article className="grid grid-cols-1 gap-x-12 gap-y-1 sm:grid-cols-[10rem_minmax(0,1fr)]">
+      <div className="flex items-center gap-2 text-sm text-muted sm:flex-col sm:items-start sm:pt-1.5">
         {post.published && (
           <time dateTime={post.published.toISOString()}>
             {formatPostDate(post.published)}
@@ -52,15 +52,17 @@ function PostSummary(props: PostSummaryProps) {
           </span>
         )}
       </div>
-      <h2 className="mt-1 text-xl font-medium text-strong">
-        <a
-          href={`/blog/${post.slug}`}
-          className="transition-colors hover:text-accent-text"
-        >
-          {post.title}
-        </a>
-      </h2>
-      <p className="mt-2 leading-[1.7]">{post.description}</p>
+      <div>
+        <h2 className="text-xl font-medium text-strong">
+          <a
+            href={`/blog/${post.slug}`}
+            className="transition-colors hover:text-accent-text"
+          >
+            {post.title}
+          </a>
+        </h2>
+        <p className="mt-2 max-w-[42rem] leading-[1.7]">{post.description}</p>
+      </div>
     </article>
   );
 }
