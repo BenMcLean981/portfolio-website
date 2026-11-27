@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/figtree';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -69,7 +68,7 @@
   --color-info: var(--info);
   --color-info-text: var(--info-text);
 
-  --font-sans: 'Figtree Variable', system-ui, sans-serif;
+  --font-sans: var(--font-figtree);
 }
 
 @layer base {

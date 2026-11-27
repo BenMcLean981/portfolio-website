@@ -1,4 +1,5 @@
 ---
+import { Font } from 'astro:assets';
 import { ViewsDisclaimer } from '../components/disclaimer/views-disclaimer';
 import { SiteFooter } from '../components/footer/site-footer';
 import { NavBar } from '../components/nav/navbar';
@@ -37,6 +38,7 @@ const { buildHash } = readBuildInfo(process.env);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1d2023" />
+    <Font cssVariable="--font-figtree" preload />
     <title>{title}</title>
     {metaTags.map((tag) => <meta {...tag} />)}
     <link rel="canonical" href={canonicalUrl} />
