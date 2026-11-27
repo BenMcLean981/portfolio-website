@@ -92,3 +92,132 @@
     border-radius: 4px;
   }
 }
+
+/*
+ * Reading styles for rendered Markdown in blog posts. Scoped to .post-body
+ * so they never leak into the rest of the site.
+ */
+@layer components {
+  .post-body {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--body);
+  }
+
+  .post-body > * + * {
+    margin-top: 1.25em;
+  }
+
+  .post-body h2,
+  .post-body h3 {
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--strong);
+  }
+
+  .post-body h2 {
+    margin-top: 2.25em;
+    font-size: 1.5rem;
+  }
+
+  .post-body h3 {
+    margin-top: 1.75em;
+    font-size: 1.2rem;
+  }
+
+  .post-body h2 + *,
+  .post-body h3 + * {
+    margin-top: 0.75em;
+  }
+
+  .post-body a {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 150ms;
+  }
+
+  .post-body a:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  .post-body strong {
+    font-weight: 600;
+    color: var(--strong);
+  }
+
+  .post-body ul,
+  .post-body ol {
+    padding-left: 1.4em;
+  }
+
+  .post-body ul {
+    list-style: disc;
+  }
+
+  .post-body ol {
+    list-style: decimal;
+  }
+
+  .post-body ul > li::marker {
+    color: var(--accent);
+  }
+
+  .post-body ol > li::marker {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .post-body li + li {
+    margin-top: 0.25em;
+  }
+
+  .post-body blockquote {
+    border-left: 3px solid var(--line);
+    padding-left: 1.1em;
+    color: var(--muted);
+  }
+
+  .post-body blockquote > * + * {
+    margin-top: 0.5em;
+  }
+
+  .post-body code {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.88em;
+  }
+
+  .post-body :not(pre) > code {
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--raised);
+    padding: 0.1em 0.35em;
+    color: var(--strong);
+  }
+
+  /* Astro highlights code with a dark theme; keep blocks dark in both modes. */
+  .post-body pre {
+    overflow-x: auto;
+    border: 1px solid #2f3439;
+    border-radius: 12px;
+    background: #24282c !important;
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  .post-body pre code {
+    font-size: inherit;
+  }
+
+  .post-body hr {
+    margin: 2.5em 0;
+    border-color: var(--line);
+  }
+
+  .post-body img {
+    border-radius: 12px;
+  }
+}
