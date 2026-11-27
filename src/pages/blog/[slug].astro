@@ -1,0 +1,26 @@
+---
+import { loadBlogPosts, renderBlogPost } from '../../app/blog';
+import { BlogPostPage } from '../../components/pages/blog-post-page';
+import BaseLayout from '../../layouts/base-layout.astro';
+import { type BlogPost } from '../../lib/blog/blog-post';
+
+export async function getStaticPaths() {
+  const posts = await loadBlogPosts();
+
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+type Props = {
+  post: BlogPost;
+};
+
+const { post } = Astro.props;
+
+const Content = await renderBlogPost(post.slug);
+---
+
+<BaseLayout title={`${post.title} | Ben McLean`}>
+  <BlogPostPage post={post}>
+    <Content />
+  </BlogPostPage>
+</BaseLayout>
