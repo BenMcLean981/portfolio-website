@@ -23,6 +23,12 @@ describe('BlogIndexPage', () => {
 
     expect(screen.getByText('Draft')).toBeInTheDocument();
   });
+
+  it('says so when there are no posts yet.', () => {
+    render(<BlogIndexPage posts={[]} />);
+
+    expect(screen.getByText('No posts yet.')).toBeInTheDocument();
+  });
 });
 
 function makePost(overrides: Partial<BlogPost>): BlogPost {

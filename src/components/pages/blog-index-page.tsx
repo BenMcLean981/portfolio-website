@@ -10,14 +10,24 @@ export function BlogIndexPage(props: BlogIndexPageProps) {
   return (
     <div className="max-w-[42rem]">
       <H1>Blog</H1>
-      <ol className="mt-8 flex flex-col">
-        {props.posts.map((post) => (
-          <li key={post.slug} className="border-t border-line py-6">
-            <PostSummary post={post} />
-          </li>
-        ))}
-      </ol>
+      <PostList posts={props.posts} />
     </div>
+  );
+}
+
+function PostList(props: BlogIndexPageProps) {
+  if (props.posts.length === 0) {
+    return <p className="mt-8 text-muted">No posts yet.</p>;
+  }
+
+  return (
+    <ol className="mt-8 flex flex-col">
+      {props.posts.map((post) => (
+        <li key={post.slug} className="border-t border-line py-6">
+          <PostSummary post={post} />
+        </li>
+      ))}
+    </ol>
   );
 }
 
