@@ -26,6 +26,7 @@
     "ws": "^8.21.0"
   },
   "devDependencies": {
+    "@astrojs/sitemap": "^3.7.6",
     "@astrojs/rss": "^4.0.19",
     "@eslint/js": "^9",
     "@tailwindcss/vite": "^4.3.5",
