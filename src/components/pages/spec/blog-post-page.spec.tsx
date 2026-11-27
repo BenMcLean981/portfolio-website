@@ -11,6 +11,19 @@ describe('BlogPostPage', () => {
       screen.getByRole('heading', { level: 1, name: 'On craftsmanship' })
     ).toBeInTheDocument();
   });
+
+  it('links each tag to its page.', () => {
+    render(<BlogPostPage post={makePost({ tags: ['craft', 'testing'] })} />);
+
+    expect(screen.getByRole('link', { name: 'craft' })).toHaveAttribute(
+      'href',
+      '/blog/tags/craft'
+    );
+    expect(screen.getByRole('link', { name: 'testing' })).toHaveAttribute(
+      'href',
+      '/blog/tags/testing'
+    );
+  });
 });
 
 function makePost(overrides: Partial<BlogPost>): BlogPost {
