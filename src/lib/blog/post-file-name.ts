@@ -1,4 +1,5 @@
-import slugify from '@sindresorhus/slugify';
+// The .ts extension lets Node run scripts/create-blog-post.ts directly.
+import { slugify } from './slugify.ts';
 
 export function getPostFileName(title: string, created: Date): string {
   return `${formatLocalDate(created)}-${slugify(title)}.md`;

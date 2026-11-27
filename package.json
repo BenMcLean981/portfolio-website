@@ -32,7 +32,6 @@
     "@astrojs/markdown-remark": "^7.3.10",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.6",
-    "@sindresorhus/slugify": "^4.0.1",
     "@tailwindcss/vite": "^4.3.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
