@@ -26,6 +26,20 @@ The Minesweeper leaderboard reads from Supabase in the browser. The values are i
 
 For local builds, put them in `.env`, which git ignores.
 
+### Local development settings
+
+`yarn dev` also reads `.env.development`, which git ignores. Create yours from the committed template:
+
+```bash
+cp .env.development.default .env.development
+```
+
+| Variable      | Value                                                                |
+| ------------- | -------------------------------------------------------------------- |
+| `SHOW_DRAFTS` | `true` to show draft blog posts in `yarn dev`. Builds never read it. |
+
+On Cloudflare, preview deployments show drafts and production never does.
+
 ## How it's put together
 
 - `src/pages/`: routes. Each `.astro` file is a thin template that renders one React component from `src/components/pages/`.

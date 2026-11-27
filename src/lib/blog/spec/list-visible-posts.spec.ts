@@ -22,6 +22,12 @@ describe('listVisiblePosts', () => {
       listVisiblePosts([makeDraft()], { WORKERS_CI_BRANCH: 'main' })
     ).toEqual([]);
   });
+
+  it('shows drafts when SHOW_DRAFTS is true.', () => {
+    const draft = makeDraft();
+
+    expect(listVisiblePosts([draft], { SHOW_DRAFTS: 'true' })).toEqual([draft]);
+  });
 });
 
 function makeDraft(): BlogPost {

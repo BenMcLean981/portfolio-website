@@ -6,7 +6,11 @@ export function listVisiblePosts(
   posts: ReadonlyArray<BlogPost>,
   env: BuildEnvironment
 ): ReadonlyArray<BlogPost> {
-  return isPreviewBuild(env) ? getAllPosts(posts) : getPublishedPosts(posts);
+  return areDraftsVisible(env) ? getAllPosts(posts) : getPublishedPosts(posts);
+}
+
+function areDraftsVisible(env: BuildEnvironment): boolean {
+  return isPreviewBuild(env) || env.SHOW_DRAFTS === 'true';
 }
 
 const PRODUCTION_BRANCH = 'main';
